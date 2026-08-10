@@ -9,11 +9,11 @@ describe("automation engine", () => {
     if (!automation) throw new Error("expected automation");
 
     const result = evaluateAutomation(
-      { ...automation, isActive: true, trigger: { type: "prospect_created" } },
-      { db: seed, event: "prospect_created" },
+      { ...automation, enabled: true, trigger: "prospect created" },
+      { db: seed, event: "prospect created" },
     );
     expect(result.matched).toBe(true);
-    expect(result.actions.length).toBeGreaterThanOrEqual(0);
+    expect(result.actions.length).toBeGreaterThan(0);
   });
 
   it("ignores inactive automations", () => {
@@ -21,7 +21,7 @@ describe("automation engine", () => {
     const automation = seed.automations[0];
     if (!automation) throw new Error("expected automation");
     const result = evaluateAutomation(
-      { ...automation, isActive: false },
+      { ...automation, enabled: false },
       { db: seed, event: "any" },
     );
     expect(result.matched).toBe(false);

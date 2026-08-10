@@ -13,16 +13,19 @@ export type AutomationContext = {
 export function evaluateAutomation(
   automation: DemoAutomation,
   context: AutomationContext,
-): { matched: boolean; actions: DemoAutomation["actions"] } {
-  if (!automation.isActive) {
+): { matched: boolean; actions: string[] } {
+  if (!automation.enabled) {
     return { matched: false, actions: [] };
   }
 
-  const triggerType =
-    typeof automation.trigger === "object" && automation.trigger && "type" in automation.trigger
-      ? String((automation.trigger as { type?: string }).type ?? "")
-      : String(automation.trigger ?? "");
+  const trigger = automation.trigger.trim().toLowerCase();
+  const event = context.event.trim().toLowerCase();
+  const matched =
+    !trigger ||
+    trigger === "any" ||
+    trigger === event ||
+    trigger.includes(event) ||
+    event.includes(trigger);
 
-  const matched = !triggerType || triggerType === context.event || triggerType === "any";
-  return { matched, actions: matched ? automation.actions : [] };
+  return { matched, actions: matched ? [...automation.actions] : [] };
 }
