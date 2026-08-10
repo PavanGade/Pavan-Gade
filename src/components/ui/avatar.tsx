@@ -1,4 +1,3 @@
-export { Avatar } from "./primitives";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -7,6 +6,7 @@ function Avatar({ className, ...props }: React.ComponentProps<"span">) {
 }
 
 function AvatarImage({ className, alt = "", ...props }: React.ComponentProps<"img">) {
+  // eslint-disable-next-line @next/next/no-img-element
   return <img alt={alt} className={cn("aspect-square h-full w-full object-cover", className)} {...props} />;
 }
 

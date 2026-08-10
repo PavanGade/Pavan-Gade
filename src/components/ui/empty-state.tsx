@@ -24,4 +24,3 @@ export function EmptyState({
     </div>
   );
 }
-export { EmptyState } from "./primitives";

@@ -81,4 +81,3 @@ function TabsContent({ value, className, ...props }: React.ComponentProps<"div">
 }
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
-export { Tabs } from "./primitives";

@@ -1,4 +1,3 @@
-export { Button } from "./primitives";
 "use client";
 
 import * as React from "react";

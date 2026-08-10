@@ -22,4 +22,3 @@ export function PageHeader({
     </div>
   );
 }
-export { PageHeader } from "./primitives";

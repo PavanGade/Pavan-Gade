@@ -1,4 +1,3 @@
-export { Input } from "./primitives";
 "use client";
 
 import * as React from "react";

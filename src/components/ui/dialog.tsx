@@ -109,4 +109,3 @@ function DialogDescription({ className, ...props }: React.ComponentProps<"p">) {
 }
 
 export { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription };
-export { Dialog } from "./primitives";
