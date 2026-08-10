@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investors Circle | Real Estate Infrastructure for Serious Investors</title>
+  <meta name="description" content="Investors Circle — Exclusive Access. Better Deals. Higher Returns. Pre-launch allocations and institutional-grade real estate for serious investors in Hyderabad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <style>
+:root {
+  --indigo: #533afd; --indigo-hover: #4230d4; --indigo-light: #7a73ff; --indigo-soft: rgba(83,58,253,.08);
+  --navy: #0a2540; --navy-deep: #061b31; --slate: #425466; --slate-light: #697386; --muted: #8898aa;
+  --bg: #ffffff; --bg-subtle: #f6f9fc; --bg-muted: #f8fafd; --border: #e6ebf1; --border-light: #e3e8ee;
+  --success: #0d9488; --shadow-sm: 0 2px 5px -1px rgba(50,50,93,.08), 0 1px 3px -1px rgba(0,0,0,.06);
+  --shadow-md: 0 13px 27px -5px rgba(50,50,93,.15), 0 8px 16px -8px rgba(0,0,0,.1);
+  --shadow-lg: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.15);
+  --radius: 8px; --radius-lg: 12px; --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --max-w: 1080px; --ease: cubic-bezier(.25,.1,.25,1); --ease-out: cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);color:var(--navy);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(83,58,253,.2)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.container-wide{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;background:var(--indigo);color:#fff;padding:8px 16px;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--indigo);z-index:1001;width:0}
+.gradient-mesh{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.gradient-mesh .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;animation:blobFloat 18s ease-in-out infinite}
+.blob-1{width:520px;height:520px;top:-10%;left:-5%;background:rgba(255,97,24,.35)}
+.blob-2{width:480px;height:480px;top:5%;right:-8%;background:rgba(83,58,253,.35);animation-delay:-6s}
+.blob-3{width:400px;height:400px;bottom:10%;left:35%;background:rgba(255,160,190,.4);animation-delay:-12s}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,25px) scale(.95)}}
+.gradient-mesh::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,rgba(246,249,252,.7) 55%,#fff 100%)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:.25s}
+.nav.scrolled{border-bottom-color:var(--border);box-shadow:var(--shadow-sm);background:rgba(255,255,255,.92)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{font-size:1.05rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo-mark{width:28px;height:28px;background:var(--indigo);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px}
+.nav-links{display:none;align-items:center;gap:2px;list-style:none}
+.nav-links a{padding:8px 12px;font-size:14px;font-weight:500;color:var(--slate);border-radius:6px;transition:.15s;position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--navy);background:rgba(0,0,0,.04)}
+.nav-links a.active::after{content:"";position:absolute;bottom:2px;left:12px;right:12px;height:2px;background:var(--indigo);border-radius:2px}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.menu-toggle{display:flex;flex-direction:column;gap:5px;padding:8px;width:40px;height:40px;justify-content:center;align-items:center}
+.menu-toggle span{display:block;width:18px;height:2px;background:var(--navy);border-radius:2px;transition:.2s}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);z-index:999;padding:24px;flex-direction:column;gap:8px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:14px 16px;font-size:16px;font-weight:500;color:var(--navy);border-radius:var(--radius)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;font-size:14px;font-weight:500;border-radius:999px;transition:all .2s var(--ease);white-space:nowrap}
+.btn-ghost{color:var(--slate)}.btn-ghost:hover{color:var(--navy);background:rgba(0,0,0,.04)}
+.btn-primary{background:var(--indigo);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.btn-primary:hover{background:var(--indigo-hover);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.btn-outline{color:var(--navy);box-shadow:inset 0 0 0 1px var(--border-light);background:#fff}
+.btn-outline:hover{box-shadow:inset 0 0 0 1px var(--slate-light);background:var(--bg-subtle)}
+.btn-lg{padding:12px 22px;font-size:15px}
+.btn .arrow{transition:transform .2s}.btn:hover .arrow{transform:translateX(3px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+.hero{position:relative;padding:120px 0 72px;min-height:92vh;display:flex;align-items:center}
+.hero-content{position:relative;z-index:1;display:grid;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--slate);margin-bottom:20px;box-shadow:var(--shadow-sm);backdrop-filter:blur(8px)}
+.eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(13,148,136,.45)}70%{box-shadow:0 0 0 8px rgba(13,148,136,0)}100%{box-shadow:0 0 0 0 rgba(13,148,136,0)}}
+.hero-text h1{font-size:clamp(2.4rem,5.2vw,3.6rem);font-weight:300;line-height:1.08;letter-spacing:-.04em;color:var(--navy-deep);margin-bottom:20px;max-width:640px}
+.hero-text h1 .highlight{background:linear-gradient(135deg,var(--indigo) 0%,#ff6118 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400}
+.hero-text .lead{font-size:clamp(1rem,2vw,1.125rem);color:var(--slate);line-height:1.65;max-width:520px;margin-bottom:28px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.hero-trust{display:flex;flex-wrap:wrap;align-items:center;gap:16px;font-size:13px;color:var(--muted)}
+.trust-avatars{display:flex}
+.trust-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff}
+.trust-avatars span:first-child{margin-left:0}
+.hero-visual{position:relative;display:none}
+.ui-mock{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);border:1px solid var(--border);overflow:hidden;animation:floatCard 7s ease-in-out infinite}
+@keyframes floatCard{0%,100%{transform:perspective(1200px) rotateY(-5deg) rotateX(3deg) translateY(0)}50%{transform:perspective(1200px) rotateY(-5deg) rotateX(3deg) translateY(-10px)}}
+.ui-mock:hover{animation:none;transform:perspective(1200px) rotateY(-2deg) rotateX(1deg) translateY(-4px);transition:transform .4s}
+.ui-mock-header{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-subtle)}
+.ui-dot{width:10px;height:10px;border-radius:50%}
+.ui-mock-body{padding:20px}
+.ui-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.ui-stat{background:var(--bg-subtle);border-radius:var(--radius);padding:12px;transition:background .2s}
+.ui-stat:hover{background:var(--indigo-soft)}
+.ui-stat .label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ui-stat .val{font-size:20px;font-weight:600;color:var(--navy);letter-spacing:-.02em;margin-top:4px}
+.ui-stat .val.indigo{color:var(--indigo)}
+.ui-chart-bar{display:flex;align-items:flex-end;gap:6px;height:80px;margin-top:8px}
+.ui-bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--indigo-light),var(--indigo));transform-origin:bottom;transform:scaleY(0);transition:transform .8s var(--ease-out)}
+.ui-bar.animate{transform:scaleY(1)}
+.ui-list-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;transition:padding-left .2s}
+.ui-list-item:hover{padding-left:4px}.ui-list-item:last-child{border-bottom:none}
+.ui-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--indigo-soft);color:var(--indigo)}
+.float-chip{position:absolute;bottom:-12px;left:-16px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow-md);z-index:2;animation:floatChip 5s ease-in-out infinite}
+@keyframes floatChip{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.float-chip .chip-label{font-size:11px;color:var(--muted)}.float-chip .chip-val{font-size:16px;font-weight:600;color:var(--indigo)}
+.ticker{border-bottom:1px solid var(--border);background:var(--bg-subtle);overflow:hidden;padding:12px 0}
+.ticker-track{display:flex;gap:40px;width:max-content;animation:ticker 40s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--slate);white-space:nowrap}
+.ticker-item .dot{width:6px;height:6px;border-radius:50%;background:var(--success)}
+.ticker-item strong{color:var(--navy);font-weight:600}.ticker-item .up{color:var(--success);font-weight:600}
+
+/* Developer logos marquee */
+.logo-marquee{
+  padding:56px 0 64px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.logo-marquee-header{
+  text-align:center;
+  margin-bottom:32px;
+  padding:0 24px;
+}
+.logo-marquee-header p{
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+.logo-marquee-viewport{
+  position:relative;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.logo-marquee-track{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  width:max-content;
+  animation:logoScroll 45s linear infinite;
+}
+.logo-marquee-viewport:hover .logo-marquee-track{animation-play-state:paused}
+@keyframes logoScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.dev-logo{
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:172px;
+  height:88px;
+  padding:14px 24px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  transition:all .25s var(--ease);
+  cursor:default;
+  user-select:none;
+}
+.dev-logo:hover{
+  background:#fff;
+  border-color:#d0d5e0;
+  box-shadow:var(--shadow-sm);
+  transform:translateY(-2px);
+}
+.dev-logo img{
+  max-height:40px;
+  max-width:140px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:grayscale(100%) opacity(0.75);
+  transition:filter .25s ease;
+}
+.dev-logo:hover img{
+  filter:grayscale(0%) opacity(1);
+}
+
+section{padding:88px 0}
+.section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);margin-bottom:12px}
+.section-title{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:300;letter-spacing:-.03em;line-height:1.15;color:var(--navy-deep);margin-bottom:16px}
+.section-desc{font-size:17px;color:var(--slate);line-height:1.6;max-width:600px}
+.section-header{margin-bottom:48px}.section-header.center{text-align:center}.section-header.center .section-desc{margin:0 auto}
+.compare{background:var(--bg-subtle)}
+.compare-table{display:grid;grid-template-columns:1.2fr 1fr 1fr;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+.compare-table .cell{padding:16px 20px;font-size:14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.compare-table .head{background:var(--bg-muted);font-weight:600;font-size:13px;color:var(--slate);text-transform:uppercase;letter-spacing:.04em}
+.compare-table .head.highlight{background:var(--indigo);color:#fff}
+.compare-table .cell.highlight{background:rgba(83,58,253,.03)}
+.check{color:var(--success);font-weight:700}.cross{color:#cbd5e1}
+.tab-nav{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:28px;background:var(--bg-subtle);padding:4px;border-radius:12px}
+.tab-btn{flex:1;min-width:120px;padding:12px 16px;font-size:14px;font-weight:500;color:var(--slate);border-radius:8px;transition:all .2s;text-align:center}
+.tab-btn:hover{color:var(--navy);background:rgba(255,255,255,.7)}
+.tab-btn.active{color:var(--indigo);background:#fff;box-shadow:var(--shadow-sm)}
+.tab-panel{display:none;animation:fadeUp .4s var(--ease-out)}.tab-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.bento{display:grid;gap:16px;grid-template-columns:1fr}
+.bento-card{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:28px;box-shadow:var(--shadow-sm);transition:box-shadow .25s,transform .25s,border-color .25s;position:relative;overflow:hidden}
+.bento-card::before{content:"";position:absolute;inset:0;opacity:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(83,58,253,.06),transparent 40%);transition:opacity .3s;pointer-events:none}
+.bento-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:#d4d8e3}
+.bento-card:hover::before{opacity:1}
+.bento-card h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.bento-card p{font-size:14px;color:var(--slate);line-height:1.6}
+.bento-card .icon{width:44px;height:44px;border-radius:10px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.bento-visual{background:linear-gradient(135deg,#f0edff 0%,#faf5ef 100%);border-radius:var(--radius);padding:20px;margin-top:16px;min-height:100px;display:flex;align-items:flex-end;gap:8px}
+.mini-bar{flex:1;border-radius:4px 4px 0 0;background:var(--indigo);opacity:.7}
+.stats-strip{background:var(--navy-deep);color:#fff;padding:80px 0;position:relative;overflow:hidden}
+.stats-strip::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 20%,rgba(83,58,253,.25),transparent)}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;text-align:center;position:relative}
+.stat-num{font-size:clamp(2rem,4vw,3rem);font-weight:300;letter-spacing:-.03em;line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.stat-label{font-size:14px;color:rgba(255,255,255,.6);line-height:1.4}
+.calculator{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md);display:grid;gap:32px}
+.calc-controls{display:grid;gap:24px}
+.calc-group label{display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:var(--slate);margin-bottom:10px}
+.calc-group label span{color:var(--indigo);font-weight:600}
+.range{-webkit-appearance:none;width:100%;height:6px;border-radius:999px;background:var(--border);outline:none}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--indigo);cursor:pointer;box-shadow:0 2px 8px rgba(83,58,253,.4);border:3px solid #fff;transition:transform .15s}
+.range::-webkit-slider-thumb:hover{transform:scale(1.1)}
+.calc-results{background:linear-gradient(135deg,#0a2540,#1a1f71 60%,#533afd);border-radius:var(--radius-lg);padding:28px;color:#fff;display:grid;gap:20px}
+.calc-result-item .lbl{font-size:12px;opacity:.7;margin-bottom:4px}
+.calc-result-item .val{font-size:28px;font-weight:300;letter-spacing:-.03em}
+.calc-result-item .val small{font-size:14px;opacity:.7}
+.calc-delta{display:flex;align-items:center;gap:8px;padding:12px 14px;background:rgba(255,255,255,.1);border-radius:var(--radius);font-size:14px}
+.cases-grid{display:grid;gap:20px}
+.case-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .25s,transform .25s}
+.case-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.case-card-top{padding:28px 28px 0}
+.case-logo{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.case-card h3{font-size:20px;font-weight:400;letter-spacing:-.02em;line-height:1.3;margin-bottom:20px}
+.case-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:0 28px 24px}
+.case-metric .num{font-size:26px;font-weight:300;letter-spacing:-.03em}
+.case-metric .lbl{font-size:12px;color:var(--muted);margin-top:2px}
+.case-footer{padding:14px 28px;background:var(--bg-subtle);border-top:1px solid var(--border);font-size:12px;color:var(--slate-light)}
+.insights{background:var(--bg-muted)}
+.chart-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm)}
+.chart-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.chart-tab{padding:8px 16px;font-size:13px;font-weight:500;border-radius:999px;color:var(--slate);border:1px solid var(--border);background:#fff;transition:all .15s}
+.chart-tab:hover{border-color:var(--indigo-light);color:var(--indigo)}
+.chart-tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.chart-wrap{height:340px;position:relative}
+.chart-panel{display:none}.chart-panel.active{display:block}
+.market-side{display:none}
+.process-grid{display:grid;gap:16px}
+.process-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.process-card:hover{border-color:#d0d5e0;box-shadow:var(--shadow-sm)}
+.process-card::before{content:attr(data-step);position:absolute;top:16px;right:16px;font-size:42px;font-weight:300;color:rgba(83,58,253,.08);line-height:1}
+.process-card h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.process-card p{font-size:14px;color:var(--slate);line-height:1.6}
+.process-card .step-icon{width:36px;height:36px;border-radius:8px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--indigo);font-weight:600;font-size:14px}
+.quotes{background:var(--bg-subtle)}
+.quote-track{display:flex;transition:transform .5s var(--ease-out)}
+.quote-slide{min-width:100%;padding:8px}
+.quote-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-sm);max-width:720px;margin:0 auto}
+.quote-card blockquote{font-size:20px;font-weight:300;letter-spacing:-.02em;line-height:1.5;color:var(--navy);margin-bottom:24px}
+.quote-author{display:flex;align-items:center;gap:12px}
+.quote-avatar{width:44px;height:44px;border-radius:50%;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
+.quote-author .name{font-weight:600;font-size:14px}.quote-author .role{font-size:13px;color:var(--muted)}
+.quote-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.quote-dot{width:8px;height:8px;border-radius:50%;background:#d0d5e0;transition:all .2s;cursor:pointer}
+.quote-dot.active{background:var(--indigo);width:24px;border-radius:4px}
+.faq-list{max-width:720px;margin:0 auto;display:grid;gap:10px}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:box-shadow .2s}
+.faq-item.open{box-shadow:var(--shadow-sm);border-color:#d0d5e0}
+.faq-q{width:100%;text-align:left;padding:18px 20px;font-size:15px;font-weight:500;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-q .chevron{width:24px;height:24px;border-radius:50%;background:var(--bg-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s,background .2s;font-size:12px;color:var(--slate)}
+.faq-item.open .faq-q .chevron{transform:rotate(180deg);background:var(--indigo-soft);color:var(--indigo)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease-out),padding .35s;font-size:14px;color:var(--slate);line-height:1.65;padding:0 20px}
+.faq-item.open .faq-a{max-height:220px;padding:0 20px 18px}
+.cta-band{background:linear-gradient(135deg,#0a2540 0%,#1a1f71 50%,#533afd 100%);color:#fff;padding:96px 0;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 20% 100%,rgba(255,97,24,.15),transparent),radial-gradient(ellipse 50% 60% at 80% 0%,rgba(127,125,252,.2),transparent)}
+.cta-band .container{position:relative;z-index:1}
+.cta-band h2{font-size:clamp(2rem,4vw,2.75rem);font-weight:300;letter-spacing:-.03em;margin-bottom:16px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 32px;line-height:1.6}
+.cta-band .btn-primary{background:#fff;color:var(--indigo)}.cta-band .btn-primary:hover{background:#f0edff}
+.cta-band .btn-outline{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);background:transparent}.cta-band .btn-outline:hover{background:rgba(255,255,255,.08)}
+.form-section{background:var(--bg-subtle)}
+.form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow-md);max-width:720px;margin:0 auto}
+.form-progress{display:flex;gap:8px;margin-bottom:28px}
+.form-progress .step{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background .3s}.form-progress .step.done{background:var(--indigo)}
+.form-grid{display:grid;gap:20px}
+.form-group label{display:block;font-size:13px;font-weight:500;color:var(--slate);margin-bottom:6px}
+.form-input{width:100%;padding:11px 14px;font-size:15px;border:1px solid var(--border-light);border-radius:var(--radius);color:var(--navy);background:#fff;transition:border-color .15s,box-shadow .15s;outline:none}
+.form-input:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(83,58,253,.12)}
+.form-input.error{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.1)}
+.form-input::placeholder{color:var(--muted)}
+.chip-group{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;font-size:13px;font-weight:500;border-radius:999px;border:1px solid var(--border-light);color:var(--slate);cursor:pointer;transition:all .15s;background:#fff}
+.chip:hover{border-color:var(--indigo-light);color:var(--indigo)}
+.chip.selected{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo)}
+.chip input{display:none}
+.form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+.success-panel{display:none;text-align:center;padding:48px 24px}.success-panel.show{display:block;animation:fadeUp .5s var(--ease-out)}
+.success-icon{width:56px;height:56px;background:var(--indigo-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;color:var(--indigo)}
+.footer{background:var(--bg-subtle);border-top:1px solid var(--border);padding:64px 0 32px}
+.footer-grid{display:grid;gap:40px;margin-bottom:48px}
+.footer h4{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.footer ul{list-style:none}.footer li{margin-bottom:10px}
+.footer a{font-size:14px;color:var(--slate);transition:color .15s}.footer a:hover{color:var(--indigo)}
+.footer-bottom{padding-top:24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:var(--muted)}
+.fab{position:fixed;bottom:24px;right:24px;z-index:900;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:transform .2s,box-shadow .2s}
+.fab:hover{transform:scale(1.08);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+.fab-tooltip{position:absolute;right:68px;background:var(--navy);color:#fff;padding:8px 12px;border-radius:8px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab:hover .fab-tooltip{opacity:1}
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;box-shadow:var(--shadow-lg);z-index:1100;opacity:0;pointer-events:none;transition:all .3s var(--ease-out)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (min-width:768px){
+.nav-links{display:flex}.menu-toggle{display:none}
+.hero-content{grid-template-columns:1.05fr .95fr}.hero-visual{display:block}
+.bento{grid-template-columns:repeat(2,1fr)}.bento .span-2{grid-column:span 2}
+.stats-grid{grid-template-columns:repeat(4,1fr)}.cases-grid{grid-template-columns:repeat(2,1fr)}
+.process-grid{grid-template-columns:repeat(4,1fr)}.form-grid.two-col{grid-template-columns:1fr 1fr}
+.footer-grid{grid-template-columns:2fr repeat(3,1fr)}.calculator{grid-template-columns:1.2fr .8fr}
+}
+@media (min-width:1024px){
+.bento{grid-template-columns:repeat(3,1fr)}.cases-grid{grid-template-columns:repeat(3,1fr)}
+.chart-layout{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}.market-side{display:flex;flex-direction:column;gap:10px}
+}
+@media (max-width:767px){.compare-table{grid-template-columns:1fr}.compare-table .cell:nth-child(3n+2){display:none}}
+
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a href="#main" class="logo">
+      <span class="logo-mark">IC</span>
+      Investors Circle
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#advantage" data-spy="advantage">Advantage</a></li>
+      <li><a href="#products" data-spy="products">Products</a></li>
+      <li><a href="#calculator" data-spy="calculator">Calculator</a></li>
+      <li><a href="#insights" data-spy="insights">Insights</a></li>
+      <li><a href="#apply" data-spy="apply">Apply</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="tel:+917416436805">+91 7416436805</a>
+      <a class="btn btn-primary" href="#apply">Request Access</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <a href="#advantage">Advantage</a>
+  <a href="#products">Products</a>
+  <a href="#calculator">Calculator</a>
+  <a href="#insights">Insights</a>
+  <a href="#process">Process</a>
+  <a href="#apply">Request Access</a>
+  <a href="https://wa.me/917416436805" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="gradient-mesh" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    <div class="container-wide">
+      <div class="hero-content">
+        <div class="hero-text reveal">
+          <div class="eyebrow"><span class="pulse" aria-hidden="true"></span> Invitation only</div>
+          <h1>Real estate infrastructure for <span class="highlight">serious investors</span></h1>
+          <p class="lead">Exclusive Access. Better Deals. Higher Returns. Pre-launch allocations, bulk negotiations, and market intelligence — curated for Hyderabad's private investor circle.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-lg" href="#apply">Request Access <span class="arrow">→</span></a>
+            <a class="btn btn-outline btn-lg" href="#insights">Explore Insights</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-avatars" aria-hidden="true">
+              <span style="background:#533afd">RK</span>
+              <span style="background:#ff6118">AS</span>
+              <span style="background:#0d9488">PM</span>
+              <span style="background:#1a1f71">NR</span>
+            </div>
+            <span>Trusted by HNIs &amp; NRIs across Hyderabad micro-markets</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal reveal-delay-2">
+          <div class="ui-mock" id="portfolioMock">
+            <div class="ui-mock-header">
+              <span class="ui-dot" style="background:#ff5f57"></span>
+              <span class="ui-dot" style="background:#febc2e"></span>
+              <span class="ui-dot" style="background:#28c840"></span>
+              <span style="margin-left:8px;font-size:12px;color:var(--muted)">Portfolio Dashboard</span>
+            </div>
+            <div class="ui-mock-body">
+              <div class="ui-stat-row">
+                <div class="ui-stat"><div class="label">ROI</div><div class="val indigo">47.2%</div></div>
+                <div class="ui-stat"><div class="label">Savings</div><div class="val">₹12Cr+</div></div>
+                <div class="ui-stat"><div class="label">Launches</div><div class="val">14</div></div>
+              </div>
+              <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Allocation performance</div>
+              <div class="ui-chart-bar" id="heroBars">
+                <div class="ui-bar" style="height:42%"></div>
+                <div class="ui-bar" style="height:58%"></div>
+                <div class="ui-bar" style="height:48%"></div>
+                <div class="ui-bar" style="height:72%"></div>
+                <div class="ui-bar" style="height:85%"></div>
+                <div class="ui-bar" style="height:96%"></div>
+              </div>
+              <div class="ui-list-item"><span>Kokapet Pre-Launch</span><span class="ui-badge">+22%</span></div>
+              <div class="ui-list-item"><span>Financial District Bulk</span><span class="ui-badge">+18%</span></div>
+              <div class="ui-list-item"><span>Gachibowli Early Bird</span><span class="ui-badge">+15%</span></div>
+            </div>
+          </div>
+          <div class="float-chip">
+            <div class="chip-label">vs retail buyers</div>
+            <div class="chip-val">3.2× better</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-label="Live deal ticker">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="dot"></span><strong>Kokapet</strong> Tower B · 3BHK · <span class="up">+24% YoY</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Financial District</strong> Bulk · 4 units · <span class="up">₹48L saved</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Gachibowli</strong> Pre-Launch · Sold out · <span class="up">+18%</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Tellapur</strong> Early Bird · 2BHK · <span class="up">+20% YoY</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Narsingi</strong> Advisory · Exit · <span class="up">1.9× in 36mo</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Miyapur</strong> Rental · Yield · <span class="up">5.2%</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Bachupally</strong> Off-market · <span class="up">Floor price</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Kokapet</strong> Tower B · 3BHK · <span class="up">+24% YoY</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Financial District</strong> Bulk · 4 units · <span class="up">₹48L saved</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Gachibowli</strong> Pre-Launch · Sold out · <span class="up">+18%</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Tellapur</strong> Early Bird · 2BHK · <span class="up">+20% YoY</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Narsingi</strong> Advisory · Exit · <span class="up">1.9× in 36mo</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Miyapur</strong> Rental · Yield · <span class="up">5.2%</span></div>
+      <div class="ticker-item"><span class="dot"></span><strong>Bachupally</strong> Off-market · <span class="up">Floor price</span></div>
+    </div>
+  </div>
+
+  <!-- DEVELOPER LOGOS MARQUEE -->
+  <section class="logo-marquee" aria-label="Real estate developers we work with">
+    <div class="logo-marquee-header">
+      <p>Trusted partnerships with tier-1 developers across Hyderabad</p>
+    </div>
+    <div class="logo-marquee-viewport">
+      <div class="logo-marquee-track" id="devLogoTrack">
+        <!-- logos injected twice for seamless loop -->
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="compare" id="advantage">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">The Advantage</div>
+        <h2 class="section-title">Retail vs Investors Circle</h2>
+        <p class="section-desc">Same city. Completely different access, pricing, and outcomes.</p>
+      </div>
+      <div class="compare-table reveal">
+        <div class="cell head">Capability</div>
+        <div class="cell head">Retail Buyer</div>
+        <div class="cell head highlight">Investors Circle</div>
+        <div class="cell">Pre-launch access</div>
+        <div class="cell"><span class="cross">✕</span> Public launches only</div>
+        <div class="cell highlight"><span class="check">✓</span> Weeks before public</div>
+        <div class="cell">Bulk negotiated pricing</div>
+        <div class="cell"><span class="cross">✕</span> List price</div>
+        <div class="cell highlight"><span class="check">✓</span> Pooled capital discounts</div>
+        <div class="cell">Unit selection priority</div>
+        <div class="cell"><span class="cross">✕</span> Leftover inventory</div>
+        <div class="cell highlight"><span class="check">✓</span> First pick of inventory</div>
+        <div class="cell">Dedicated advisory</div>
+        <div class="cell"><span class="cross">✕</span> Broker-led</div>
+        <div class="cell highlight"><span class="check">✓</span> Relationship manager</div>
+        <div class="cell">Market intelligence</div>
+        <div class="cell"><span class="cross">✕</span> Public listings</div>
+        <div class="cell highlight"><span class="check">✓</span> Yield &amp; infra data</div>
+        <div class="cell">Off-market deals</div>
+        <div class="cell"><span class="cross">✕</span> Rare</div>
+        <div class="cell highlight"><span class="check">✓</span> 100% off-market</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS BENTO -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Products</div>
+        <h2 class="section-title">Everything you need to allocate with conviction</h2>
+        <p class="section-desc">Four pillars designed around how serious investors actually deploy capital in Hyderabad.</p>
+      </div>
+      <div class="tab-nav" id="productTabs" role="tablist">
+        <button class="tab-btn active" role="tab" data-tab="prelaunch" aria-selected="true">Pre-Launch</button>
+        <button class="tab-btn" role="tab" data-tab="bulk" aria-selected="false">Bulk Deals</button>
+        <button class="tab-btn" role="tab" data-tab="advisory" aria-selected="false">Advisory</button>
+        <button class="tab-btn" role="tab" data-tab="intelligence" aria-selected="false">Intelligence</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-prelaunch" role="tabpanel">
+        <div class="bento">
+          <div class="bento-card span-2">
+            <div class="icon">🚀</div>
+            <h3>Early-Bird &amp; Pre-Launch</h3>
+            <p>Secure units weeks before public announcements. Lowest entry price, immediate paper appreciation upon launch.</p>
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-bar" style="height:30%"></div>
+              <div class="mini-bar" style="height:45%"></div>
+              <div class="mini-bar" style="height:55%"></div>
+              <div class="mini-bar" style="height:70%"></div>
+              <div class="mini-bar" style="height:88%"></div>
+              <div class="mini-bar" style="height:100%"></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="icon">⭐</div>
+            <h3>Priority Selection</h3>
+            <p>First pick of floor plans, views, and orientations that command premium resale.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">🔒</div>
+            <h3>Invitation Access</h3>
+            <p>Off-market inventory reserved exclusively for Circle members.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-bulk" role="tabpanel">
+        <div class="bento">
+          <div class="bento-card span-2">
+            <div class="icon">📦</div>
+            <h3>Negotiated Bulk Deals</h3>
+            <p>By pooling capital intent, we negotiate discounts from tier-1 developers that individual buyers cannot access.</p>
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-bar" style="height:40%"></div>
+              <div class="mini-bar" style="height:55%"></div>
+              <div class="mini-bar" style="height:48%"></div>
+              <div class="mini-bar" style="height:72%"></div>
+              <div class="mini-bar" style="height:90%"></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="icon">👥</div>
+            <h3>Family &amp; Partner Pools</h3>
+            <p>2+ units for heavy discounts — friends, family, or syndicate booking.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">₹</div>
+            <h3>Transparent Savings</h3>
+            <p>Members have saved ₹12Cr+ through Circle-negotiated pricing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-advisory" role="tabpanel">
+        <div class="bento">
+          <div class="bento-card">
+            <div class="icon">🧭</div>
+            <h3>Dedicated Advisory</h3>
+            <p>A private relationship manager for paperwork, payment schedules, and exits.</p>
+          </div>
+          <div class="bento-card span-2">
+            <div class="icon">📈</div>
+            <h3>Mandate Matching</h3>
+            <p>We match your risk, timeline, and capital with pre-vetted opportunities across Hyderabad micro-markets.</p>
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-bar" style="height:50%"></div>
+              <div class="mini-bar" style="height:65%"></div>
+              <div class="mini-bar" style="height:80%"></div>
+              <div class="mini-bar" style="height:70%"></div>
+              <div class="mini-bar" style="height:95%"></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="icon">🏠</div>
+            <h3>Exit Strategy</h3>
+            <p>Resale timing, rental handover, and portfolio rebalancing support.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-intelligence" role="tabpanel">
+        <div class="bento">
+          <div class="bento-card span-2">
+            <div class="icon">📊</div>
+            <h3>Market Intelligence</h3>
+            <p>Data-driven analysis on rental yields, infrastructure, and micro-market appreciation trajectories.</p>
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-bar" style="height:35%"></div>
+              <div class="mini-bar" style="height:60%"></div>
+              <div class="mini-bar" style="height:50%"></div>
+              <div class="mini-bar" style="height:75%"></div>
+              <div class="mini-bar" style="height:85%"></div>
+              <div class="mini-bar" style="height:92%"></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="icon">📍</div>
+            <h3>Micro-Market Maps</h3>
+            <p>Kokapet, Tellapur, FD, Gachibowli — scored for demand and yield.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">💹</div>
+            <h3>Rental Yield Analysis</h3>
+            <p>Projections and resale assessments at every stage of the hold.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-strip" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="reveal">
+          <div class="stat-num" data-stat="47.2" data-suffix="%" data-decimals="1">0%</div>
+          <div class="stat-label">Avg. Portfolio ROI</div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="stat-num" data-stat="12" data-prefix="₹" data-suffix="Cr+" data-decimals="0">₹0</div>
+          <div class="stat-label">Member Savings</div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="stat-num" data-stat="14" data-suffix="" data-decimals="0">0</div>
+          <div class="stat-label">Exclusive Launches</div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="stat-num" data-stat="100" data-suffix="%" data-decimals="0">0%</div>
+          <div class="stat-label">Off-Market</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section id="calculator">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">ROI Calculator</div>
+        <h2 class="section-title">See the Circle advantage</h2>
+        <p class="section-desc">Model appreciation with Circle pricing versus typical retail entry.</p>
+      </div>
+      <div class="calculator reveal">
+        <div class="calc-controls">
+          <div class="calc-group">
+            <label>Investment amount <span id="amtLabel">₹2.5 Cr</span></label>
+            <input class="range" type="range" id="calcAmount" min="50" max="1000" value="250" step="10" aria-valuemin="50" aria-valuemax="1000" />
+          </div>
+          <div class="calc-group">
+            <label>Hold period <span id="yrsLabel">5 years</span></label>
+            <input class="range" type="range" id="calcYears" min="1" max="10" value="5" step="1" />
+          </div>
+          <div class="calc-group">
+            <label>Annual appreciation <span id="aprLabel">12%</span></label>
+            <input class="range" type="range" id="calcApr" min="6" max="25" value="12" step="1" />
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.5">Circle members typically enter 8–15% below retail via pre-launch and bulk discounts. Model assumes a conservative 10% entry advantage.</p>
+        </div>
+        <div class="calc-results">
+          <div class="calc-result-item">
+            <div class="lbl">Retail outcome</div>
+            <div class="val" id="retailVal">₹0 <small>Cr</small></div>
+          </div>
+          <div class="calc-result-item">
+            <div class="lbl">Circle outcome</div>
+            <div class="val" id="circleVal">₹0 <small>Cr</small></div>
+          </div>
+          <div class="calc-delta">
+            <strong id="deltaVal">+₹0 Cr</strong>
+            <span>Circle advantage over hold period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAS / CASES -->
+  <section id="stories">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">Who's in the Circle</div>
+        <h2 class="section-title">Investor personas we serve</h2>
+        <p class="section-desc">From first allocations to multi-crore portfolios — one private desk.</p>
+      </div>
+      <div class="cases-grid">
+        <article class="case-card reveal">
+          <div class="case-card-top">
+            <div class="case-logo">First-Time</div>
+            <h3>Guided entry into high-growth residential assets</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">₹1–2Cr</div><div class="lbl">Typical ticket</div></div>
+            <div class="case-metric"><div class="num">Pre-Launch</div><div class="lbl">Entry path</div></div>
+          </div>
+          <div class="case-footer">Data-backed micro-market matching · Advisory-led</div>
+        </article>
+        <article class="case-card reveal reveal-delay-1">
+          <div class="case-card-top">
+            <div class="case-logo">HNI &amp; NRI</div>
+            <h3>Hands-off wealth multiplication in tier-1 India</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">₹3–5Cr+</div><div class="lbl">Typical ticket</div></div>
+            <div class="case-metric"><div class="num">Bulk</div><div class="lbl">Entry path</div></div>
+          </div>
+          <div class="case-footer">Remote-friendly · Dedicated RM · Exit planning</div>
+        </article>
+        <article class="case-card reveal reveal-delay-2">
+          <div class="case-card-top">
+            <div class="case-logo">Appreciation</div>
+            <h3>Maximum ROI via Early-Bird &amp; Pre-Launch</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">47.2%</div><div class="lbl">Avg portfolio ROI</div></div>
+            <div class="case-metric"><div class="num">3.2×</div><div class="lbl">vs retail</div></div>
+          </div>
+          <div class="case-footer">Kokapet · Tellapur · Financial District</div>
+        </article>
+        <article class="case-card reveal">
+          <div class="case-card-top">
+            <div class="case-logo">Bulk Bookers</div>
+            <h3>Families &amp; partners buying 2+ units</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">2–5+</div><div class="lbl">Units pooled</div></div>
+            <div class="case-metric"><div class="num">Heavy</div><div class="lbl">Discount band</div></div>
+          </div>
+          <div class="case-footer">Syndicate &amp; family booking desks</div>
+        </article>
+        <article class="case-card reveal reveal-delay-1">
+          <div class="case-card-top">
+            <div class="case-logo">Portfolio</div>
+            <h3>Diversify across high-yield micro-markets</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">6+</div><div class="lbl">Markets covered</div></div>
+            <div class="case-metric"><div class="num">14</div><div class="lbl">Launches curated</div></div>
+          </div>
+          <div class="case-footer">Existing investors expanding exposure</div>
+        </article>
+        <article class="case-card reveal reveal-delay-2">
+          <div class="case-card-top">
+            <div class="case-logo">Passive Income</div>
+            <h3>Rental streams for long-term freedom</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">4–5.2%</div><div class="lbl">Yield band</div></div>
+            <div class="case-metric"><div class="num">FD/GB</div><div class="lbl">Focus corridors</div></div>
+          </div>
+          <div class="case-footer">Professionals &amp; business owners</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS / CHARTS -->
+  <section class="insights" id="insights">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">Insights</div>
+        <h2 class="section-title">Interactive market intelligence</h2>
+        <p class="section-desc">Growth, micro-markets, and rental trajectories — the data Circle members use.</p>
+      </div>
+      <div class="chart-layout reveal">
+        <div class="chart-card">
+          <div class="chart-tabs" id="chartTabs" role="tablist">
+            <button class="chart-tab active" data-tab="growth" aria-selected="true">Growth</button>
+            <button class="chart-tab" data-tab="markets" aria-selected="false">Markets</button>
+            <button class="chart-tab" data-tab="rental" aria-selected="false">Rental</button>
+          </div>
+          <div class="chart-panel active" data-panel="growth" id="chart-growth">
+            <div class="chart-wrap"><canvas id="growthChart" aria-label="Portfolio growth chart"></canvas></div>
+          </div>
+          <div class="chart-panel" data-panel="markets" id="chart-markets">
+            <div class="chart-wrap"><canvas id="marketChart" aria-label="Market appreciation chart"></canvas></div>
+          </div>
+          <div class="chart-panel" data-panel="rental" id="chart-rental">
+            <div class="chart-wrap"><canvas id="rentalChart" aria-label="Rental projection chart"></canvas></div>
+          </div>
+        </div>
+        <div class="market-side" id="marketCards" aria-label="Market cards"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">Process</div>
+        <h2 class="section-title">Four steps to membership</h2>
+        <p class="section-desc">Confidential, curated, and built for conviction — not noise.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal" data-step="01">
+          <div class="step-icon">1</div>
+          <h3>Apply</h3>
+          <p>Submit your investor profile for confidential review by our advisory team.</p>
+        </div>
+        <div class="process-card reveal reveal-delay-1" data-step="02">
+          <div class="step-icon">2</div>
+          <h3>Curate</h3>
+          <p>We match your mandate with pre-vetted, off-market opportunities in Hyderabad.</p>
+        </div>
+        <div class="process-card reveal reveal-delay-2" data-step="03">
+          <div class="step-icon">3</div>
+          <h3>Allocate</h3>
+          <p>Secure floor-price units through bulk negotiations before public launch.</p>
+        </div>
+        <div class="process-card reveal reveal-delay-3" data-step="04">
+          <div class="step-icon">4</div>
+          <h3>Compound</h3>
+          <p>Track ROI, rental yields, and exits with dedicated advisory support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="quotes" id="quotes">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">Members</div>
+        <h2 class="section-title">What Circle investors say</h2>
+      </div>
+      <div class="reveal" style="overflow:hidden">
+        <div class="quote-track" id="quoteTrack">
+          <div class="quote-slide">
+            <div class="quote-card">
+              <blockquote>“We accessed Kokapet three weeks before launch. The paper gain alone paid for two years of advisory fees.”</blockquote>
+              <div class="quote-author">
+                <div class="quote-avatar">RK</div>
+                <div><div class="name">Ravi K.</div><div class="role">HNI · Hyderabad</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-card">
+              <blockquote>“As an NRI, I needed a desk that handled diligence and paperwork. Circle made bulk booking feel institutional.”</blockquote>
+              <div class="quote-author">
+                <div class="quote-avatar">AS</div>
+                <div><div class="name">Ananya S.</div><div class="role">NRI · Singapore</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="quote-slide">
+            <div class="quote-card">
+              <blockquote>“The micro-market intelligence on Tellapur and FD changed how we allocate. No more brochure-driven buys.”</blockquote>
+              <div class="quote-author">
+                <div class="quote-avatar">PM</div>
+                <div><div class="name">Pradeep M.</div><div class="role">Portfolio Builder</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-dots" id="quoteDots" role="tablist" aria-label="Testimonial navigation">
+          <button class="quote-dot active" data-i="0" aria-label="Quote 1"></button>
+          <button class="quote-dot" data-i="1" aria-label="Quote 2"></button>
+          <button class="quote-dot" data-i="2" aria-label="Quote 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Questions, answered</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item open">
+          <button class="faq-q" aria-expanded="true">Who can join Investors Circle?<span class="chevron">▾</span></button>
+          <div class="faq-a">Membership is invitation-only for serious residential investors — typically tickets from ₹1Cr+ — including HNIs, NRIs, first-time guided buyers, and bulk bookers.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Is there a membership fee?<span class="chevron">▾</span></button>
+          <div class="faq-a">Access is application-based. Fees, if any, are disclosed transparently during advisory onboarding — never as a surprise after allocation.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Which markets do you cover?<span class="chevron">▾</span></button>
+          <div class="faq-a">Hyderabad micro-markets including Kokapet, Tellapur, Financial District, Gachibowli, Narsingi, Miyapur, and Bachupally — selected for yield and appreciation potential.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How fast can I allocate?<span class="chevron">▾</span></button>
+          <div class="faq-a">After profile review, curated opportunities can be shared within days. Pre-launch and bulk desks move quickly — timelines depend on mandate fit.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do you support NRIs remotely?<span class="chevron">▾</span></button>
+          <div class="faq-a">Yes. Dedicated relationship managers handle diligence, documentation, and payment schedules for remote and overseas investors.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready for institutional access?</h2>
+      <p>Apply for confidential review. Limited seats for each launch cycle.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        <a class="btn btn-primary btn-lg" href="#apply">Request Access <span class="arrow">→</span></a>
+        <a class="btn btn-outline btn-lg" href="https://wa.me/917416436805" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="form-section" id="apply">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label">Apply</div>
+        <h2 class="section-title">Request Circle access</h2>
+        <p class="section-desc">Tell us your mandate. Our team reviews every application confidentially.</p>
+      </div>
+      <div class="form-card reveal">
+        <div class="form-progress" id="formProgress" aria-hidden="true">
+          <div class="step done"></div>
+          <div class="step"></div>
+          <div class="step"></div>
+          <div class="step"></div>
+        </div>
+        <form id="applyForm" novalidate>
+          <div class="form-grid two-col">
+            <div class="form-group">
+              <label for="fullName">Full name *</label>
+              <input class="form-input" id="fullName" name="fullName" type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone *</label>
+              <input class="form-input" id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input class="form-input" id="city" name="city" type="text" placeholder="Hyderabad / Other" />
+            </div>
+          </div>
+          <div class="form-grid" style="margin-top:20px">
+            <div class="form-group">
+              <label>Budget *</label>
+              <div class="chip-group" data-field="budget">
+                <label class="chip"><input type="radio" name="budget" value="1-2" /> ₹1–2 Cr</label>
+                <label class="chip"><input type="radio" name="budget" value="2-3" /> ₹2–3 Cr</label>
+                <label class="chip"><input type="radio" name="budget" value="3-5" /> ₹3–5 Cr</label>
+                <label class="chip"><input type="radio" name="budget" value="5+" /> ₹5 Cr+</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Units of interest</label>
+              <div class="chip-group" data-field="units">
+                <label class="chip"><input type="radio" name="units" value="2" /> 2 Units</label>
+                <label class="chip"><input type="radio" name="units" value="3-5" /> 3–5 Units</label>
+                <label class="chip"><input type="radio" name="units" value="5+" /> 5+ Units (Bulk)</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Preferred locations</label>
+              <div class="chip-group" data-multi data-field="locations">
+                <label class="chip"><input type="checkbox" name="locations" value="Kokapet" /> Kokapet</label>
+                <label class="chip"><input type="checkbox" name="locations" value="Tellapur" /> Tellapur</label>
+                <label class="chip"><input type="checkbox" name="locations" value="FD" /> Financial District</label>
+                <label class="chip"><input type="checkbox" name="locations" value="Gachibowli" /> Gachibowli</label>
+                <label class="chip"><input type="checkbox" name="locations" value="Narsingi" /> Narsingi</label>
+                <label class="chip"><input type="checkbox" name="locations" value="Miyapur" /> Miyapur</label>
+                <label class="chip"><input type="checkbox" name="locations" value="Other" /> Other</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Primary objective</label>
+              <div class="chip-group" data-field="objective">
+                <label class="chip"><input type="radio" name="objective" value="appreciation" /> Capital Appreciation</label>
+                <label class="chip"><input type="radio" name="objective" value="rental" /> Rental Income</label>
+                <label class="chip"><input type="radio" name="objective" value="wealth" /> Long-Term Wealth</label>
+                <label class="chip"><input type="radio" name="objective" value="diversify" /> Diversification</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Timeline</label>
+              <div class="chip-group" data-field="timeline">
+                <label class="chip"><input type="radio" name="timeline" value="now" /> Immediately</label>
+                <label class="chip"><input type="radio" name="timeline" value="30" /> Within 30 Days</label>
+                <label class="chip"><input type="radio" name="timeline" value="1-3" /> 1–3 Months</label>
+                <label class="chip"><input type="radio" name="timeline" value="explore" /> Just Exploring</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="notes">Anything else?</label>
+              <textarea class="form-input" id="notes" name="notes" rows="3" placeholder="Mandate notes, preferred developers, or questions"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Submit Application</button>
+            <p class="form-note">By submitting, you agree to be contacted by Investors Circle. We never share your data.</p>
+          </div>
+        </form>
+        <div id="successPanel" class="success-panel">
+          <div class="success-icon">✓</div>
+          <h3 class="section-title" style="font-size:1.5rem;margin-bottom:8px">Application received</h3>
+          <p class="section-desc" style="margin:0 auto">Our advisory team will review your profile and reach out shortly. For faster response, message us on WhatsApp.</p>
+          <a class="btn btn-primary" style="margin-top:24px" href="https://wa.me/917416436805" target="_blank" rel="noopener">Open WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#main" class="logo" style="margin-bottom:16px">
+          <span class="logo-mark">IC</span>
+          Investors Circle
+        </a>
+        <p style="font-size:14px;color:var(--slate);max-width:280px;line-height:1.6;margin-top:12px">Exclusive Access. Better Deals. Higher Returns. Hyderabad's private real estate circle.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#advantage">Advantage</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#calculator">Calculator</a></li>
+          <li><a href="#insights">Insights</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Membership</h4>
+        <ul>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#apply">Apply</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+917416436805">+91 7416436805</a></li>
+          <li><a href="https://wa.me/917416436805" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><span style="font-size:14px;color:var(--slate);line-height:1.5;display:block">WeWork Raheja Mindspace, Building 9, 13th Floor, Madhapur, Hyderabad, Telangana 500081</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Investors Circle. All rights reserved.</span>
+      <span>Hyderabad · Invitation only</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/917416436805" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="fab-tooltip">Chat with us</span>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.139-1.633-.807-1.887-.897-.254-.091-.438-.136-.623.136-.184.273-.713.896-.873 1.08-.16.185-.32.208-.591.07-.272-.136-1.45-.534-2.76-1.705-.102-.178-.543-.88-.543-1.04 0-.16.07-.29.136-.36.07-.07.16-.185.24-.273.08-.09.107-.15.16-.25.054-.1.027-.185-.013-.26-.04-.074-.623-1.5-.853-2.05-.224-.54-.45-.466-.623-.475l-.53-.01c-.178 0-.466.067-.71.333-.244.268-.93.91-.93 2.22 0 1.31.953 2.58 1.086 2.76.133.178 1.875 2.86 4.54 4.01.635.274 1.13.438 1.516.56.637.203 1.216.174 1.674.105.51-.076 1.633-.668 1.864-1.313.23-.645.23-1.198.16-1.313-.07-.114-.254-.183-.53-.312zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982 1-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  const indigo = '#533afd';
+  const indigoSoft = 'rgba(83,58,253,0.15)';
+  const slate = '#8898aa';
+
+  /* Developer logos — horizontal marquee with actual brand marks */
+  const developers = [
+    { name: 'Godrej', file: 'logos/godrej.svg' },
+    { name: 'Prestige Group', file: 'logos/prestige.svg' },
+    { name: 'DAMAC', file: 'logos/damac.svg' },
+    { name: 'Sobha', file: 'logos/sobha.png' },
+    { name: 'Brigade', file: 'logos/brigade.png' },
+    { name: 'Urbanrise', file: 'logos/urbanrise.png' },
+    { name: 'Candeur', file: 'logos/candeur.png' },
+    { name: 'Anvita Group', file: 'logos/anvita.svg' },
+    { name: 'AR Homes', file: 'logos/arhomes.svg' },
+    { name: 'SVADHA', file: 'logos/svadha.png' },
+    { name: 'AURO Realty', file: 'logos/auro.png' },
+    { name: 'Raghava', file: 'logos/raghava.svg' },
+    { name: 'DSR', file: 'logos/dsr.jpg' },
+    { name: 'Hallmark', file: 'logos/hallmark.png' },
+    { name: 'ASBL', file: 'logos/asbl.webp' },
+    { name: 'LODHA', file: 'logos/lodha.svg' },
+    { name: 'Rajapushpa', file: 'logos/rajapushpa.svg' },
+    { name: 'Sumadhura', file: 'logos/sumadhura.svg' },
+  ];
+
+  const logoTrack = document.getElementById('devLogoTrack');
+  if (logoTrack) {
+    const logoHTML = developers.map(d => `
+      <div class="dev-logo" title="${d.name}">
+        <img src="${d.file}" alt="${d.name} logo" loading="lazy" width="140" height="40" />
+      </div>`).join('');
+    // Duplicate for seamless infinite scroll
+    logoTrack.innerHTML = logoHTML + logoHTML;
+  }
+
+  /* Scroll progress */
+  const progress = document.getElementById('scrollProgress');
+  const onScrollProgress = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    progress.style.width = max > 0 ? (h.scrollTop / max) * 100 + '%' : '0%';
+  };
+  window.addEventListener('scroll', onScrollProgress, { passive: true });
+
+  /* Nav scrolled + spy */
+  const nav = document.getElementById('nav');
+  const spyLinks = document.querySelectorAll('[data-spy]');
+  const spySections = [...spyLinks].map(a => document.getElementById(a.dataset.spy)).filter(Boolean);
+  const onScrollNav = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+    let current = '';
+    spySections.forEach(sec => {
+      if (sec.getBoundingClientRect().top <= 120) current = sec.id;
+    });
+    spyLinks.forEach(a => a.classList.toggle('active', a.dataset.spy === current));
+  };
+  window.addEventListener('scroll', onScrollNav, { passive: true });
+  onScrollNav();
+
+  /* Mobile menu */
+  const toggle = document.getElementById('menuToggle');
+  const mobile = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => {
+    const open = !toggle.classList.contains('open');
+    toggle.classList.toggle('open', open);
+    mobile.classList.toggle('open', open);
+    mobile.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    mobile.classList.remove('open');
+    mobile.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  /* Reveal */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* Hero bars */
+  const barsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.ui-bar').forEach((b, i) => {
+        setTimeout(() => b.classList.add('animate'), i * 80);
+      });
+      barsObs.unobserve(e.target);
+    });
+  }, { threshold: 0.4 });
+  const heroBars = document.getElementById('heroBars');
+  if (heroBars) barsObs.observe(heroBars);
+
+  /* Product tabs */
+  document.querySelectorAll('#productTabs .tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#productTabs .tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('#products .tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* Pointer glow on bento cards */
+  document.querySelectorAll('.bento-card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* Stats counters */
+  function animateStat(el) {
+    const target = parseFloat(el.dataset.stat);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const start = performance.now();
+    const duration = 2000;
+    const step = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      el.textContent = prefix + (decimals ? val.toFixed(decimals) : Math.round(val)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      animateStat(e.target);
+      statsObs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num[data-stat]').forEach(el => statsObs.observe(el));
+
+  /* ROI Calculator */
+  const amt = document.getElementById('calcAmount');
+  const yrs = document.getElementById('calcYears');
+  const apr = document.getElementById('calcApr');
+  function fmtCr(lakhs) {
+    const cr = lakhs / 100;
+    return cr >= 10 ? cr.toFixed(1) : cr.toFixed(2);
+  }
+  function updateCalc() {
+    const lakhs = Number(amt.value);
+    const years = Number(yrs.value);
+    const rate = Number(apr.value) / 100;
+    document.getElementById('amtLabel').textContent = '₹' + fmtCr(lakhs) + ' Cr';
+    document.getElementById('yrsLabel').textContent = years + (years === 1 ? ' year' : ' years');
+    document.getElementById('aprLabel').textContent = apr.value + '%';
+    const retailEnd = lakhs * Math.pow(1 + rate, years);
+    const circleEntry = lakhs * 0.9;
+    const circleEnd = circleEntry * Math.pow(1 + rate, years);
+    document.getElementById('retailVal').innerHTML = '₹' + fmtCr(retailEnd) + ' <small>Cr</small>';
+    document.getElementById('circleVal').innerHTML = '₹' + fmtCr(circleEnd) + ' <small>Cr</small>';
+    const delta = circleEnd - retailEnd + (lakhs - circleEntry) * Math.pow(1 + rate, years);
+    const adv = (lakhs - circleEntry) * Math.pow(1 + rate, years);
+    document.getElementById('deltaVal').textContent = '+₹' + fmtCr(adv) + ' Cr';
+  }
+  [amt, yrs, apr].forEach(el => el.addEventListener('input', updateCalc));
+  updateCalc();
+
+  /* Charts */
+  const portfolioGrowth = [
+    { year: '2020', retail: 8, circle: 14 },
+    { year: '2021', retail: 10, circle: 22 },
+    { year: '2022', retail: 9, circle: 28 },
+    { year: '2023', retail: 11, circle: 35 },
+    { year: '2024', retail: 12, circle: 42 },
+    { year: '2025', retail: 13, circle: 47 },
+  ];
+  const marketInsights = [
+    { market: 'Gachibowli', yield: 4.2, appreciation: 18, demand: 92 },
+    { market: 'Financial District', yield: 3.8, appreciation: 22, demand: 88 },
+    { market: 'Kokapet', yield: 4.5, appreciation: 25, demand: 95 },
+    { market: 'Tellapur', yield: 4.8, appreciation: 20, demand: 85 },
+    { market: 'Narsingi', yield: 4.1, appreciation: 19, demand: 80 },
+    { market: 'Miyapur', yield: 5.2, appreciation: 15, demand: 78 },
+  ];
+  const rentalProjection = [
+    { month: 'Jan', projected: 2.1, actual: 2.0 },
+    { month: 'Feb', projected: 2.2, actual: 2.3 },
+    { month: 'Mar', projected: 2.3, actual: 2.2 },
+    { month: 'Apr', projected: 2.4, actual: 2.5 },
+    { month: 'May', projected: 2.5, actual: 2.4 },
+    { month: 'Jun', projected: 2.6, actual: 2.7 },
+    { month: 'Jul', projected: 2.7, actual: 2.8 },
+    { month: 'Aug', projected: 2.8, actual: 2.9 },
+    { month: 'Sep', projected: 2.9, actual: 3.0 },
+    { month: 'Oct', projected: 3.0, actual: 3.1 },
+    { month: 'Nov', projected: 3.1, actual: 3.2 },
+    { month: 'Dec', projected: 3.2, actual: 3.4 },
+  ];
+
+  const chartDefaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: slate, font: { family: 'Inter' } } },
+      tooltip: {
+        backgroundColor: 'rgba(10,37,64,0.95)',
+        titleFont: { family: 'Inter' },
+        bodyFont: { family: 'Inter' },
+        padding: 12,
+        cornerRadius: 8,
+      },
+    },
+    scales: {
+      x: { grid: { color: 'rgba(230,235,241,0.8)' }, ticks: { color: slate, font: { family: 'Inter', size: 11 } } },
+      y: { grid: { color: 'rgba(230,235,241,0.8)' }, ticks: { color: slate, font: { family: 'Inter', size: 11 } } },
+    },
+  };
+
+  let growthChart, marketChart, rentalChart;
+
+  function initGrowthChart() {
+    const ctx = document.getElementById('growthChart');
+    if (!ctx || growthChart || typeof Chart === 'undefined') return;
+    growthChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: portfolioGrowth.map(d => d.year),
+        datasets: [
+          {
+            label: 'Circle Members',
+            data: portfolioGrowth.map(d => d.circle),
+            borderColor: indigo,
+            backgroundColor: indigoSoft,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+            pointBackgroundColor: indigo,
+          },
+          {
+            label: 'Retail Market',
+            data: portfolioGrowth.map(d => d.retail),
+            borderColor: '#c1c9d2',
+            backgroundColor: 'rgba(193,201,210,0.15)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 3,
+          },
+        ],
+      },
+      options: {
+        ...chartDefaults,
+        scales: {
+          ...chartDefaults.scales,
+          y: { ...chartDefaults.scales.y, ticks: { ...chartDefaults.scales.y.ticks, callback: v => v + '%' } },
+        },
+      },
+    });
+  }
+
+  function highlightMarket(name) {
+    document.querySelectorAll('.market-card').forEach(card => {
+      card.classList.toggle('active', card.dataset.market === name);
+    });
+  }
+
+  function renderMarketCards() {
+    const container = document.getElementById('marketCards');
+    if (!container) return;
+    container.innerHTML = marketInsights.map(m => `
+      <div class="bento-card market-card" data-market="${m.market}" style="padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <strong style="font-size:14px">${m.market}</strong>
+          <span class="ui-badge">${m.appreciation}% YoY</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:var(--slate)">
+          <div>Yield <strong style="color:var(--navy)">${m.yield}%</strong></div>
+          <div>Demand <strong style="color:var(--navy)">${m.demand}</strong></div>
+        </div>
+        <div style="margin-top:8px;height:4px;background:var(--border);border-radius:999px;overflow:hidden">
+          <div style="height:100%;width:${m.demand}%;background:var(--indigo);border-radius:999px"></div>
+        </div>
+      </div>`).join('');
+    container.querySelectorAll('.market-card').forEach(card => {
+      card.addEventListener('mouseenter', () => highlightMarket(card.dataset.market));
+      card.addEventListener('mouseleave', () => highlightMarket(null));
+    });
+  }
+
+  function initMarketChart() {
+    const ctx = document.getElementById('marketChart');
+    if (!ctx || marketChart || typeof Chart === 'undefined') return;
+    marketChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: marketInsights.map(d => d.market),
+        datasets: [{
+          label: 'Appreciation %',
+          data: marketInsights.map(d => d.appreciation),
+          backgroundColor: indigo,
+          borderRadius: 6,
+        }],
+      },
+      options: {
+        ...chartDefaults,
+        plugins: { ...chartDefaults.plugins, legend: { display: false } },
+        onHover: (_, elements) => {
+          if (elements.length) highlightMarket(marketInsights[elements[0].index].market);
+        },
+      },
+    });
+  }
+
+  function initRentalChart() {
+    const ctx = document.getElementById('rentalChart');
+    if (!ctx || rentalChart || typeof Chart === 'undefined') return;
+    rentalChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: rentalProjection.map(d => d.month),
+        datasets: [
+          {
+            label: 'Projected',
+            data: rentalProjection.map(d => d.projected),
+            borderColor: '#c1c9d2',
+            borderDash: [5, 5],
+            tension: 0.4,
+            pointRadius: 0,
+          },
+          {
+            label: 'Actual',
+            data: rentalProjection.map(d => d.actual),
+            borderColor: '#0d9488',
+            tension: 0.4,
+            pointRadius: 4,
+            pointBackgroundColor: '#0d9488',
+          },
+        ],
+      },
+      options: {
+        ...chartDefaults,
+        scales: {
+          ...chartDefaults.scales,
+          y: { ...chartDefaults.scales.y, min: 1.5, max: 4, ticks: { ...chartDefaults.scales.y.ticks, callback: v => v + '%' } },
+        },
+      },
+    });
+  }
+
+  function initChartsWhenReady() {
+    if (typeof Chart === 'undefined') {
+      setTimeout(initChartsWhenReady, 50);
+      return;
+    }
+    initGrowthChart();
+    renderMarketCards();
+  }
+  initChartsWhenReady();
+
+  document.querySelectorAll('#chartTabs .chart-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('#chartTabs .chart-tab').forEach(t => {
+        t.classList.toggle('active', t === tab);
+        t.setAttribute('aria-selected', String(t === tab));
+      });
+      document.querySelectorAll('.chart-panel').forEach(p => {
+        p.classList.toggle('active', p.dataset.panel === target);
+      });
+      if (target === 'growth') initGrowthChart();
+      if (target === 'markets') { initMarketChart(); renderMarketCards(); }
+      if (target === 'rental') initRentalChart();
+    });
+  });
+
+  /* Testimonials carousel */
+  let quoteIndex = 0;
+  const track = document.getElementById('quoteTrack');
+  const dots = document.querySelectorAll('#quoteDots .quote-dot');
+  const quoteCount = dots.length;
+  function goQuote(i) {
+    quoteIndex = (i + quoteCount) % quoteCount;
+    track.style.transform = 'translateX(-' + (quoteIndex * 100) + '%)';
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === quoteIndex));
+  }
+  dots.forEach(d => d.addEventListener('click', () => goQuote(Number(d.dataset.i))));
+  setInterval(() => goQuote(quoteIndex + 1), 5500);
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!open) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* Chips */
+  document.querySelectorAll('.chip-group').forEach(group => {
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const isMulti = group.hasAttribute('data-multi');
+        if (!isMulti) group.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.toggle('selected', isMulti ? !chip.classList.contains('selected') : true);
+        if (!isMulti) chip.classList.add('selected');
+        updateFormProgress();
+      });
+    });
+  });
+
+  /* Form progress + validation + toast */
+  const toast = document.getElementById('toast');
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2800);
+  }
+  function updateFormProgress() {
+    const steps = document.querySelectorAll('#formProgress .step');
+    const nameOk = document.getElementById('fullName').value.trim().length > 1;
+    const phoneOk = document.getElementById('phone').value.trim().length >= 8;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim());
+    const budgetOk = !!document.querySelector('input[name="budget"]:checked');
+    const flags = [nameOk, phoneOk && emailOk, budgetOk, document.querySelector('.chip.selected')];
+    steps.forEach((s, i) => s.classList.toggle('done', flags.slice(0, i + 1).every(Boolean)));
+  }
+  ['fullName', 'phone', 'email', 'city', 'notes'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateFormProgress);
+  });
+
+  document.getElementById('applyForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('fullName');
+    const phone = document.getElementById('phone');
+    const email = document.getElementById('email');
+    let valid = true;
+    [name, phone, email].forEach(el => {
+      el.classList.remove('error');
+      if (!el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value))) {
+        el.classList.add('error');
+        valid = false;
+      }
+    });
+    if (!document.querySelector('input[name="budget"]:checked')) {
+      showToast('Please select a budget range');
+      valid = false;
+    }
+    if (!valid) {
+      showToast('Please complete required fields');
+      return;
+    }
+    document.getElementById('applyForm').style.display = 'none';
+    document.getElementById('formProgress').style.display = 'none';
+    document.getElementById('successPanel').classList.add('show');
+    showToast('Application submitted successfully');
+  });
+})();
+</script>
+</body>
+</html>
