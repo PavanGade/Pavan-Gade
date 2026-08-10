@@ -7,7 +7,8 @@ export type IsoDateString = string;
 export enum OrgRole {
   OWNER = "OWNER",
   ADMIN = "ADMIN",
-  MEMBER = "MEMBER",
+  MANAGER = "MANAGER",
+  SALES_REP = "SALES_REP",
   VIEWER = "VIEWER",
 }
 

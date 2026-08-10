@@ -1,6 +1,4 @@
-import { isAiConfigured } from "@/lib/env";
 import { DemoAIProvider } from "./demo-provider";
-import { OpenAIProvider } from "./openai-provider";
 import type { AIProvider } from "./types";
 
 export type {
@@ -13,7 +11,6 @@ export type {
   ProspectAnalysis,
 } from "./types";
 export { DemoAIProvider } from "./demo-provider";
-export { OpenAIProvider } from "./openai-provider";
 export {
   assistantMessageSchema,
   outreachGenerationSchema,
@@ -21,5 +18,18 @@ export {
 } from "./schemas";
 
 export function createAIProvider(): AIProvider {
+  return new DemoAIProvider();
+}
+
+export async function getAIProvider(): Promise<AIProvider> {
+  if (typeof window !== "undefined") {
+    return new DemoAIProvider();
+  }
+
+  const [{ isAiConfigured }, { OpenAIProvider }] = await Promise.all([
+    import("@/lib/env"),
+    import("./openai-provider"),
+  ]);
+
   return isAiConfigured() ? new OpenAIProvider() : new DemoAIProvider();
 }

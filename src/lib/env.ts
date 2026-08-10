@@ -36,14 +36,19 @@ export const clientEnv: ClientEnv = clientEnvSchema.parse({
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
 });
 
-export const serverEnv: ServerEnv = serverEnvSchema.parse({
-  SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-  RESEND_API_KEY: process.env.RESEND_API_KEY,
-  SENTRY_DSN: process.env.SENTRY_DSN,
-  DATA_PROVIDER_API_KEY: process.env.DATA_PROVIDER_API_KEY,
-});
+const rawServerEnv =
+  typeof window === "undefined"
+    ? {
+        SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+        OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+        STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+        RESEND_API_KEY: process.env.RESEND_API_KEY,
+        SENTRY_DSN: process.env.SENTRY_DSN,
+        DATA_PROVIDER_API_KEY: process.env.DATA_PROVIDER_API_KEY,
+      }
+    : {};
+
+export const serverEnv: ServerEnv = serverEnvSchema.parse(rawServerEnv);
 
 export function isDemoMode(): boolean {
   return !clientEnv.NEXT_PUBLIC_SUPABASE_URL || !clientEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -59,4 +64,31 @@ export function isStripeConfigured(): boolean {
 
 export function isEmailConfigured(): boolean {
   return Boolean(serverEnv.RESEND_API_KEY);
+}
+
+export function getClientIntegrationStatuses() {
+  return {
+    ai: {
+      label: "AI",
+      configured: false,
+      detail: "Demo provider is used in the browser. Server AI requires OPENAI_API_KEY.",
+    },
+    email: {
+      label: "Email",
+      configured: false,
+      detail: "Demo email mode is active unless server RESEND_API_KEY is configured.",
+    },
+    stripe: {
+      label: "Stripe",
+      configured: Boolean(clientEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY),
+      detail: clientEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        ? "Publishable key is configured; checkout still requires server Stripe setup."
+        : "Demo billing mode is active.",
+    },
+    data: {
+      label: "Data",
+      configured: Boolean(clientEnv.NEXT_PUBLIC_SUPABASE_URL && clientEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY),
+      detail: clientEnv.NEXT_PUBLIC_SUPABASE_URL ? "Public Supabase configuration detected." : "Demo Zustand data is active.",
+    },
+  };
 }
