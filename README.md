@@ -6,10 +6,11 @@ Modern Stripe-inspired redesign for [investorscircle.in](https://investorscircle
 
 ### Single-file HTML (recommended)
 
-Open `index.html` directly — all CSS and JavaScript are embedded in one file. No build step, no extra folders.
+Open `index.html` directly — a **Stripe.com/in-style** landing page with all CSS and JavaScript embedded. No build step required.
+
+Design matches Stripe's visual system: light theme, indigo (#533afd), gradient mesh hero, bento grid, tabbed products, case study cards, and interactive charts — branded for **Investors Circle**.
 
 ```bash
-# Optional: serve locally
 python3 -m http.server 8080
 ```
 

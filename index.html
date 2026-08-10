@@ -3,1376 +3,1096 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Investors Circle</title>
+  <title>Investors Circle | Real Estate Infrastructure for Serious Investors</title>
   <meta name="description" content="Investors Circle — Exclusive Access. Better Deals. Higher Returns." />
-  <meta property="og:title" content="Investors Circle" />
-  <meta property="og:description" content="Exclusive Access. Better Deals. Higher Returns." />
-  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <style>
-:root {
-  --navy-950: #070b14;
-  --navy-900: #0b101e;
-  --gold-400: #d4af37;
-  --gold-300: #f3e5ab;
-  --accent: #635bff;
-  --accent-cyan: #00d4ff;
-  --accent-violet: #7a5af8;
-  --text: #e8edf5;
-  --text-muted: rgba(232, 237, 245, 0.6);
-  --text-dim: rgba(232, 237, 245, 0.4);
-  --border: rgba(255, 255, 255, 0.08);
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-sans);
-  background: var(--navy-950);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-::selection {
-  background: rgba(212, 175, 55, 0.35);
-  color: #fff;
-}
-
-img { max-width: 100%; display: block; }
-
-a { color: inherit; text-decoration: none; }
-
-.container {
-  width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.gold-gradient-text {
-  background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 45%, #d4af37 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.glass-panel {
-  background: rgba(11, 16, 30, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-.glass-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #fff;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.25s ease;
-}
-
-.glass-button:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(212, 175, 55, 0.4);
-  transform: translateY(-1px);
-}
-
-.glass-button-primary {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.08));
-  border: 1px solid rgba(212, 175, 55, 0.45);
-}
-
-.glass-button-primary:hover {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(212, 175, 55, 0.15));
-  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.35);
-  transform: translateY(-2px);
-}
-
-.mesh-gradient {
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(99, 91, 255, 0.18), transparent 50%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0, 212, 255, 0.12), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(212, 175, 55, 0.1), transparent 50%),
-    var(--navy-950);
-}
-
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-}
-
-.section-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--gold-400);
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.15;
-  margin-bottom: 1rem;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  max-width: 42rem;
-  margin: 0 auto;
-}
-
-/* Navbar */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 1rem 1.5rem;
-}
-
-.navbar-inner {
-  max-width: 80rem;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-}
-
-.logo {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.nav-links {
-  display: none;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: #fff; }
-
-/* Hero */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  padding: 7rem 1.5rem 5rem;
-  overflow: hidden;
-}
-
-.hero-grid {
-  display: grid;
-  gap: 3rem;
-  align-items: center;
-  max-width: 80rem;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  margin-bottom: 2rem;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.hero h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 7vw, 4.5rem);
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
-}
-
-.hero-lead {
-  font-size: 1.125rem;
-  color: var(--text-muted);
-  max-width: 32rem;
-  margin-bottom: 2.5rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.hero-dashboard {
-  display: none;
-  position: relative;
-}
-
-.dashboard-card {
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-  animation: float 6s ease-in-out infinite;
-}
-
-.dashboard-stat-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-}
-
-.dashboard-stat-row .value {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-}
-
-.dashboard-stat-row .label {
-  font-size: 0.625rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 0.25rem;
-}
-
-.deal-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  margin-bottom: 0.75rem;
-}
-
-.deal-row .dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  margin-right: 0.75rem;
-}
-
-.deal-row .left { display: flex; align-items: center; font-size: 0.875rem; }
-
-.floating-badge {
-  position: absolute;
-  bottom: -1.5rem;
-  left: -1.5rem;
-  padding: 1rem 1.25rem;
-  border-radius: 1rem;
-}
-
-.scroll-hint {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 5rem;
-  color: var(--text-dim);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-}
-
-.orb-1 {
-  top: 25%;
-  left: 25%;
-  width: 500px;
-  height: 500px;
-  background: rgba(99, 91, 255, 0.2);
-  animation: pulse-glow 4s ease-in-out infinite;
-}
-
-.orb-2 {
-  bottom: 25%;
-  right: 25%;
-  width: 400px;
-  height: 400px;
-  background: rgba(212, 175, 55, 0.1);
-  animation: pulse-glow 4s ease-in-out infinite 2s;
-}
-
-/* Sections */
-section { padding: 5rem 0; }
-
-.vision { text-align: center; }
-
-.vision h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  line-height: 1.2;
-  max-width: 56rem;
-  margin: 0 auto 2rem;
-}
-
-.vision .muted { color: var(--text-muted); }
-
-.vision p {
-  font-size: 1.125rem;
-  color: var(--text-muted);
-  max-width: 48rem;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-.advantage-card {
-  border-radius: 1.5rem;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.advantage-grid {
-  display: grid;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.advantage-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--gold-400);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-}
-
-.advantage-grid h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-.bar-chart-visual {
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-  height: 12rem;
-  margin-bottom: 1rem;
-}
-
-.bar-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  height: 100%;
-}
-
-.bar-fill {
-  width: 100%;
-  border-radius: 0.5rem 0.5rem 0 0;
-  transition: height 1s ease;
-}
-
-.bar-fill.retail { background: rgba(255, 255, 255, 0.2); height: 35%; }
-.bar-fill.circle {
-  background: linear-gradient(to top, var(--gold-400), var(--gold-300));
-  height: 85%;
-}
-
-.bar-label { font-size: 0.75rem; color: var(--text-dim); }
-
-.advantage-tagline {
-  text-align: center;
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
-  font-style: italic;
-  margin-top: 3rem;
-}
-
-/* Insights */
-.insights { position: relative; }
-
-.insights-header { text-align: center; margin-bottom: 3rem; }
-
-.chart-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.chart-tab {
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  border: none;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: all 0.2s;
-}
-
-.chart-tab.active {
-  background: rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.5);
-  color: var(--gold-300);
-}
-
-.chart-panel {
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-}
-
-.chart-panel.hidden { display: none; }
-
-.chart-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.chart-header h3 {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-}
-
-.chart-header p { font-size: 0.875rem; color: var(--text-dim); margin-top: 0.25rem; }
-
-.chart-legend {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.75rem;
-}
-
-.legend-item { display: flex; align-items: center; gap: 0.5rem; }
-
-.legend-dot {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-}
-
-.chart-canvas-wrap {
-  position: relative;
-  height: 360px;
-}
-
-.markets-grid {
-  display: grid;
-  gap: 2rem;
-}
-
-.market-cards { display: flex; flex-direction: column; gap: 1rem; }
-
-.market-card {
-  border-radius: 0.75rem;
-  padding: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.market-card:hover,
-.market-card.active {
-  border-color: rgba(212, 175, 55, 0.5);
-  transform: scale(1.02);
-}
-
-.market-card-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-}
-
-.market-card-header .yield { color: var(--gold-400); font-size: 0.875rem; }
-
-.market-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  font-size: 0.875rem;
-}
-
-.market-metrics .metric-label { color: var(--text-dim); font-size: 0.75rem; }
-
-.demand-bar {
-  height: 0.375rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  overflow: hidden;
-  margin-top: 0.25rem;
-}
-
-.demand-fill {
-  height: 100%;
-  background: var(--accent-cyan);
-  border-radius: 9999px;
-  transition: width 0.8s ease;
-}
-
-/* Process / Infographic */
-.process-header { text-align: center; margin-bottom: 4rem; }
-
-.process-grid {
-  display: grid;
-  gap: 1.5rem;
-  position: relative;
-}
-
-.process-step {
-  border-radius: 1rem;
-  padding: 1.5rem;
-  text-align: center;
-  transition: border-color 0.2s;
-}
-
-.process-step:hover { border-color: rgba(212, 175, 55, 0.3); }
-
-.step-num {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 1rem;
-  border-radius: 50%;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  color: var(--gold-400);
-}
-
-.process-step h3 {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.process-step p { font-size: 0.875rem; color: var(--text-muted); }
-
-.metrics-strip {
-  margin-top: 4rem;
-  border-radius: 1.5rem;
-  padding: 2rem;
-}
-
-.metrics-strip-grid {
-  display: grid;
-  gap: 2rem;
-  text-align: center;
-}
-
-.metric-icon { color: var(--gold-400); font-size: 1.5rem; margin-bottom: 0.75rem; }
-
-.metric-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-dim);
-  margin-bottom: 0.5rem;
-}
-
-.metric-value {
-  font-family: var(--font-serif);
-  font-size: 1.875rem;
-  margin-bottom: 0.5rem;
-}
-
-.metric-desc { font-size: 0.875rem; color: var(--text-muted); }
-
-/* Features */
-.features-header { text-align: center; margin-bottom: 4rem; }
-
-.features-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.feature-card {
-  border-radius: 1rem;
-  padding: 2rem;
-  transition: all 0.3s;
-}
-
-.feature-card:hover { border-color: rgba(212, 175, 55, 0.25); }
-
-.feature-icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.75rem;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold-400);
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-}
-
-.feature-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.feature-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
-
-/* Personas */
-.personas { border-top: 1px solid rgba(255, 255, 255, 0.05); }
-
-.personas-header { text-align: center; margin-bottom: 4rem; }
-
-.personas-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.persona-card {
-  border-radius: 1rem;
-  padding: 2rem;
-  transition: background 0.2s;
-}
-
-.persona-card:hover { background: rgba(255, 255, 255, 0.05); }
-
-.persona-num {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  font-size: 0.875rem;
-  color: var(--gold-400);
-  margin-bottom: 1.5rem;
-}
-
-.persona-card h4 {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.persona-card p { font-size: 0.875rem; color: var(--text-muted); }
-
-/* Stats */
-.stats {
-  background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  text-align: center;
-}
-
-.stat-value {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 3.75rem);
-  color: var(--gold-400);
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-dim);
-}
-
-/* Form */
-.apply-header { text-align: center; margin-bottom: 3rem; }
-
-.apply-header h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 3.75rem);
-  margin-bottom: 1.5rem;
-}
-
-.apply-form {
-  border-radius: 1.5rem;
-  padding: 2rem;
-}
-
-.form-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.form-input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  color: #fff;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.form-input:focus {
-  border-color: rgba(212, 175, 55, 0.5);
-}
-
-.form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
-
-.chip-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.chip {
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  cursor: pointer;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: all 0.2s;
-}
-
-.chip:hover { border-color: rgba(212, 175, 55, 0.3); }
-
-.chip.selected {
-  background: rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.5);
-  color: var(--gold-300);
-}
-
-.chip input { display: none; }
-
-.form-note {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  text-align: center;
-}
-
-.form-submit { text-align: center; margin-top: 1rem; }
-
-.success-panel {
-  border-radius: 1.5rem;
-  padding: 3rem;
-  text-align: center;
-  display: none;
-}
-
-.success-panel.show { display: block; }
-
-.success-panel h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
-  margin-bottom: 1rem;
-}
-
-.success-panel p { color: var(--text-muted); margin-bottom: 2rem; }
-
-.success-cta {
-  max-width: 28rem;
-  margin: 0 auto;
-  border-radius: 1rem;
-  padding: 1.5rem;
-}
-
-/* Footer */
-.footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 4rem 0 2rem;
-}
-
-.footer-grid {
-  display: grid;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-.footer h3 {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.footer h4 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-dim);
-  margin-bottom: 1rem;
-}
-
-.footer p, .footer a {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.footer a:hover { color: var(--gold-400); }
-
-.footer-contact a { display: block; margin-top: 0.5rem; color: var(--gold-400); }
-
-.footer-bottom {
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  text-align: center;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-
-.bounce { animation: bounce 2s ease-in-out infinite; }
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Responsive */
-@media (min-width: 768px) {
-  .nav-links { display: flex; }
-  .hero-grid { grid-template-columns: 1fr 1fr; }
-  .hero-dashboard { display: block; }
-  .advantage-grid { grid-template-columns: 1fr 1fr; }
-  .process-grid { grid-template-columns: repeat(4, 1fr); }
-  .metrics-strip-grid { grid-template-columns: repeat(3, 1fr); }
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
-  .personas-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
-  .form-grid.two-col { grid-template-columns: 1fr 1fr; }
-  .markets-grid { grid-template-columns: 1fr 1fr; }
-  .footer-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (min-width: 1024px) {
-  .features-grid { grid-template-columns: repeat(3, 1fr); }
-  .personas-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
+    :root {
+      --indigo: #533afd;
+      --indigo-hover: #4230d4;
+      --indigo-light: #7a73ff;
+      --navy: #0a2540;
+      --navy-deep: #061b31;
+      --slate: #425466;
+      --slate-light: #697386;
+      --muted: #8898aa;
+      --bg: #ffffff;
+      --bg-subtle: #f6f9fc;
+      --bg-muted: #f8fafd;
+      --border: #e6ebf1;
+      --border-light: #e3e8ee;
+      --shadow-sm: 0 2px 5px -1px rgba(50,50,93,.08), 0 1px 3px -1px rgba(0,0,0,.06);
+      --shadow-md: 0 13px 27px -5px rgba(50,50,93,.15), 0 8px 16px -8px rgba(0,0,0,.1);
+      --shadow-lg: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.15);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-w: 1080px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font);
+      color: var(--navy);
+      background: var(--bg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Gradient mesh (Stripe signature) ── */
+    .gradient-mesh {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .gradient-mesh::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -20%;
+      width: 140%;
+      height: 120%;
+      background:
+        radial-gradient(ellipse 50% 80% at 20% 40%, rgba(255,97,24,.18), transparent 55%),
+        radial-gradient(ellipse 45% 70% at 70% 20%, rgba(83,58,253,.22), transparent 50%),
+        radial-gradient(ellipse 40% 60% at 50% 80%, rgba(255,180,200,.2), transparent 50%),
+        radial-gradient(ellipse 35% 50% at 85% 60%, rgba(127,125,252,.15), transparent 45%),
+        linear-gradient(180deg, #faf5ef 0%, #f6f9fc 40%, #ffffff 100%);
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .logo {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-mark {
+      width: 28px; height: 28px;
+      background: var(--indigo);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 14px;
+    }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      border-radius: 6px;
+      transition: color .15s, background .15s;
+    }
+    .nav-links a:hover { color: var(--navy); background: rgba(0,0,0,.04); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 999px;
+      transition: all .15s ease;
+      white-space: nowrap;
+    }
+    .btn-ghost { color: var(--slate); }
+    .btn-ghost:hover { color: var(--navy); background: rgba(0,0,0,.04); }
+    .btn-primary {
+      background: var(--indigo);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 0 0 1px rgba(0,0,0,.04);
+    }
+    .btn-primary:hover { background: var(--indigo-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .btn-outline {
+      color: var(--navy);
+      box-shadow: inset 0 0 0 1px var(--border-light);
+      background: #fff;
+    }
+    .btn-outline:hover { box-shadow: inset 0 0 0 1px var(--slate-light); background: var(--bg-subtle); }
+    .btn-lg { padding: 12px 20px; font-size: 15px; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      padding: 120px 0 80px;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--navy-deep);
+      margin-bottom: 24px;
+      max-width: 640px;
+    }
+    .hero-text p {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      color: var(--slate);
+      line-height: 1.6;
+      max-width: 540px;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-visual {
+      position: relative;
+      display: none;
+    }
+    .ui-mock {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
+      transition: transform .4s ease;
+    }
+    .ui-mock:hover { transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
+    .ui-mock-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+    .ui-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .ui-mock-body { padding: 20px; }
+    .ui-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .ui-stat {
+      background: var(--bg-subtle);
+      border-radius: var(--radius);
+      padding: 12px;
+    }
+    .ui-stat .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .ui-stat .val { font-size: 20px; font-weight: 600; color: var(--navy); letter-spacing: -0.02em; margin-top: 4px; }
+    .ui-stat .val.indigo { color: var(--indigo); }
+    .ui-chart-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 80px;
+      margin-top: 8px;
+    }
+    .ui-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--indigo-light), var(--indigo));
+      opacity: .85;
+    }
+    .ui-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .ui-list-item:last-child { border-bottom: none; }
+    .ui-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(83,58,253,.1);
+      color: var(--indigo);
+    }
+
+    /* ── Section common ── */
+    section { padding: 96px 0; }
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--indigo);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--navy-deep);
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 17px;
+      color: var(--slate);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .section-header { margin-bottom: 48px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-desc { margin: 0 auto; }
+
+    /* ── Product tabs (Stripe bento) ── */
+    .products { background: var(--bg-subtle); }
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all .15s;
+      border-radius: 6px 6px 0 0;
+    }
+    .tab-btn:hover { color: var(--navy); background: rgba(255,255,255,.6); }
+    .tab-btn.active { color: var(--indigo); border-bottom-color: var(--indigo); }
+    .tab-panel { display: none; animation: fadeUp .4s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .bento {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
+    .bento-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .bento-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .bento-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+    .bento-card p { font-size: 14px; color: var(--slate); line-height: 1.6; }
+    .bento-card .icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius);
+      background: rgba(83,58,253,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .bento-visual {
+      background: linear-gradient(135deg, #f0edff 0%, #faf5ef 100%);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 16px;
+      min-height: 120px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .mini-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: var(--indigo);
+      opacity: .7;
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      background: var(--navy-deep);
+      color: #fff;
+      padding: 72px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-num .accent { color: #a5a0ff; }
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255,255,255,.6);
+      line-height: 1.4;
+    }
+
+    /* ── Case studies ── */
+    .cases-grid {
+      display: grid;
+      gap: 24px;
+    }
+    .case-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .case-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .case-card-top {
+      padding: 28px 28px 0;
+    }
+    .case-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .case-card h3 {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+    .case-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 0 28px 28px;
+    }
+    .case-metric .num {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+    .case-metric .lbl { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .case-footer {
+      padding: 16px 28px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--slate-light);
+    }
+
+    /* ── Charts section ── */
+    .insights { background: var(--bg-muted); }
+    .chart-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .chart-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .chart-tab {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 999px;
+      color: var(--slate);
+      border: 1px solid var(--border);
+      background: #fff;
+      transition: all .15s;
+    }
+    .chart-tab.active {
+      background: var(--indigo);
+      color: #fff;
+      border-color: var(--indigo);
+    }
+    .chart-wrap { height: 320px; position: relative; }
+    .chart-panel { display: none; }
+    .chart-panel.active { display: block; }
+
+    /* ── Process bento ── */
+    .process-grid {
+      display: grid;
+      gap: 16px;
+    }
+    .process-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .process-card::before {
+      content: attr(data-step);
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 48px;
+      font-weight: 300;
+      color: rgba(83,58,253,.08);
+      line-height: 1;
+    }
+    .process-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .process-card p { font-size: 14px; color: var(--slate); line-height: 1.6; }
+
+    /* ── Dark CTA band ── */
+    .cta-band {
+      background: linear-gradient(135deg, #0a2540 0%, #1a1f71 50%, #533afd 100%);
+      color: #fff;
+      padding: 96px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 100%, rgba(255,97,24,.15), transparent),
+        radial-gradient(ellipse 50% 60% at 80% 0%, rgba(127,125,252,.2), transparent);
+      pointer-events: none;
+    }
+    .cta-band .container { position: relative; z-index: 1; }
+    .cta-band h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .cta-band p {
+      font-size: 17px;
+      color: rgba(255,255,255,.75);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .cta-band .btn-primary { background: #fff; color: var(--indigo); }
+    .cta-band .btn-primary:hover { background: #f0edff; }
+    .cta-band .btn-outline { color: #fff; border-color: rgba(255,255,255,.3); background: transparent; }
+    .cta-band .btn-outline:hover { background: rgba(255,255,255,.08); }
+
+    /* ── Form ── */
+    .form-section { background: var(--bg-subtle); }
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .form-grid { display: grid; gap: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 15px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      color: var(--navy);
+      background: #fff;
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--indigo);
+      box-shadow: 0 0 0 3px rgba(83,58,253,.12);
+    }
+    .form-input::placeholder { color: var(--muted); }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 999px;
+      border: 1px solid var(--border-light);
+      color: var(--slate);
+      cursor: pointer;
+      transition: all .15s;
+      background: #fff;
+    }
+    .chip:hover { border-color: var(--indigo-light); color: var(--indigo); }
+    .chip.selected { background: rgba(83,58,253,.08); border-color: var(--indigo); color: var(--indigo); }
+    .chip input { display: none; }
+    .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 8px; }
+    .success-panel { display: none; text-align: center; padding: 48px 24px; }
+    .success-panel.show { display: block; }
+    .success-icon {
+      width: 56px; height: 56px;
+      background: rgba(83,58,253,.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: var(--indigo);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .footer ul { list-style: none; }
+    .footer li { margin-bottom: 10px; }
+    .footer a {
+      font-size: 14px;
+      color: var(--slate);
+      transition: color .15s;
+    }
+    .footer a:hover { color: var(--indigo); }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Logo strip ── */
+    .logo-strip {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-strip p {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 32px 48px;
+      opacity: .5;
+    }
+    .logos span {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--slate-light);
+      letter-spacing: -.01em;
+    }
+
+    /* ── Responsive ── */
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .hero-content { grid-template-columns: 1fr 1fr; }
+      .hero-visual { display: block; }
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .bento .span-2 { grid-column: span 2; }
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+      .cases-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(4, 1fr); }
+      .form-grid.two-col { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 2fr repeat(3, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .bento { grid-template-columns: repeat(3, 1fr); }
+      .cases-grid { grid-template-columns: repeat(3, 1fr); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <nav class="navbar-inner glass-panel">
-      <a href="#" class="logo">Investors <span class="gold-gradient-text">Circle</span></a>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">IC</span>
+        Investors Circle
+      </a>
       <ul class="nav-links">
-        <li><a href="#vision">Vision</a></li>
+        <li><a href="#products">Opportunities</a></li>
         <li><a href="#insights">Insights</a></li>
-        <li><a href="#benefits">Benefits</a></li>
-        <li><a href="#apply">Apply</a></li>
+        <li><a href="#stories">Investors</a></li>
+        <li><a href="#process">How it works</a></li>
       </ul>
-      <a href="#apply" class="glass-button glass-button-primary" style="padding:0.5rem 1.25rem;font-size:0.75rem">Request Access</a>
-    </nav>
-  </header>
+      <div class="nav-actions">
+        <a href="tel:+917416436805" class="btn btn-ghost">Contact us</a>
+        <a href="#apply" class="btn btn-primary">Request access</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero -->
-  <section class="hero mesh-gradient">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="grid-pattern" style="position:absolute;inset:0;pointer-events:none"></div>
-
-    <div class="hero-grid">
-      <div>
-        <div class="hero-badge glass-panel">✦ Invitation Only</div>
-        <h1>
-          <span class="gold-gradient-text" style="font-style:italic">an invitation</span><br />
-          to institutional<br />real estate.
-        </h1>
-        <p class="hero-lead">Exclusive Access. Better Deals. Higher Returns.</p>
-        <div class="hero-actions">
-          <a href="#apply" class="glass-button glass-button-primary">Request Access</a>
-          <a href="#insights" class="glass-button">Explore Insights</a>
+  <section class="hero">
+    <div class="gradient-mesh"></div>
+    <div class="container-wide">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Real estate infrastructure to grow your wealth</h1>
+          <p>Exclusive access to pre-launch allocations, negotiated bulk deals, and institutional-grade opportunities — from your first investment to your portfolio at scale.</p>
+          <div class="hero-ctas">
+            <a href="#apply" class="btn btn-primary btn-lg">Request access →</a>
+            <a href="#insights" class="btn btn-outline btn-lg">Explore insights</a>
+          </div>
         </div>
-      </div>
-
-      <div class="hero-dashboard">
-        <div class="dashboard-card glass-panel">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem">
-            <div>
-              <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em">Portfolio Performance</p>
-              <p style="font-family:var(--font-serif);font-size:1.875rem;color:var(--gold-400);margin-top:0.25rem">+47.2%</p>
+        <div class="hero-visual">
+          <div class="ui-mock">
+            <div class="ui-mock-header">
+              <span class="ui-dot" style="background:#ff5f57"></span>
+              <span class="ui-dot" style="background:#febc2e"></span>
+              <span class="ui-dot" style="background:#28c840"></span>
+              <span style="font-size:12px;color:var(--muted);margin-left:8px">Portfolio Dashboard</span>
             </div>
-            <span class="glass-button" style="padding:0.5rem 1rem;font-size:0.75rem">Live</span>
-          </div>
-          <div class="deal-row">
-            <div class="left"><span class="dot" style="background:var(--accent)"></span>Gachibowli Pre-Launch</div>
-            <span style="color:var(--gold-400);font-size:0.875rem">+22%</span>
-          </div>
-          <div class="deal-row">
-            <div class="left"><span class="dot" style="background:var(--accent-cyan)"></span>Kokapet Bulk Deal</div>
-            <span style="color:var(--gold-400);font-size:0.875rem">+18%</span>
-          </div>
-          <div class="deal-row">
-            <div class="left"><span class="dot" style="background:var(--accent-violet)"></span>Financial District</div>
-            <span style="color:var(--gold-400);font-size:0.875rem">+15%</span>
-          </div>
-          <div class="dashboard-stat-row">
-            <div><div class="value">14</div><div class="label">Launches</div></div>
-            <div><div class="value">₹12Cr</div><div class="label">Saved</div></div>
-            <div><div class="value">100%</div><div class="label">Off-Market</div></div>
-          </div>
-        </div>
-        <div class="floating-badge glass-panel">
-          <p style="font-size:0.75rem;color:rgba(255,255,255,0.5)">Member ROI</p>
-          <p class="gold-gradient-text" style="font-family:var(--font-serif);font-size:1.25rem">3.2× Retail</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-hint">
-      <span>Discover</span>
-      <span class="bounce" style="color:var(--gold-400)">↓</span>
-    </div>
-  </section>
-
-  <!-- Vision -->
-  <section id="vision" class="vision fade-in">
-    <div class="container">
-      <h2>
-        By the time a property brochure is printed,<br />
-        <span class="muted">the best margins are already gone.</span>
-      </h2>
-      <p>
-        Real estate wealth isn't built on listings platforms. It's built in private
-        meetings, pre-launch allocations, and closed-door negotiations. Investors
-        Circle exists to bring serious capital together and unlock institutional-grade
-        opportunities for individual buyers.
-      </p>
-    </div>
-  </section>
-
-  <!-- Advantage -->
-  <section class="fade-in">
-    <div class="container">
-      <div class="advantage-card glass-panel">
-        <div class="advantage-grid">
-          <div>
-            <div class="advantage-label">🛡 The Advantage</div>
-            <h3>Our members bypass the retail market entirely, accessing projects at their true absolute floor price.</h3>
-            <p style="color:var(--text-muted);line-height:1.7">
-              We acquire positions before the market even knows they exist — securing
-              institutional pricing for individual investors through collective capital
-              deployment and developer relationships.
-            </p>
-          </div>
-          <div class="glass-panel" style="border-radius:1rem;padding:1.5rem;border-color:rgba(212,175,55,0.2)">
-            <div class="bar-chart-visual">
-              <div class="bar-col"><div class="bar-fill retail"></div><span class="bar-label">Retail</span></div>
-              <div class="bar-col"><div class="bar-fill circle"></div><span class="bar-label">Circle</span></div>
-            </div>
-            <p style="font-size:0.875rem;color:var(--gold-400)">↗ 3.2× better entry pricing vs retail</p>
-          </div>
-        </div>
-        <p class="advantage-tagline gold-gradient-text">We acquire positions.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Insights -->
-  <section id="insights" class="insights fade-in">
-    <div class="container">
-      <div class="insights-header">
-        <p class="section-label">Interactive Insights</p>
-        <h2 class="section-title">Data that drives decisions</h2>
-        <p class="section-subtitle">Explore real performance metrics across Hyderabad micro-markets. Hover over charts for detailed breakdowns.</p>
-      </div>
-
-      <div class="chart-tabs">
-        <button class="chart-tab active" data-tab="growth">Portfolio Growth</button>
-        <button class="chart-tab" data-tab="markets">Micro-Markets</button>
-        <button class="chart-tab" data-tab="rental">Rental Yield</button>
-      </div>
-
-      <div class="chart-panel glass-panel" data-panel="growth">
-        <div class="chart-header">
-          <div>
-            <h3>Circle vs Retail Returns (%)</h3>
-            <p>Annualised portfolio performance</p>
-          </div>
-          <div class="chart-legend">
-            <span class="legend-item"><span class="legend-dot" style="background:#d4af37"></span>Circle Members</span>
-            <span class="legend-item"><span class="legend-dot" style="background:rgba(255,255,255,0.3)"></span>Retail Market</span>
-          </div>
-        </div>
-        <div class="chart-canvas-wrap"><canvas id="growthChart"></canvas></div>
-      </div>
-
-      <div class="chart-panel glass-panel hidden" data-panel="markets">
-        <div class="markets-grid">
-          <div>
-            <div class="chart-header">
-              <div>
-                <h3>Hyderabad Micro-Markets</h3>
-                <p>Hover a market for detailed metrics</p>
+            <div class="ui-mock-body">
+              <div class="ui-stat-row">
+                <div class="ui-stat">
+                  <div class="label">Portfolio ROI</div>
+                  <div class="val indigo">47.2%</div>
+                </div>
+                <div class="ui-stat">
+                  <div class="label">Member Savings</div>
+                  <div class="val">₹12Cr+</div>
+                </div>
+                <div class="ui-stat">
+                  <div class="label">Off-Market</div>
+                  <div class="val">100%</div>
+                </div>
+              </div>
+              <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Hyderabad micro-markets — appreciation</div>
+              <div class="ui-chart-bar">
+                <div class="ui-bar" style="height:55%"></div>
+                <div class="ui-bar" style="height:70%"></div>
+                <div class="ui-bar" style="height:85%"></div>
+                <div class="ui-bar" style="height:65%"></div>
+                <div class="ui-bar" style="height:90%"></div>
+                <div class="ui-bar" style="height:75%"></div>
+              </div>
+              <div style="margin-top:16px">
+                <div class="ui-list-item">
+                  <span>Gachibowli Pre-Launch</span>
+                  <span class="ui-badge">+22%</span>
+                </div>
+                <div class="ui-list-item">
+                  <span>Kokapet Bulk Deal</span>
+                  <span class="ui-badge">+18%</span>
+                </div>
+                <div class="ui-list-item">
+                  <span>Financial District</span>
+                  <span class="ui-badge">+15%</span>
+                </div>
               </div>
             </div>
-            <div class="chart-canvas-wrap"><canvas id="marketChart"></canvas></div>
-          </div>
-          <div class="market-cards" id="marketCards"></div>
-        </div>
-      </div>
-
-      <div class="chart-panel glass-panel hidden" data-panel="rental">
-        <div class="chart-header">
-          <div>
-            <h3>Monthly Rental Yield (%)</h3>
-            <p>Projected vs actual rental performance — Circle member portfolio</p>
-          </div>
-        </div>
-        <div class="chart-canvas-wrap"><canvas id="rentalChart"></canvas></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Infographic / Process -->
-  <section class="fade-in">
-    <div class="container">
-      <div class="process-header">
-        <p class="section-label">How It Works</p>
-        <h2 class="section-title">From application to appreciation</h2>
-      </div>
-
-      <div class="process-grid">
-        <div class="process-step glass-panel">
-          <div class="step-num">1</div>
-          <h3>Apply</h3>
-          <p>Submit your investor profile for confidential review by our advisory team.</p>
-        </div>
-        <div class="process-step glass-panel">
-          <div class="step-num">2</div>
-          <h3>Curate</h3>
-          <p>We match your mandate with pre-vetted, off-market opportunities in Hyderabad micro-markets.</p>
-        </div>
-        <div class="process-step glass-panel">
-          <div class="step-num">3</div>
-          <h3>Allocate</h3>
-          <p>Secure floor-price units through bulk negotiations before public launch.</p>
-        </div>
-        <div class="process-step glass-panel">
-          <div class="step-num">4</div>
-          <h3>Compound</h3>
-          <p>Track ROI, rental yields, and exit strategies with dedicated advisory support.</p>
-        </div>
-      </div>
-
-      <div class="metrics-strip glass-panel">
-        <div class="metrics-strip-grid">
-          <div>
-            <div class="metric-icon">✓</div>
-            <p class="metric-label">Pre-Launch</p>
-            <p class="metric-value gold-gradient-text">6–8 weeks</p>
-            <p class="metric-desc">Average lead time before public announcement</p>
-          </div>
-          <div>
-            <div class="metric-icon">✓</div>
-            <p class="metric-label">Bulk Discount</p>
-            <p class="metric-value gold-gradient-text">12–18%</p>
-            <p class="metric-desc">Savings vs individual retail purchase</p>
-          </div>
-          <div>
-            <div class="metric-icon">✓</div>
-            <p class="metric-label">Paper Gain</p>
-            <p class="metric-value gold-gradient-text">Day 1</p>
-            <p class="metric-desc">Immediate appreciation upon launch pricing</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section id="benefits" class="fade-in">
+  <!-- Logo strip -->
+  <div class="logo-strip">
     <div class="container">
-      <div class="features-header">
-        <p class="section-label">Member Benefits</p>
-        <h2 class="section-title">Institutional tools for individual investors</h2>
-        <p class="section-subtitle">Every benefit is designed to give you the same edge that large funds and developers have — at individual scale.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">🚀</div>
-          <h3>Early-Bird & Pre-Launch</h3>
-          <p>Secure units weeks before public announcements. The lowest entry price, guaranteeing immediate paper appreciation upon launch.</p>
-        </div>
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">📊</div>
-          <h3>Negotiated Bulk Deals</h3>
-          <p>By pooling capital intent, we negotiate massive bulk discounts from tier-1 developers that individual buyers cannot access.</p>
-        </div>
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">⭐</div>
-          <h3>Priority Unit Selection</h3>
-          <p>Don't settle for leftover inventory. Get first pick of the best floor plans, views, and orientations that command premium resale value.</p>
-        </div>
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">📈</div>
-          <h3>Market Intelligence</h3>
-          <p>Data-driven analysis on rental yields, infrastructure developments, and micro-market appreciation trajectories.</p>
-        </div>
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">👤</div>
-          <h3>Dedicated Advisory</h3>
-          <p>A private relationship manager to handle paperwork, payment schedules, and eventual exit strategies.</p>
-        </div>
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">💹</div>
-          <h3>Rental Yield Analysis</h3>
-          <p>Detailed rental income projections and resale opportunity assessments to maximise your returns at every stage.</p>
-        </div>
+      <p>Trusted by serious capital allocators across Hyderabad</p>
+      <div class="logos">
+        <span>Gachibowli</span>
+        <span>Kokapet</span>
+        <span>Financial District</span>
+        <span>Tellapur</span>
+        <span>Narsingi</span>
+        <span>Miyapur</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Who is in the Circle -->
-  <section class="personas fade-in">
+  <!-- Products / Solutions tabs -->
+  <section class="products" id="products">
     <div class="container">
-      <div class="personas-header">
-        <h2 class="section-title">Who is in the Circle?</h2>
-        <p class="section-subtitle">We curate a powerful network of serious capital allocators. If you fit into any of these categories, you belong in the room.</p>
+      <div class="section-header">
+        <p class="section-label">Opportunities</p>
+        <h2 class="section-title">Flexible solutions for every investor profile</h2>
+        <p class="section-desc">Grow your portfolio with a comprehensive set of real estate tools — designed to work individually or together.</p>
       </div>
 
-      <div class="personas-grid">
-        <div class="persona-card glass-panel">
-          <div class="persona-num">01</div>
-          <h4>First-Time Investors</h4>
-          <p>Looking for a guided, data-backed entry into high-growth residential assets.</p>
+      <div class="tab-nav" id="productTabs">
+        <button class="tab-btn active" data-tab="prelaunch">Pre-Launch Access</button>
+        <button class="tab-btn" data-tab="bulk">Bulk Deals</button>
+        <button class="tab-btn" data-tab="advisory">Advisory</button>
+        <button class="tab-btn" data-tab="intelligence">Market Intelligence</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-prelaunch">
+        <div class="bento">
+          <div class="bento-card span-2">
+            <div class="icon">🚀</div>
+            <h3>Secure units before public announcements</h3>
+            <p>The lowest entry price, guaranteeing immediate paper appreciation upon launch. Our members bypass the retail market entirely, accessing projects at their true absolute floor price.</p>
+            <div class="bento-visual">
+              <div class="mini-bar" style="height:40%;opacity:.3"></div>
+              <div class="mini-bar" style="height:55%;opacity:.5"></div>
+              <div class="mini-bar" style="height:70%;opacity:.7"></div>
+              <div class="mini-bar" style="height:100%"></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="icon">⏱</div>
+            <h3>6–8 weeks lead time</h3>
+            <p>Average window before public launch — when the best margins are still available.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">📈</div>
+            <h3>Day 1 paper gain</h3>
+            <p>Immediate appreciation upon launch pricing vs your entry floor price.</p>
+          </div>
         </div>
-        <div class="persona-card glass-panel">
-          <div class="persona-num">02</div>
-          <h4>HNIs & NRIs</h4>
-          <p>Seeking hands-off wealth multiplication through tier-1 Indian real estate.</p>
+      </div>
+
+      <div class="tab-panel" id="panel-bulk">
+        <div class="bento">
+          <div class="bento-card span-2">
+            <div class="icon">📊</div>
+            <h3>Negotiated bulk discounts from tier-1 developers</h3>
+            <p>By pooling capital intent, we negotiate massive bulk discounts that individual buyers cannot access. Families, friends, or partners buying 2+ units unlock 12–18% savings vs retail.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">🏢</div>
+            <h3>Priority unit selection</h3>
+            <p>First pick of floor plans, views, and orientations that command premium resale value.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">🤝</div>
+            <h3>Collective capital</h3>
+            <p>We acquire positions before the market knows they exist.</p>
+          </div>
         </div>
-        <div class="persona-card glass-panel">
-          <div class="persona-num">03</div>
-          <h4>Appreciation Seekers</h4>
-          <p>Targeting Pre-Launch and Early-Bird projects for maximum ROI.</p>
+      </div>
+
+      <div class="tab-panel" id="panel-advisory">
+        <div class="bento">
+          <div class="bento-card">
+            <div class="icon">👤</div>
+            <h3>Dedicated relationship manager</h3>
+            <p>A private advisor to handle paperwork, payment schedules, and eventual exit strategies.</p>
+          </div>
+          <div class="bento-card span-2">
+            <div class="icon">📋</div>
+            <h3>End-to-end portfolio management</h3>
+            <p>From mandate matching to allocation, rental yield tracking, and exit planning — hands-off wealth multiplication through tier-1 Indian real estate.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon">🔒</div>
+            <h3>Invitation only</h3>
+            <p>Membership is strictly curated. Every profile receives a confidential review.</p>
+          </div>
         </div>
-        <div class="persona-card glass-panel">
-          <div class="persona-num">04</div>
-          <h4>Bulk Bookers</h4>
-          <p>Families, friends, or partners buying 2+ units for heavy discounts.</p>
-        </div>
-        <div class="persona-card glass-panel">
-          <div class="persona-num">05</div>
-          <h4>Portfolio Builders</h4>
-          <p>Existing investors looking to diversify across high-yield micro-markets.</p>
-        </div>
-        <div class="persona-card glass-panel">
-          <div class="persona-num">06</div>
-          <h4>Passive Income Seekers</h4>
-          <p>Professionals and business owners building a rental income stream for long-term financial freedom.</p>
+      </div>
+
+      <div class="tab-panel" id="panel-intelligence">
+        <div class="bento">
+          <div class="bento-card span-2">
+            <div class="icon">📈</div>
+            <h3>Data-driven micro-market analysis</h3>
+            <p>Rental yields, infrastructure developments, and appreciation trajectories across Hyderabad's highest-growth corridors — Gachibowli, Kokapet, Financial District, and more.</p>
+            <div class="bento-visual">
+              <div class="mini-bar" style="height:60%"></div>
+              <div class="mini-bar" style="height:80%"></div>
+              <div class="mini-bar" style="height:95%"></div>
+              <div class="mini-bar" style="height:70%"></div>
+              <div class="mini-bar" style="height:85%"></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="icon">💹</div>
+            <h3>Rental yield projections</h3>
+            <p>Detailed income projections and resale assessments to maximise returns at every stage.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Stats -->
-  <section class="stats fade-in">
+  <section class="stats-strip" id="stats">
     <div class="container">
+      <div class="section-header center" style="margin-bottom:48px">
+        <h2 class="section-title" style="color:#fff">The backbone of investor-grade real estate</h2>
+      </div>
       <div class="stats-grid">
         <div>
-          <div class="stat-value" data-stat-index="0">0%</div>
-          <div class="stat-label">Avg. Portfolio ROI</div>
+          <div class="stat-num" data-stat="47.2" data-suffix="%" data-decimals="1">0%</div>
+          <div class="stat-label">Avg. portfolio ROI for Circle members</div>
         </div>
         <div>
-          <div class="stat-value" data-stat-index="1">₹0Cr+</div>
-          <div class="stat-label">Member Savings</div>
+          <div class="stat-num" data-stat="12" data-prefix="₹" data-suffix="Cr+">₹0</div>
+          <div class="stat-label">Total member savings negotiated</div>
         </div>
         <div>
-          <div class="stat-value" data-stat-index="2">0</div>
-          <div class="stat-label">Exclusive Launches</div>
+          <div class="stat-num" data-stat="14">0</div>
+          <div class="stat-label">Exclusive pre-launch opportunities</div>
         </div>
         <div>
-          <div class="stat-value" data-stat-index="3">0%</div>
-          <div class="stat-label">Off-Market</div>
+          <div class="stat-num" data-stat="100" data-suffix="%">0%</div>
+          <div class="stat-label">Off-market deal flow</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Apply Form -->
-  <section id="apply" class="fade-in">
+  <!-- Case studies / Investor personas -->
+  <section id="stories">
     <div class="container">
-      <div class="apply-header">
-        <h2>Request Access</h2>
-        <p class="section-subtitle">Membership is strictly curated. Submit your profile below. Our advisory team will review and contact you if your investment goals align with our upcoming opportunities.</p>
+      <div class="section-header center">
+        <p class="section-label">Who is in the Circle</p>
+        <h2 class="section-title">Powering investors of all profiles</h2>
+        <p class="section-desc">A curated network of serious capital allocators. If you fit into any of these categories, you belong in the room.</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-card-top">
+            <div class="case-logo">First-Time Investors</div>
+            <h3>Guided entry into high-growth residential assets</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">47%</div><div class="lbl">Avg. ROI</div></div>
+            <div class="case-metric"><div class="num">6–8 wk</div><div class="lbl">Pre-launch access</div></div>
+          </div>
+          <div class="case-footer">Products: Pre-Launch, Advisory, Market Intelligence</div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-top">
+            <div class="case-logo">HNIs & NRIs</div>
+            <h3>Hands-off wealth multiplication in tier-1 markets</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">₹12Cr+</div><div class="lbl">Savings unlocked</div></div>
+            <div class="case-metric"><div class="num">100%</div><div class="lbl">Off-market</div></div>
+          </div>
+          <div class="case-footer">Products: Bulk Deals, Advisory, Rental Analysis</div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-top">
+            <div class="case-logo">Portfolio Builders</div>
+            <h3>Diversification across high-yield micro-markets</h3>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="num">14</div><div class="lbl">Launches</div></div>
+            <div class="case-metric"><div class="num">3.2×</div><div class="lbl">vs retail entry</div></div>
+          </div>
+          <div class="case-footer">Products: Intelligence, Bulk Deals, Pre-Launch</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Insights -->
+  <section class="insights" id="insights">
+    <div class="container">
+      <div class="section-header center">
+        <p class="section-label">Interactive Insights</p>
+        <h2 class="section-title">Reliable data for every investment decision</h2>
+        <p class="section-desc">Explore performance metrics across Hyderabad micro-markets with interactive charts and real-time breakdowns.</p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-tabs" id="chartTabs">
+          <button class="chart-tab active" data-chart="growth">Portfolio Growth</button>
+          <button class="chart-tab" data-chart="markets">Micro-Markets</button>
+          <button class="chart-tab" data-chart="rental">Rental Yield</button>
+        </div>
+        <div class="chart-panel active" id="chart-growth">
+          <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
+        </div>
+        <div class="chart-panel" id="chart-markets">
+          <div class="chart-wrap"><canvas id="marketChart"></canvas></div>
+        </div>
+        <div class="chart-panel" id="chart-rental">
+          <div class="chart-wrap"><canvas id="rentalChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header center">
+        <p class="section-label">How it works</p>
+        <h2 class="section-title">Get to market faster</h2>
+        <p class="section-desc">From application to appreciation in four steps — with dedicated experts at every stage.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card" data-step="01">
+          <h3>Apply</h3>
+          <p>Submit your investor profile for confidential review by our advisory team.</p>
+        </div>
+        <div class="process-card" data-step="02">
+          <h3>Curate</h3>
+          <p>We match your mandate with pre-vetted, off-market opportunities.</p>
+        </div>
+        <div class="process-card" data-step="03">
+          <h3>Allocate</h3>
+          <p>Secure floor-price units through bulk negotiations before public launch.</p>
+        </div>
+        <div class="process-card" data-step="04">
+          <h3>Compound</h3>
+          <p>Track ROI, rental yields, and exit strategies with dedicated support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready to get started?</h2>
+      <p>Request access instantly, or speak with our advisory team to design a custom investment mandate for your portfolio.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        <a href="#apply" class="btn btn-primary btn-lg">Request access →</a>
+        <a href="tel:+917416436805" class="btn btn-outline btn-lg">Contact us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section class="form-section" id="apply">
+    <div class="container">
+      <div class="section-header center">
+        <h2 class="section-title">Request access</h2>
+        <p class="section-desc">Membership is strictly curated. Submit your profile and our team will contact you if your goals align with upcoming opportunities.</p>
       </div>
 
-      <form id="applyForm" class="apply-form glass-panel">
+      <form id="applyForm" class="form-card">
         <div class="form-grid two-col">
           <div class="form-group">
-            <label>Mobile Number</label>
+            <label>Mobile number</label>
             <input type="tel" class="form-input" placeholder="+91 98765 43210" required />
           </div>
           <div class="form-group">
-            <label>Email Address</label>
+            <label>Email address</label>
             <input type="email" class="form-input" placeholder="you@email.com" required />
           </div>
         </div>
-
         <div class="form-group">
           <label>City / Location</label>
           <input type="text" class="form-input" placeholder="Hyderabad, India" required />
         </div>
-
         <div class="form-group">
-          <label>1. What type of investor are you?</label>
+          <label>Investor type</label>
           <div class="chip-group">
-            <label class="chip"><input type="radio" name="investorType" value="First-Time Investor" required />First-Time Investor</label>
-            <label class="chip"><input type="radio" name="investorType" value="Experienced Investor" />Experienced Investor</label>
+            <label class="chip"><input type="radio" name="type" value="first" required />First-Time Investor</label>
+            <label class="chip"><input type="radio" name="type" value="experienced" />Experienced Investor</label>
           </div>
         </div>
-
         <div class="form-group">
-          <label>3. What is your investment budget?</label>
+          <label>Investment budget</label>
           <div class="chip-group">
-            <label class="chip"><input type="radio" name="budget" value="₹1–2 Cr" required />₹1–2 Cr</label>
-            <label class="chip"><input type="radio" name="budget" value="₹2–3 Cr" />₹2–3 Cr</label>
-            <label class="chip"><input type="radio" name="budget" value="₹3–5 Cr" />₹3–5 Cr</label>
-            <label class="chip"><input type="radio" name="budget" value="₹5 Cr+" />₹5 Cr+</label>
+            <label class="chip"><input type="radio" name="budget" value="1-2" required />₹1–2 Cr</label>
+            <label class="chip"><input type="radio" name="budget" value="2-3" />₹2–3 Cr</label>
+            <label class="chip"><input type="radio" name="budget" value="3-5" />₹3–5 Cr</label>
+            <label class="chip"><input type="radio" name="budget" value="5+" />₹5 Cr+</label>
           </div>
         </div>
-
         <div class="form-group">
-          <label>4. How many units are you planning to purchase?</label>
+          <label>Investment timeline</label>
           <div class="chip-group">
-            <label class="chip"><input type="radio" name="units" value="2 Units" required />2 Units</label>
-            <label class="chip"><input type="radio" name="units" value="3–5 Units" />3–5 Units</label>
-            <label class="chip"><input type="radio" name="units" value="5+ Units (Bulk Booking)" />5+ Units (Bulk Booking)</label>
+            <label class="chip"><input type="radio" name="timeline" value="now" required />Immediately</label>
+            <label class="chip"><input type="radio" name="timeline" value="30d" />Within 30 days</label>
+            <label class="chip"><input type="radio" name="timeline" value="3m" />1–3 months</label>
+            <label class="chip"><input type="radio" name="timeline" value="explore" />Just exploring</label>
           </div>
         </div>
-
-        <div class="form-group">
-          <label>Preferred Locations (Select all that apply)</label>
-          <div class="chip-group" data-multi>
-            <span class="chip">Kokapet</span>
-            <span class="chip">Tellapur</span>
-            <span class="chip">Financial District</span>
-            <span class="chip">Narsingi</span>
-            <span class="chip">Gachibowli</span>
-            <span class="chip">Miyapur</span>
-            <span class="chip">Bachupally</span>
-            <span class="chip">Other</span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>7. Investment Objective (Select all that apply)</label>
-          <div class="chip-group" data-multi>
-            <span class="chip">Capital Appreciation</span>
-            <span class="chip">Rental Income</span>
-            <span class="chip">Long-Term Wealth Creation</span>
-            <span class="chip">Short-Term Investment</span>
-            <span class="chip">Portfolio Diversification</span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>8. When are you planning to invest?</label>
-          <div class="chip-group">
-            <label class="chip"><input type="radio" name="timeline" value="Immediately" required />Immediately</label>
-            <label class="chip"><input type="radio" name="timeline" value="Within 30 Days" />Within 30 Days</label>
-            <label class="chip"><input type="radio" name="timeline" value="1–3 Months" />1–3 Months</label>
-            <label class="chip"><input type="radio" name="timeline" value="Just Exploring" />Just Exploring</label>
-          </div>
-        </div>
-
         <p class="form-note">By requesting access, you agree to a confidential review of your profile.</p>
-
-        <div class="form-submit">
-          <button type="submit" class="glass-button glass-button-primary" style="padding:1rem 2.5rem">Submit Application</button>
+        <div style="text-align:center;margin-top:20px">
+          <button type="submit" class="btn btn-primary btn-lg">Submit application →</button>
         </div>
       </form>
 
-      <div id="successPanel" class="success-panel glass-panel">
-        <div style="font-size:3rem;margin-bottom:1.5rem">✓</div>
-        <h2>Welcome to the Circle.</h2>
-        <p>Your profile has been received. Our advisory team is reviewing your requirements and will reach out shortly with opportunities that match your mandate.</p>
-        <div class="success-cta glass-panel">
-          <h3 style="font-family:var(--font-serif);margin-bottom:0.5rem">Fast-Track Your Access</h3>
-          <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1rem">Join our private WhatsApp community for real-time deal flow.</p>
-          <a href="https://chat.whatsapp.com/" class="glass-button glass-button-primary" target="_blank" rel="noopener">Join the WhatsApp Community →</a>
-        </div>
+      <div id="successPanel" class="form-card success-panel">
+        <div class="success-icon">✓</div>
+        <h2 class="section-title">Welcome to the Circle</h2>
+        <p class="section-desc" style="margin:0 auto 24px">Your profile has been received. Our advisory team will reach out shortly with opportunities that match your mandate.</p>
+        <a href="https://chat.whatsapp.com/" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Join WhatsApp community →</a>
       </div>
     </div>
   </section>
@@ -1382,349 +1102,178 @@ section { padding: 5rem 0; }
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h3>Investors <span class="gold-gradient-text">Circle</span></h3>
-          <p>Exclusive Access. Better Deals. Higher Returns.</p>
-        </div>
-        <div class="footer-contact">
-          <h4>Contact</h4>
-          <p>WeWork Raheja Mindspace, Survey No. 64, Building 9, 13th Floor, Madhapur, Hyderabad, Telangana 500081</p>
-          <a href="tel:+917416436805">+91 7416436805</a>
+          <a href="#" class="logo" style="margin-bottom:16px">
+            <span class="logo-mark">IC</span>
+            Investors Circle
+          </a>
+          <p style="font-size:14px;color:var(--slate);line-height:1.6;max-width:280px">Exclusive access. Better deals. Higher returns. Real estate infrastructure for serious investors.</p>
         </div>
         <div>
-          <h4>Quick Links</h4>
-          <p><a href="#vision">Vision</a></p>
-          <p><a href="#insights">Insights</a></p>
-          <p><a href="#benefits">Benefits</a></p>
-          <p><a href="#apply">Request Access</a></p>
+          <h4>Opportunities</h4>
+          <ul>
+            <li><a href="#products">Pre-Launch Access</a></li>
+            <li><a href="#products">Bulk Deals</a></li>
+            <li><a href="#insights">Market Intelligence</a></li>
+            <li><a href="#process">Advisory</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#stories">Who we serve</a></li>
+            <li><a href="#apply">Request access</a></li>
+            <li><a href="tel:+917416436805">Contact us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hyderabad Office</h4>
+          <ul>
+            <li style="font-size:14px;color:var(--slate);line-height:1.6">WeWork Raheja Mindspace, Building 9, 13th Floor, Madhapur, Telangana 500081</li>
+            <li><a href="tel:+917416436805">+91 7416436805</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-bottom">© <span id="year"></span> Investors Circle. All rights reserved.</div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Investors Circle</span>
+        <span>Exclusive Access. Better Deals. Higher Returns.</span>
+      </div>
     </div>
   </footer>
 
   <script>
-/* Investors Circle — Interactive charts & UI */
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
 
-const portfolioGrowth = [
-  { year: "2020", retail: 8, circle: 14 },
-  { year: "2021", retail: 10, circle: 22 },
-  { year: "2022", retail: 9, circle: 28 },
-  { year: "2023", retail: 11, circle: 35 },
-  { year: "2024", retail: 12, circle: 42 },
-  { year: "2025", retail: 13, circle: 47 },
-];
+    // Product tabs
+    document.querySelectorAll('#productTabs .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#productTabs .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
 
-const marketInsights = [
-  { market: "Gachibowli", yield: 4.2, appreciation: 18, demand: 92 },
-  { market: "Financial District", yield: 3.8, appreciation: 22, demand: 88 },
-  { market: "Kokapet", yield: 4.5, appreciation: 25, demand: 95 },
-  { market: "Tellapur", yield: 4.8, appreciation: 20, demand: 85 },
-  { market: "Narsingi", yield: 4.1, appreciation: 19, demand: 80 },
-  { market: "Miyapur", yield: 5.2, appreciation: 15, demand: 78 },
-];
+    // Chip selection
+    document.querySelectorAll('.chip-group').forEach(group => {
+      group.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const isMulti = group.dataset.multi !== undefined;
+          if (!isMulti) {
+            group.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+          }
+          chip.classList.add('selected');
+          const input = chip.querySelector('input');
+          if (input) input.checked = true;
+        });
+      });
+    });
 
-const rentalProjection = [
-  { month: "Jan", projected: 2.1, actual: 2.0 },
-  { month: "Feb", projected: 2.2, actual: 2.3 },
-  { month: "Mar", projected: 2.3, actual: 2.2 },
-  { month: "Apr", projected: 2.4, actual: 2.5 },
-  { month: "May", projected: 2.5, actual: 2.4 },
-  { month: "Jun", projected: 2.6, actual: 2.7 },
-  { month: "Jul", projected: 2.7, actual: 2.8 },
-  { month: "Aug", projected: 2.8, actual: 2.9 },
-  { month: "Sep", projected: 2.9, actual: 3.0 },
-  { month: "Oct", projected: 3.0, actual: 3.1 },
-  { month: "Nov", projected: 3.1, actual: 3.2 },
-  { month: "Dec", projected: 3.2, actual: 3.4 },
-];
+    // Form
+    document.getElementById('applyForm').addEventListener('submit', e => {
+      e.preventDefault();
+      document.getElementById('applyForm').style.display = 'none';
+      document.querySelector('#apply .section-header').style.display = 'none';
+      document.getElementById('successPanel').classList.add('show');
+    });
 
-const stats = [
-  { value: 47.2, prefix: "", suffix: "%", decimals: 1 },
-  { value: 12, prefix: "₹", suffix: "Cr+", decimals: 0 },
-  { value: 14, prefix: "", suffix: "", decimals: 0 },
-  { value: 100, prefix: "", suffix: "%", decimals: 0 },
-];
+    // Animated stats
+    function animateStat(el) {
+      const target = parseFloat(el.dataset.stat);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const start = performance.now();
+      const duration = 2000;
+      const step = now => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        el.textContent = prefix + (decimals ? val.toFixed(decimals) : Math.round(val)) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateStat(e.target); statObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-stat]').forEach(el => statObs.observe(el));
 
-let growthChart = null;
-let marketChart = null;
-let rentalChart = null;
-
-const chartDefaults = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: { labels: { color: "rgba(255,255,255,0.7)", font: { family: "Inter" } } },
-    tooltip: {
-      backgroundColor: "rgba(11,16,30,0.92)",
-      borderColor: "rgba(255,255,255,0.1)",
-      borderWidth: 1,
-      titleFont: { family: "Inter" },
-      bodyFont: { family: "Inter" },
-      padding: 12,
-      cornerRadius: 12,
-    },
-  },
-  scales: {
-    x: {
-      grid: { color: "rgba(255,255,255,0.06)" },
-      ticks: { color: "rgba(255,255,255,0.5)", font: { family: "Inter", size: 11 } },
-    },
-    y: {
-      grid: { color: "rgba(255,255,255,0.06)" },
-      ticks: { color: "rgba(255,255,255,0.5)", font: { family: "Inter", size: 11 } },
-    },
-  },
-};
-
-function initGrowthChart() {
-  const ctx = document.getElementById("growthChart");
-  if (!ctx || growthChart) return;
-
-  growthChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: portfolioGrowth.map((d) => d.year),
-      datasets: [
-        {
-          label: "Circle Members",
-          data: portfolioGrowth.map((d) => d.circle),
-          borderColor: "#d4af37",
-          backgroundColor: "rgba(212,175,55,0.15)",
-          fill: true,
-          tension: 0.4,
-          pointRadius: 4,
-          pointBackgroundColor: "#d4af37",
-        },
-        {
-          label: "Retail Market",
-          data: portfolioGrowth.map((d) => d.retail),
-          borderColor: "rgba(255,255,255,0.4)",
-          backgroundColor: "rgba(255,255,255,0.05)",
-          fill: true,
-          tension: 0.4,
-          pointRadius: 4,
-        },
-      ],
-    },
-    options: {
-      ...chartDefaults,
+    // Charts
+    const chartColors = { indigo: '#533afd', indigoLight: 'rgba(83,58,253,.15)', slate: '#8898aa', cyan: '#00d4ff' };
+    const chartDefaults = {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#425466', font: { family: 'Inter', size: 12 } } },
+        tooltip: { backgroundColor: '#0a2540', titleFont: { family: 'Inter' }, bodyFont: { family: 'Inter' }, padding: 12, cornerRadius: 8 }
+      },
       scales: {
-        ...chartDefaults.scales,
-        y: { ...chartDefaults.scales.y, ticks: { ...chartDefaults.scales.y.ticks, callback: (v) => v + "%" } },
-      },
-    },
-  });
-}
-
-function initMarketChart() {
-  const ctx = document.getElementById("marketChart");
-  if (!ctx || marketChart) return;
-
-  marketChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: marketInsights.map((d) => d.market),
-      datasets: [
-        {
-          label: "Appreciation %",
-          data: marketInsights.map((d) => d.appreciation),
-          backgroundColor: "#d4af37",
-          borderRadius: 6,
-        },
-      ],
-    },
-    options: {
-      ...chartDefaults,
-      plugins: { ...chartDefaults.plugins, legend: { display: false } },
-      onHover: (_, elements) => {
-        if (elements.length) highlightMarket(marketInsights[elements[0].index].market);
-      },
-    },
-  });
-}
-
-function initRentalChart() {
-  const ctx = document.getElementById("rentalChart");
-  if (!ctx || rentalChart) return;
-
-  rentalChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: rentalProjection.map((d) => d.month),
-      datasets: [
-        {
-          label: "Projected",
-          data: rentalProjection.map((d) => d.projected),
-          borderColor: "rgba(255,255,255,0.4)",
-          borderDash: [5, 5],
-          tension: 0.4,
-          pointRadius: 0,
-        },
-        {
-          label: "Actual",
-          data: rentalProjection.map((d) => d.actual),
-          borderColor: "#00d4ff",
-          tension: 0.4,
-          pointRadius: 4,
-          pointBackgroundColor: "#00d4ff",
-        },
-      ],
-    },
-    options: {
-      ...chartDefaults,
-      scales: {
-        ...chartDefaults.scales,
-        y: { ...chartDefaults.scales.y, min: 1.5, max: 4, ticks: { ...chartDefaults.scales.y.ticks, callback: (v) => v + "%" } },
-      },
-    },
-  });
-}
-
-function renderMarketCards() {
-  const container = document.getElementById("marketCards");
-  if (!container) return;
-
-  container.innerHTML = marketInsights
-    .map(
-      (m) => `
-    <div class="market-card glass-panel" data-market="${m.market}">
-      <div class="market-card-header">
-        <strong>${m.market}</strong>
-        <span class="yield">${m.appreciation}% YoY</span>
-      </div>
-      <div class="market-metrics">
-        <div>
-          <div class="metric-label">Rental Yield</div>
-          <div>${m.yield}%</div>
-        </div>
-        <div>
-          <div class="metric-label">Demand Index</div>
-          <div class="demand-bar"><div class="demand-fill" style="width:${m.demand}%"></div></div>
-          <div style="margin-top:0.25rem">${m.demand}</div>
-        </div>
-      </div>
-    </div>`
-    )
-    .join("");
-
-  container.querySelectorAll(".market-card").forEach((card) => {
-    card.addEventListener("mouseenter", () => highlightMarket(card.dataset.market));
-    card.addEventListener("mouseleave", () => highlightMarket(null));
-  });
-}
-
-function highlightMarket(name) {
-  document.querySelectorAll(".market-card").forEach((card) => {
-    card.classList.toggle("active", card.dataset.market === name);
-  });
-}
-
-function initChartTabs() {
-  const tabs = document.querySelectorAll(".chart-tab");
-  const panels = document.querySelectorAll(".chart-panel");
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const target = tab.dataset.tab;
-      tabs.forEach((t) => t.classList.toggle("active", t === tab));
-      panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== target));
-
-      if (target === "growth") initGrowthChart();
-      if (target === "markets") {
-        initMarketChart();
-        renderMarketCards();
+        x: { grid: { color: '#f0f0f5' }, ticks: { color: '#8898aa', font: { family: 'Inter', size: 11 } } },
+        y: { grid: { color: '#f0f0f5' }, ticks: { color: '#8898aa', font: { family: 'Inter', size: 11 } } }
       }
-      if (target === "rental") initRentalChart();
-    });
-  });
+    };
+    let charts = {};
 
-  initGrowthChart();
-}
-
-function animateCounter(el, target, prefix, suffix, decimals, duration = 2000) {
-  const start = performance.now();
-  const step = (now) => {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = target * eased;
-    const formatted = decimals > 0 ? current.toFixed(decimals) : Math.round(current);
-    el.textContent = `${prefix}${formatted}${suffix}`;
-    if (progress < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-
-function initStats() {
-  const statEls = document.querySelectorAll("[data-stat-index]");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const i = Number(entry.target.dataset.statIndex);
-        const s = stats[i];
-        animateCounter(entry.target, s.value, s.prefix, s.suffix, s.decimals);
-        observer.unobserve(entry.target);
+    function initGrowthChart() {
+      if (charts.growth) return;
+      charts.growth = new Chart(document.getElementById('growthChart'), {
+        type: 'line',
+        data: {
+          labels: ['2020','2021','2022','2023','2024','2025'],
+          datasets: [
+            { label: 'Circle Members', data: [14,22,28,35,42,47], borderColor: chartColors.indigo, backgroundColor: chartColors.indigoLight, fill: true, tension: .4, pointRadius: 4 },
+            { label: 'Retail Market', data: [8,10,9,11,12,13], borderColor: '#c4c4d0', backgroundColor: 'rgba(196,196,208,.1)', fill: true, tension: .4, pointRadius: 4 }
+          ]
+        },
+        options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, ticks: { ...chartDefaults.scales.y.ticks, callback: v => v + '%' } } } }
       });
-    },
-    { threshold: 0.5 }
-  );
-  statEls.forEach((el) => observer.observe(el));
-}
+    }
+    function initMarketChart() {
+      if (charts.market) return;
+      charts.market = new Chart(document.getElementById('marketChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Gachibowli','Fin. District','Kokapet','Tellapur','Narsingi','Miyapur'],
+          datasets: [{ label: 'Appreciation %', data: [18,22,25,20,19,15], backgroundColor: chartColors.indigo, borderRadius: 6 }]
+        },
+        options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } } }
+      });
+    }
+    function initRentalChart() {
+      if (charts.rental) return;
+      charts.rental = new Chart(document.getElementById('rentalChart'), {
+        type: 'line',
+        data: {
+          labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+          datasets: [
+            { label: 'Projected', data: [2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,3.1,3.2], borderColor: '#c4c4d0', borderDash: [5,5], tension: .4, pointRadius: 0 },
+            { label: 'Actual', data: [2.0,2.3,2.2,2.5,2.4,2.7,2.8,2.9,3.0,3.1,3.2,3.4], borderColor: chartColors.cyan, tension: .4, pointRadius: 3 }
+          ]
+        },
+        options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 1.5, max: 4, ticks: { ...chartDefaults.scales.y.ticks, callback: v => v + '%' } } } }
+      });
+    }
 
-function initChips() {
-  document.querySelectorAll(".chip-group[data-multi]").forEach((group) => {
-    group.querySelectorAll(".chip").forEach((chip) => {
-      chip.addEventListener("click", () => chip.classList.toggle("selected"));
-    });
-  });
-
-  document.querySelectorAll(".chip-group:not([data-multi])").forEach((group) => {
-    group.querySelectorAll(".chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        group.querySelectorAll(".chip").forEach((c) => c.classList.remove("selected"));
-        chip.classList.add("selected");
-        const input = chip.querySelector("input");
-        if (input) input.checked = true;
+    document.querySelectorAll('#chartTabs .chart-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('#chartTabs .chart-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.chart-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('chart-' + tab.dataset.chart).classList.add('active');
+        if (tab.dataset.chart === 'growth') initGrowthChart();
+        if (tab.dataset.chart === 'markets') initMarketChart();
+        if (tab.dataset.chart === 'rental') initRentalChart();
       });
     });
-  });
-}
 
-function initForm() {
-  const form = document.getElementById("applyForm");
-  const success = document.getElementById("successPanel");
-  if (!form || !success) return;
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    form.style.display = "none";
-    document.querySelector(".apply-header").style.display = "none";
-    success.classList.add("show");
-    success.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
-}
-
-function initScrollAnimations() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-  );
-  document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  initChartTabs();
-  initStats();
-  initChips();
-  initForm();
-  initScrollAnimations();
-  document.getElementById("year").textContent = new Date().getFullYear();
-});
-
+    document.addEventListener('DOMContentLoaded', () => {
+      initGrowthChart();
+    });
   </script>
 </body>
 </html>
