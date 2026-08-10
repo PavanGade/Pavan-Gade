@@ -31,7 +31,7 @@ export const appNavItems = [
   { title: "Pipeline", href: "/app/pipeline", icon: BriefcaseBusiness },
   { title: "Tasks", href: "/app/tasks", icon: ListChecks },
   { title: "Inbox", href: "/app/inbox", icon: Inbox },
-  { title: "AI Assistant", href: "/app/ai-assistant", icon: Bot },
+  { title: "AI Assistant", href: "/app/ai", icon: Bot },
   { title: "Analytics", href: "/app/analytics", icon: BarChart3 },
   { title: "Automations", href: "/app/automations", icon: Workflow },
   { title: "Integrations", href: "/app/integrations", icon: Plug },

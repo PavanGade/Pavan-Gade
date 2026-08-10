@@ -1,3 +1,5 @@
-import { AiPage } from "@/features/crm/pages";
+import { redirect } from "next/navigation";
 
-export default AiPage;
+export default function AiAssistantAliasPage() {
+  redirect("/app/ai");
+}

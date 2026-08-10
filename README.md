@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PRSPCT
 
-## Getting Started
+AI-powered prospecting, sales intelligence, and CRM platform.
 
-First, run the development server:
+**DISCOVER → QUALIFY → ENGAGE → FOLLOW UP → CLOSE**
+
+## Stack
+
+- Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4
+- Supabase Auth + PostgreSQL + RLS (production path)
+- Demo mode works offline with seeded fictional data (default when Supabase env is unset)
+- TanStack Query/Table · Zustand · Zod · React Hook Form · Recharts · dnd-kit · cmdk
+
+## Quick start
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Demo credentials
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| User | Email | Password |
+|------|-------|----------|
+| Admin | `admin@prspct.demo` | `demo1234` |
+| Manager | `manager@prspct.demo` | `demo1234` |
+| Sales Rep 1 | `rep1@prspct.demo` | `demo1234` |
+| Sales Rep 2 | `rep2@prspct.demo` | `demo1234` |
 
-## Learn More
+Any password with length ≥ 6 works for `*@prspct.demo` emails in demo mode.
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Local development |
+| `npm run build` | Production build |
+| `npm run start` | Serve production build |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript |
+| `npm test` | Vitest unit tests |
+| `npm run test:e2e` | Critical-flow smoke check |
+| `npm run seed` | Print demo seed summary |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment
 
-## Deploy on Vercel
+See `.env.example`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (server only)
+- `OPENAI_API_KEY` (AI live mode)
+- `STRIPE_SECRET_KEY` / `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+- `RESEND_API_KEY`
+- `SENTRY_DSN`
+- `DATA_PROVIDER_API_KEY`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Never put service-role or provider secrets in client code.
+
+## Architecture highlights
+
+- Multi-tenant org model with RLS migration in `supabase/migrations/`
+- Provider adapters: `AIProvider`, `ProspectProvider`, `EmailProvider`, `BillingProvider`
+- Rules-based lead scoring with breakdown (not claimed as AI)
+- CSV import wizard with mapping, validation, and dedupe
+- Command palette (`Cmd/Ctrl+K`)
+
+## Production deployment
+
+1. Create a Supabase project and apply `supabase/migrations/20260326130000_prspct_schema.sql`
+2. Set env vars in your host (Vercel recommended)
+3. `npm run build && npm run start` (or connect the Git repo to Vercel)
+4. Configure Stripe/OpenAI/Resend secrets for live integrations
+
+## Known limitations (demo-first)
+
+- Without Supabase credentials, auth + CRM data persist in browser localStorage via the demo store
+- AI/Email/Stripe use clearly labeled demo providers until API keys are set
+- Payments never report fake success
+- External prospect enrichment uses `MockProspectProvider` until a licensed data provider key is configured
