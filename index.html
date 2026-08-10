@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investors Circle</title>
+  <meta name="description" content="Investors Circle — Exclusive Access. Better Deals. Higher Returns." />
+  <meta property="og:title" content="Investors Circle" />
+  <meta property="og:description" content="Exclusive Access. Better Deals. Higher Returns." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav class="navbar-inner glass-panel">
+      <a href="#" class="logo">Investors <span class="gold-gradient-text">Circle</span></a>
+      <ul class="nav-links">
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#apply">Apply</a></li>
+      </ul>
+      <a href="#apply" class="glass-button glass-button-primary" style="padding:0.5rem 1.25rem;font-size:0.75rem">Request Access</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero mesh-gradient">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-pattern" style="position:absolute;inset:0;pointer-events:none"></div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge glass-panel">✦ Invitation Only</div>
+        <h1>
+          <span class="gold-gradient-text" style="font-style:italic">an invitation</span><br />
+          to institutional<br />real estate.
+        </h1>
+        <p class="hero-lead">Exclusive Access. Better Deals. Higher Returns.</p>
+        <div class="hero-actions">
+          <a href="#apply" class="glass-button glass-button-primary">Request Access</a>
+          <a href="#insights" class="glass-button">Explore Insights</a>
+        </div>
+      </div>
+
+      <div class="hero-dashboard">
+        <div class="dashboard-card glass-panel">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem">
+            <div>
+              <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em">Portfolio Performance</p>
+              <p style="font-family:var(--font-serif);font-size:1.875rem;color:var(--gold-400);margin-top:0.25rem">+47.2%</p>
+            </div>
+            <span class="glass-button" style="padding:0.5rem 1rem;font-size:0.75rem">Live</span>
+          </div>
+          <div class="deal-row">
+            <div class="left"><span class="dot" style="background:var(--accent)"></span>Gachibowli Pre-Launch</div>
+            <span style="color:var(--gold-400);font-size:0.875rem">+22%</span>
+          </div>
+          <div class="deal-row">
+            <div class="left"><span class="dot" style="background:var(--accent-cyan)"></span>Kokapet Bulk Deal</div>
+            <span style="color:var(--gold-400);font-size:0.875rem">+18%</span>
+          </div>
+          <div class="deal-row">
+            <div class="left"><span class="dot" style="background:var(--accent-violet)"></span>Financial District</div>
+            <span style="color:var(--gold-400);font-size:0.875rem">+15%</span>
+          </div>
+          <div class="dashboard-stat-row">
+            <div><div class="value">14</div><div class="label">Launches</div></div>
+            <div><div class="value">₹12Cr</div><div class="label">Saved</div></div>
+            <div><div class="value">100%</div><div class="label">Off-Market</div></div>
+          </div>
+        </div>
+        <div class="floating-badge glass-panel">
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.5)">Member ROI</p>
+          <p class="gold-gradient-text" style="font-family:var(--font-serif);font-size:1.25rem">3.2× Retail</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Discover</span>
+      <span class="bounce" style="color:var(--gold-400)">↓</span>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section id="vision" class="vision fade-in">
+    <div class="container">
+      <h2>
+        By the time a property brochure is printed,<br />
+        <span class="muted">the best margins are already gone.</span>
+      </h2>
+      <p>
+        Real estate wealth isn't built on listings platforms. It's built in private
+        meetings, pre-launch allocations, and closed-door negotiations. Investors
+        Circle exists to bring serious capital together and unlock institutional-grade
+        opportunities for individual buyers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Advantage -->
+  <section class="fade-in">
+    <div class="container">
+      <div class="advantage-card glass-panel">
+        <div class="advantage-grid">
+          <div>
+            <div class="advantage-label">🛡 The Advantage</div>
+            <h3>Our members bypass the retail market entirely, accessing projects at their true absolute floor price.</h3>
+            <p style="color:var(--text-muted);line-height:1.7">
+              We acquire positions before the market even knows they exist — securing
+              institutional pricing for individual investors through collective capital
+              deployment and developer relationships.
+            </p>
+          </div>
+          <div class="glass-panel" style="border-radius:1rem;padding:1.5rem;border-color:rgba(212,175,55,0.2)">
+            <div class="bar-chart-visual">
+              <div class="bar-col"><div class="bar-fill retail"></div><span class="bar-label">Retail</span></div>
+              <div class="bar-col"><div class="bar-fill circle"></div><span class="bar-label">Circle</span></div>
+            </div>
+            <p style="font-size:0.875rem;color:var(--gold-400)">↗ 3.2× better entry pricing vs retail</p>
+          </div>
+        </div>
+        <p class="advantage-tagline gold-gradient-text">We acquire positions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Insights -->
+  <section id="insights" class="insights fade-in">
+    <div class="container">
+      <div class="insights-header">
+        <p class="section-label">Interactive Insights</p>
+        <h2 class="section-title">Data that drives decisions</h2>
+        <p class="section-subtitle">Explore real performance metrics across Hyderabad micro-markets. Hover over charts for detailed breakdowns.</p>
+      </div>
+
+      <div class="chart-tabs">
+        <button class="chart-tab active" data-tab="growth">Portfolio Growth</button>
+        <button class="chart-tab" data-tab="markets">Micro-Markets</button>
+        <button class="chart-tab" data-tab="rental">Rental Yield</button>
+      </div>
+
+      <div class="chart-panel glass-panel" data-panel="growth">
+        <div class="chart-header">
+          <div>
+            <h3>Circle vs Retail Returns (%)</h3>
+            <p>Annualised portfolio performance</p>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:#d4af37"></span>Circle Members</span>
+            <span class="legend-item"><span class="legend-dot" style="background:rgba(255,255,255,0.3)"></span>Retail Market</span>
+          </div>
+        </div>
+        <div class="chart-canvas-wrap"><canvas id="growthChart"></canvas></div>
+      </div>
+
+      <div class="chart-panel glass-panel hidden" data-panel="markets">
+        <div class="markets-grid">
+          <div>
+            <div class="chart-header">
+              <div>
+                <h3>Hyderabad Micro-Markets</h3>
+                <p>Hover a market for detailed metrics</p>
+              </div>
+            </div>
+            <div class="chart-canvas-wrap"><canvas id="marketChart"></canvas></div>
+          </div>
+          <div class="market-cards" id="marketCards"></div>
+        </div>
+      </div>
+
+      <div class="chart-panel glass-panel hidden" data-panel="rental">
+        <div class="chart-header">
+          <div>
+            <h3>Monthly Rental Yield (%)</h3>
+            <p>Projected vs actual rental performance — Circle member portfolio</p>
+          </div>
+        </div>
+        <div class="chart-canvas-wrap"><canvas id="rentalChart"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infographic / Process -->
+  <section class="fade-in">
+    <div class="container">
+      <div class="process-header">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">From application to appreciation</h2>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step glass-panel">
+          <div class="step-num">1</div>
+          <h3>Apply</h3>
+          <p>Submit your investor profile for confidential review by our advisory team.</p>
+        </div>
+        <div class="process-step glass-panel">
+          <div class="step-num">2</div>
+          <h3>Curate</h3>
+          <p>We match your mandate with pre-vetted, off-market opportunities in Hyderabad micro-markets.</p>
+        </div>
+        <div class="process-step glass-panel">
+          <div class="step-num">3</div>
+          <h3>Allocate</h3>
+          <p>Secure floor-price units through bulk negotiations before public launch.</p>
+        </div>
+        <div class="process-step glass-panel">
+          <div class="step-num">4</div>
+          <h3>Compound</h3>
+          <p>Track ROI, rental yields, and exit strategies with dedicated advisory support.</p>
+        </div>
+      </div>
+
+      <div class="metrics-strip glass-panel">
+        <div class="metrics-strip-grid">
+          <div>
+            <div class="metric-icon">✓</div>
+            <p class="metric-label">Pre-Launch</p>
+            <p class="metric-value gold-gradient-text">6–8 weeks</p>
+            <p class="metric-desc">Average lead time before public announcement</p>
+          </div>
+          <div>
+            <div class="metric-icon">✓</div>
+            <p class="metric-label">Bulk Discount</p>
+            <p class="metric-value gold-gradient-text">12–18%</p>
+            <p class="metric-desc">Savings vs individual retail purchase</p>
+          </div>
+          <div>
+            <div class="metric-icon">✓</div>
+            <p class="metric-label">Paper Gain</p>
+            <p class="metric-value gold-gradient-text">Day 1</p>
+            <p class="metric-desc">Immediate appreciation upon launch pricing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="benefits" class="fade-in">
+    <div class="container">
+      <div class="features-header">
+        <p class="section-label">Member Benefits</p>
+        <h2 class="section-title">Institutional tools for individual investors</h2>
+        <p class="section-subtitle">Every benefit is designed to give you the same edge that large funds and developers have — at individual scale.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">🚀</div>
+          <h3>Early-Bird & Pre-Launch</h3>
+          <p>Secure units weeks before public announcements. The lowest entry price, guaranteeing immediate paper appreciation upon launch.</p>
+        </div>
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">📊</div>
+          <h3>Negotiated Bulk Deals</h3>
+          <p>By pooling capital intent, we negotiate massive bulk discounts from tier-1 developers that individual buyers cannot access.</p>
+        </div>
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">⭐</div>
+          <h3>Priority Unit Selection</h3>
+          <p>Don't settle for leftover inventory. Get first pick of the best floor plans, views, and orientations that command premium resale value.</p>
+        </div>
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">📈</div>
+          <h3>Market Intelligence</h3>
+          <p>Data-driven analysis on rental yields, infrastructure developments, and micro-market appreciation trajectories.</p>
+        </div>
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">👤</div>
+          <h3>Dedicated Advisory</h3>
+          <p>A private relationship manager to handle paperwork, payment schedules, and eventual exit strategies.</p>
+        </div>
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">💹</div>
+          <h3>Rental Yield Analysis</h3>
+          <p>Detailed rental income projections and resale opportunity assessments to maximise your returns at every stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who is in the Circle -->
+  <section class="personas fade-in">
+    <div class="container">
+      <div class="personas-header">
+        <h2 class="section-title">Who is in the Circle?</h2>
+        <p class="section-subtitle">We curate a powerful network of serious capital allocators. If you fit into any of these categories, you belong in the room.</p>
+      </div>
+
+      <div class="personas-grid">
+        <div class="persona-card glass-panel">
+          <div class="persona-num">01</div>
+          <h4>First-Time Investors</h4>
+          <p>Looking for a guided, data-backed entry into high-growth residential assets.</p>
+        </div>
+        <div class="persona-card glass-panel">
+          <div class="persona-num">02</div>
+          <h4>HNIs & NRIs</h4>
+          <p>Seeking hands-off wealth multiplication through tier-1 Indian real estate.</p>
+        </div>
+        <div class="persona-card glass-panel">
+          <div class="persona-num">03</div>
+          <h4>Appreciation Seekers</h4>
+          <p>Targeting Pre-Launch and Early-Bird projects for maximum ROI.</p>
+        </div>
+        <div class="persona-card glass-panel">
+          <div class="persona-num">04</div>
+          <h4>Bulk Bookers</h4>
+          <p>Families, friends, or partners buying 2+ units for heavy discounts.</p>
+        </div>
+        <div class="persona-card glass-panel">
+          <div class="persona-num">05</div>
+          <h4>Portfolio Builders</h4>
+          <p>Existing investors looking to diversify across high-yield micro-markets.</p>
+        </div>
+        <div class="persona-card glass-panel">
+          <div class="persona-num">06</div>
+          <h4>Passive Income Seekers</h4>
+          <p>Professionals and business owners building a rental income stream for long-term financial freedom.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats fade-in">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-value" data-stat-index="0">0%</div>
+          <div class="stat-label">Avg. Portfolio ROI</div>
+        </div>
+        <div>
+          <div class="stat-value" data-stat-index="1">₹0Cr+</div>
+          <div class="stat-label">Member Savings</div>
+        </div>
+        <div>
+          <div class="stat-value" data-stat-index="2">0</div>
+          <div class="stat-label">Exclusive Launches</div>
+        </div>
+        <div>
+          <div class="stat-value" data-stat-index="3">0%</div>
+          <div class="stat-label">Off-Market</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply Form -->
+  <section id="apply" class="fade-in">
+    <div class="container">
+      <div class="apply-header">
+        <h2>Request Access</h2>
+        <p class="section-subtitle">Membership is strictly curated. Submit your profile below. Our advisory team will review and contact you if your investment goals align with our upcoming opportunities.</p>
+      </div>
+
+      <form id="applyForm" class="apply-form glass-panel">
+        <div class="form-grid two-col">
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" class="form-input" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-input" placeholder="you@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>City / Location</label>
+          <input type="text" class="form-input" placeholder="Hyderabad, India" required />
+        </div>
+
+        <div class="form-group">
+          <label>1. What type of investor are you?</label>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="investorType" value="First-Time Investor" required />First-Time Investor</label>
+            <label class="chip"><input type="radio" name="investorType" value="Experienced Investor" />Experienced Investor</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>3. What is your investment budget?</label>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="budget" value="₹1–2 Cr" required />₹1–2 Cr</label>
+            <label class="chip"><input type="radio" name="budget" value="₹2–3 Cr" />₹2–3 Cr</label>
+            <label class="chip"><input type="radio" name="budget" value="₹3–5 Cr" />₹3–5 Cr</label>
+            <label class="chip"><input type="radio" name="budget" value="₹5 Cr+" />₹5 Cr+</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>4. How many units are you planning to purchase?</label>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="units" value="2 Units" required />2 Units</label>
+            <label class="chip"><input type="radio" name="units" value="3–5 Units" />3–5 Units</label>
+            <label class="chip"><input type="radio" name="units" value="5+ Units (Bulk Booking)" />5+ Units (Bulk Booking)</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Locations (Select all that apply)</label>
+          <div class="chip-group" data-multi>
+            <span class="chip">Kokapet</span>
+            <span class="chip">Tellapur</span>
+            <span class="chip">Financial District</span>
+            <span class="chip">Narsingi</span>
+            <span class="chip">Gachibowli</span>
+            <span class="chip">Miyapur</span>
+            <span class="chip">Bachupally</span>
+            <span class="chip">Other</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>7. Investment Objective (Select all that apply)</label>
+          <div class="chip-group" data-multi>
+            <span class="chip">Capital Appreciation</span>
+            <span class="chip">Rental Income</span>
+            <span class="chip">Long-Term Wealth Creation</span>
+            <span class="chip">Short-Term Investment</span>
+            <span class="chip">Portfolio Diversification</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>8. When are you planning to invest?</label>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="timeline" value="Immediately" required />Immediately</label>
+            <label class="chip"><input type="radio" name="timeline" value="Within 30 Days" />Within 30 Days</label>
+            <label class="chip"><input type="radio" name="timeline" value="1–3 Months" />1–3 Months</label>
+            <label class="chip"><input type="radio" name="timeline" value="Just Exploring" />Just Exploring</label>
+          </div>
+        </div>
+
+        <p class="form-note">By requesting access, you agree to a confidential review of your profile.</p>
+
+        <div class="form-submit">
+          <button type="submit" class="glass-button glass-button-primary" style="padding:1rem 2.5rem">Submit Application</button>
+        </div>
+      </form>
+
+      <div id="successPanel" class="success-panel glass-panel">
+        <div style="font-size:3rem;margin-bottom:1.5rem">✓</div>
+        <h2>Welcome to the Circle.</h2>
+        <p>Your profile has been received. Our advisory team is reviewing your requirements and will reach out shortly with opportunities that match your mandate.</p>
+        <div class="success-cta glass-panel">
+          <h3 style="font-family:var(--font-serif);margin-bottom:0.5rem">Fast-Track Your Access</h3>
+          <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1rem">Join our private WhatsApp community for real-time deal flow.</p>
+          <a href="https://chat.whatsapp.com/" class="glass-button glass-button-primary" target="_blank" rel="noopener">Join the WhatsApp Community →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Investors <span class="gold-gradient-text">Circle</span></h3>
+          <p>Exclusive Access. Better Deals. Higher Returns.</p>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>WeWork Raheja Mindspace, Survey No. 64, Building 9, 13th Floor, Madhapur, Hyderabad, Telangana 500081</p>
+          <a href="tel:+917416436805">+91 7416436805</a>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <p><a href="#vision">Vision</a></p>
+          <p><a href="#insights">Insights</a></p>
+          <p><a href="#benefits">Benefits</a></p>
+          <p><a href="#apply">Request Access</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© <span id="year"></span> Investors Circle. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
