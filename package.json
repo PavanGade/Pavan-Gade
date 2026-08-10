@@ -1,0 +1,12 @@
+{
+  "name": "investors-circle",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node otp-server.mjs",
+    "dev": "OTP_DEMO_MODE=true node otp-server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
