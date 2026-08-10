@@ -6,6 +6,55 @@ You need two things online:
 
 ---
 
+## Hostinger (your host)
+
+### 1) Upload the website
+
+1. Log in to **Hostinger** → open **hPanel**
+2. Open **Files** → **File Manager**
+3. Go to the folder for your site (usually `public_html`)
+4. Upload these from the project:
+   - `index.html`
+   - the whole `logos` folder
+5. If Hostinger asks to overwrite an old `index.html`, choose **Replace**
+6. Visit your domain (e.g. `https://investorscircle.in`) — the new page should load
+
+**Tip:** Zip `index.html` + `logos` on your computer, upload the zip in File Manager, then **Extract**.
+
+### 2) Turn on OTP (mobile verification)
+
+Hostinger shared hosting is mostly for HTML files. OTP needs Node.js.
+
+**Option A — Hostinger Node.js (if your plan has it)**  
+1. hPanel → **Websites** → **Node.js** (or **Advanced** → Node.js)  
+2. Create an app, set startup file to `otp-server.mjs`  
+3. Upload the full project (including `otp-server.mjs`, `package.json`, `api/`)  
+4. Set environment variables:
+   - `OTP_DEMO_MODE=false`
+   - `OTP_SECRET=long-random-secret`
+   - `MSG91_AUTH_KEY=...`
+   - `MSG91_TEMPLATE_ID=...`
+5. Start the app  
+
+**Option B — Keep site on Hostinger, OTP API on Vercel (easiest)**  
+1. Deploy this GitHub repo on [vercel.com](https://vercel.com) (Import → Deploy)  
+2. Copy your Vercel URL, e.g. `https://your-app.vercel.app`  
+3. In Hostinger File Manager, edit `index.html` and add this **before** `</body>`:
+
+```html
+<script>window.IC_OTP_API = 'https://your-app.vercel.app/api/otp';</script>
+```
+
+4. Save. Form OTP will call Vercel; the website stays on Hostinger.
+
+### 3) MSG91 for real SMS
+
+1. Sign up at https://msg91.com  
+2. Create an OTP template  
+3. Put the keys in Vercel or Hostinger Node env vars (see Option A/B above)
+
+---
+
 ## Fastest way: Netlify (free)
 
 ### A) Put the page online (2 minutes)
