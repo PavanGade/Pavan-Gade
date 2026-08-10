@@ -1,24 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import { LandingPage } from "@/components/marketing/landing-page";
 
-import * as React from "react";
-import { useRouter } from "next/navigation";
-import { LoadingState } from "@/components/ui/loading-state";
-import { useDemoStore } from "@/stores/demo-store";
+export const metadata: Metadata = {
+  title: "PRSPCT — AI Prospecting & Sales CRM",
+  description:
+    "Discover, qualify, and close with PRSPCT. Prospecting intelligence, pipeline, follow-ups, and AI-assisted selling in one workspace.",
+};
 
 export default function Home() {
-  const router = useRouter();
-  const session = useDemoStore((state) => state.session);
-  const [hydrated, setHydrated] = React.useState(() => useDemoStore.persist.hasHydrated());
-
-  React.useEffect(() => {
-    const unsubscribe = useDemoStore.persist.onFinishHydration(() => setHydrated(true));
-    return unsubscribe;
-  }, []);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
-    router.replace(session ? (session.onboardingComplete ? "/app/dashboard" : "/onboarding") : "/login");
-  }, [hydrated, router, session]);
-
-  return <LoadingState label="Routing to PRSPCT..." className="min-h-screen" />;
+  return <LandingPage />;
 }
