@@ -110,6 +110,77 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .ticker-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--slate);white-space:nowrap}
 .ticker-item .dot{width:6px;height:6px;border-radius:50%;background:var(--success)}
 .ticker-item strong{color:var(--navy);font-weight:600}.ticker-item .up{color:var(--success);font-weight:600}
+
+/* Developer logos marquee */
+.logo-marquee{
+  padding:56px 0 64px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.logo-marquee-header{
+  text-align:center;
+  margin-bottom:32px;
+  padding:0 24px;
+}
+.logo-marquee-header p{
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+.logo-marquee-viewport{
+  position:relative;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.logo-marquee-track{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  width:max-content;
+  animation:logoScroll 45s linear infinite;
+}
+.logo-marquee-viewport:hover .logo-marquee-track{animation-play-state:paused}
+@keyframes logoScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.dev-logo{
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:160px;
+  height:72px;
+  padding:0 28px;
+  background:var(--bg-subtle);
+  border:1px solid var(--border);
+  border-radius:12px;
+  transition:all .25s var(--ease);
+  cursor:default;
+  user-select:none;
+}
+.dev-logo:hover{
+  background:#fff;
+  border-color:#d0d5e0;
+  box-shadow:var(--shadow-sm);
+  transform:translateY(-2px);
+}
+.dev-logo .mark{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;letter-spacing:-.02em;
+  flex-shrink:0;
+}
+.dev-logo .name{
+  font-size:14px;font-weight:600;color:var(--slate-light);
+  letter-spacing:-.01em;white-space:nowrap;
+  transition:color .2s;
+}
+.dev-logo:hover .name{color:var(--navy)}
+
 section{padding:88px 0}
 .section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);margin-bottom:12px}
 .section-title{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:300;letter-spacing:-.03em;line-height:1.15;color:var(--navy-deep);margin-bottom:16px}
@@ -373,6 +444,18 @@ section{padding:88px 0}
       <div class="ticker-item"><span class="dot"></span><strong>Bachupally</strong> Off-market · <span class="up">Floor price</span></div>
     </div>
   </div>
+
+  <!-- DEVELOPER LOGOS MARQUEE -->
+  <section class="logo-marquee" aria-label="Real estate developers we work with">
+    <div class="logo-marquee-header">
+      <p>Trusted partnerships with tier-1 developers across Hyderabad</p>
+    </div>
+    <div class="logo-marquee-viewport">
+      <div class="logo-marquee-track" id="devLogoTrack">
+        <!-- logos injected twice for seamless loop -->
+      </div>
+    </div>
+  </section>
 
   <!-- COMPARE -->
   <section class="compare" id="advantage">
@@ -988,6 +1071,37 @@ section{padding:88px 0}
   const indigo = '#533afd';
   const indigoSoft = 'rgba(83,58,253,0.15)';
   const slate = '#8898aa';
+
+  /* Developer logos — horizontal marquee */
+  const developers = [
+    { name: 'My Home', initials: 'MH', color: '#1a5f4a' },
+    { name: 'Aparna', initials: 'AP', color: '#c45c26' },
+    { name: 'Prestige', initials: 'PG', color: '#1e3a5f' },
+    { name: 'Ramky', initials: 'RK', color: '#2d6a4f' },
+    { name: 'Rajapushpa', initials: 'RP', color: '#7b2d8e' },
+    { name: 'ASBL', initials: 'AS', color: '#0d6e6e' },
+    { name: 'Sumadhura', initials: 'SM', color: '#b45309' },
+    { name: 'Hallmark', initials: 'HM', color: '#1d4ed8' },
+    { name: 'Cybercity', initials: 'CC', color: '#4338ca' },
+    { name: 'Praneeth', initials: 'PR', color: '#be123c' },
+    { name: 'SMR Holdings', initials: 'SMR', color: '#0f766e' },
+    { name: 'Brigade', initials: 'BG', color: '#9a3412' },
+    { name: 'Sobha', initials: 'SB', color: '#166534' },
+    { name: 'Lodha', initials: 'LD', color: '#7c2d12' },
+    { name: 'Aliens Group', initials: 'AG', color: '#1e40af' },
+    { name: 'Vasavi', initials: 'VS', color: '#86198f' },
+  ];
+
+  const logoTrack = document.getElementById('devLogoTrack');
+  if (logoTrack) {
+    const logoHTML = developers.map(d => `
+      <div class="dev-logo" title="${d.name}">
+        <span class="mark" style="background:${d.color}">${d.initials}</span>
+        <span class="name">${d.name}</span>
+      </div>`).join('');
+    // Duplicate for seamless infinite scroll
+    logoTrack.innerHTML = logoHTML + logoHTML;
+  }
 
   /* Scroll progress */
   const progress = document.getElementById('scrollProgress');
