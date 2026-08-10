@@ -6,19 +6,17 @@ import { stats } from "@/data/opportunities";
 
 export function Stats() {
   return (
-    <section
-      aria-label="Key metrics"
-      className="border-y border-border bg-bg-secondary"
-    >
+    <section aria-label="Key metrics" className="relative overflow-hidden">
+      <div className="hairline" />
       <div className="container-page">
-        <div className="grid grid-cols-2 gap-px bg-border md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px md:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal
               key={stat.id}
-              delay={i * 0.05}
-              className="bg-bg-secondary px-4 py-10 md:px-6 md:py-12"
+              delay={i * 0.06}
+              className="relative px-2 py-12 md:px-4 md:py-16"
             >
-              <p className="text-3xl tracking-tight text-text-primary md:text-4xl">
+              <p className="text-[clamp(2rem,4vw,3.25rem)] tracking-[-0.04em] text-text-primary">
                 <AnimatedCounter
                   value={stat.value}
                   numericValue={stat.numericValue}
@@ -27,9 +25,9 @@ export function Stats() {
                   isPlaceholder={stat.isPlaceholder}
                 />
               </p>
-              <p className="mt-2 text-sm text-text-secondary">{stat.label}</p>
+              <p className="mt-3 text-sm text-text-secondary">{stat.label}</p>
               {stat.isPlaceholder ? (
-                <p className="mt-1 text-[11px] uppercase tracking-[0.12em] text-text-muted">
+                <p className="mt-2 text-[10px] uppercase tracking-[0.16em] text-text-muted">
                   Placeholder
                 </p>
               ) : null}
@@ -37,6 +35,7 @@ export function Stats() {
           ))}
         </div>
       </div>
+      <div className="hairline" />
     </section>
   );
 }

@@ -1,7 +1,15 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import {
+  useRef,
+  type ButtonHTMLAttributes,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
@@ -30,16 +38,15 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-text-primary text-bg-primary hover:bg-white hover:scale-[1.02] active:scale-[0.99]",
+    "bg-white text-[#050505] hover:bg-[#e8e8e8] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]",
   secondary:
-    "bg-transparent text-text-primary border border-border hover:border-border-strong hover:bg-white/[0.03] hover:scale-[1.02] active:scale-[0.99]",
-  ghost:
-    "bg-transparent text-text-secondary hover:text-text-primary hover:bg-white/[0.03]",
+    "bg-transparent text-text-primary border border-white/15 hover:border-white/30 hover:bg-white/[0.04]",
+  ghost: "bg-transparent text-text-secondary hover:text-text-primary",
 };
 
 const sizes: Record<Size, string> = {
   md: "h-11 px-5 text-sm",
-  lg: "h-12 px-6 text-[0.9375rem]",
+  lg: "h-12 px-6 text-[0.9375rem] md:h-[3.25rem] md:px-7",
 };
 
 export function Button(props: ButtonProps) {
@@ -50,20 +57,35 @@ export function Button(props: ButtonProps) {
     className,
     showArrow = false,
   } = props;
+  const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
+  const reduce = useReducedMotion();
 
   const classes = cn(
-    "group inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
+    "group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full font-medium tracking-tight transition-[transform,background-color,border-color,color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
     variants[variant],
     sizes[size],
     className,
   );
 
+  const onMove = (e: MouseEvent<HTMLElement>) => {
+    if (reduce || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    ref.current.style.transform = `translate3d(${x * 0.12}px, ${y * 0.18}px, 0) scale(1.02)`;
+  };
+
+  const onLeave = () => {
+    if (!ref.current) return;
+    ref.current.style.transform = "translate3d(0,0,0) scale(1)";
+  };
+
   const content = (
     <>
-      <span>{children}</span>
+      <span className="relative z-10">{children}</span>
       {showArrow ? (
         <ArrowRight
-          className="size-4 transition-transform duration-300 group-hover:translate-x-0.5"
+          className="relative z-10 size-4 transition-transform duration-300 group-hover:translate-x-1"
           aria-hidden
         />
       ) : null}
@@ -72,22 +94,36 @@ export function Button(props: ButtonProps) {
 
   if ("href" in props && props.href) {
     return (
-      <Link
-        href={props.href}
-        className={classes}
-        onClick={props.onClick}
-        target={props.target}
-        rel={props.rel}
-      >
-        {content}
-      </Link>
+      <motion.div whileTap={reduce ? undefined : { scale: 0.98 }}>
+        <Link
+          ref={ref as React.RefObject<HTMLAnchorElement>}
+          href={props.href}
+          className={classes}
+          onClick={props.onClick}
+          target={props.target}
+          rel={props.rel}
+          onMouseMove={onMove}
+          onMouseLeave={onLeave}
+        >
+          {content}
+        </Link>
+      </motion.div>
     );
   }
 
   const { type = "button", ...rest } = props as ButtonAsButton;
   return (
-    <button type={type} className={classes} {...rest}>
-      {content}
-    </button>
+    <motion.div whileTap={reduce ? undefined : { scale: 0.98 }}>
+      <button
+        ref={ref as React.RefObject<HTMLButtonElement>}
+        type={type}
+        className={classes}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        {...rest}
+      >
+        {content}
+      </button>
+    </motion.div>
   );
 }

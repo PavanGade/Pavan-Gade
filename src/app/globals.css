@@ -2,23 +2,24 @@
 
 :root {
   --bg-primary: #050505;
-  --bg-secondary: #0b0b0c;
-  --bg-card: #111113;
-  --bg-elevated: #161618;
+  --bg-secondary: #09090b;
+  --bg-card: #0e0e10;
+  --bg-elevated: #141416;
   --text-primary: #f5f5f5;
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
   --accent: #c9a96e;
-  --accent-soft: rgba(201, 169, 110, 0.12);
-  --accent-muted: rgba(201, 169, 110, 0.55);
+  --accent-soft: rgba(201, 169, 110, 0.14);
+  --accent-muted: rgba(201, 169, 110, 0.5);
   --success: #4ade80;
   --danger: #f87171;
-  --radius: 12px;
-  --max-w: 1200px;
+  --radius: 16px;
+  --max-w: 1280px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --header-h: 72px;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --header-h: 68px;
 }
 
 @theme inline {
@@ -44,7 +45,7 @@
 
 html {
   scroll-behavior: auto;
-  scroll-padding-top: calc(var(--header-h) + 12px);
+  scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 html.lenis,
@@ -54,10 +55,6 @@ html.lenis body {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
 }
 
 body {
@@ -122,74 +119,88 @@ textarea {
 
 @media (min-width: 768px) {
   .container-page {
-    padding-inline: 2rem;
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-page {
+    padding-inline: 3rem;
   }
 }
 
 .section-pad {
-  padding-block: 5rem;
+  padding-block: 6rem;
 }
 
 @media (min-width: 768px) {
   .section-pad {
-    padding-block: 7.5rem;
+    padding-block: 9rem;
   }
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
+  gap: 0.65rem;
+  font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 .eyebrow::before {
   content: "";
-  width: 1.25rem;
+  width: 1.5rem;
   height: 1px;
   background: var(--accent);
 }
 
 .heading-display {
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-size: clamp(3rem, 8.5vw, 6.75rem);
   font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 1.02;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  color: var(--text-primary);
+}
+
+.heading-brand {
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
   color: var(--text-primary);
 }
 
 .heading-lg {
-  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 5.2vw, 4.25rem);
   font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .heading-md {
-  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
   font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .body-lg {
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   color: var(--text-secondary);
   line-height: 1.65;
-  max-width: 36rem;
+  max-width: 34rem;
+  font-weight: 400;
 }
 
 .link-underline {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   color: var(--text-primary);
-  transition: color 0.2s ease;
 }
 
 .link-underline::after {
@@ -202,7 +213,7 @@ textarea {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s var(--ease-out);
+  transition: transform 0.45s var(--ease-out);
 }
 
 .link-underline:hover::after,
@@ -210,29 +221,106 @@ textarea {
   transform: scaleX(1);
 }
 
-.surface-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+.surface-row {
+  border-top: 1px solid var(--border);
+  transition:
+    background 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
 }
 
-.grid-fade {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+.surface-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--border-strong);
+}
+
+.atmosphere {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.atmosphere-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
 }
 
 .noise-overlay {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.mask-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.05);
+  }
+}
+
+@keyframes drift-alt {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-5%, 4%, 0) scale(1.08);
+  }
+}
+
+.animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}
+
+.animate-drift-alt {
+  animation: drift-alt 22s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .animate-drift,
+  .animate-drift-alt {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

@@ -15,7 +15,7 @@ export function Navbar() {
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -31,22 +31,22 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "border-b border-border bg-bg-primary/75 backdrop-blur-xl"
+          ? "border-b border-white/[0.06] bg-[#050505]/70 backdrop-blur-2xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
       <div className="container-page flex h-[var(--header-h)] items-center justify-between">
         <Link
           href="/"
-          className="group flex flex-col leading-none tracking-tight"
+          className="group flex items-baseline gap-2 tracking-tight"
           aria-label="Investors Circle home"
         >
-          <span className="text-[0.7rem] font-medium uppercase tracking-[0.22em] text-text-secondary transition group-hover:text-text-primary">
+          <span className="text-[0.7rem] font-medium uppercase tracking-[0.28em] text-text-secondary transition group-hover:text-text-primary">
             Investors
           </span>
-          <span className="text-base font-semibold tracking-[0.08em] text-text-primary">
+          <span className="text-sm font-medium tracking-[0.12em] text-text-primary">
             Circle
           </span>
         </Link>
@@ -56,7 +56,7 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-3.5 py-2 text-sm text-text-secondary transition hover:text-text-primary"
+              className="relative px-3.5 py-2 text-[0.8125rem] text-text-secondary transition hover:text-text-primary"
             >
               {item.label}
             </a>
@@ -75,13 +75,13 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center rounded-full border border-border text-text-primary lg:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-full border border-white/10 text-text-primary lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-4" /> : <Menu className="size-4" />}
         </button>
       </div>
 
@@ -89,27 +89,30 @@ export function Navbar() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            initial={reduce ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="absolute inset-x-0 top-[var(--header-h)] border-b border-border bg-bg-primary/95 backdrop-blur-xl lg:hidden"
+            initial={reduce ? false : { opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={reduce ? undefined : { opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden border-b border-white/[0.06] bg-[#050505]/95 backdrop-blur-2xl lg:hidden"
           >
             <nav
-              className="container-page flex flex-col gap-1 py-6"
+              className="container-page flex flex-col gap-1 py-8"
               aria-label="Mobile"
             >
-              {navItems.map((item) => (
-                <a
+              {navItems.map((item, i) => (
+                <motion.a
                   key={item.href}
                   href={item.href}
-                  className="rounded-xl px-3 py-3 text-lg text-text-primary"
+                  className="py-3 text-2xl tracking-tight text-text-primary"
                   onClick={() => setOpen(false)}
+                  initial={reduce ? false : { opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04 }}
                 >
                   {item.label}
-                </a>
+                </motion.a>
               ))}
-              <div className="mt-4 px-1">
+              <div className="mt-6">
                 <Button
                   href="/#contact"
                   className="w-full"

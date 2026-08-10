@@ -13,6 +13,7 @@ import { Philosophy } from "@/components/philosophy/Philosophy";
 import { Principles } from "@/components/principles/Principles";
 import { Stats } from "@/components/stats/Stats";
 import { Testimonials } from "@/components/testimonials/Testimonials";
+import { Marquee } from "@/components/ui/Marquee";
 
 export default function HomePage() {
   return (
@@ -21,6 +22,7 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <Stats />
+        <Marquee />
         <Philosophy />
         <Opportunities />
         <OpportunityExplorer />

@@ -2,179 +2,164 @@
 
 import { Button } from "@/components/ui/Button";
 import { trackEvent } from "@/lib/analytics";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
 
-function HeroVisual() {
+function HeroAtmosphere() {
   const reduce = useReducedMotion();
 
   return (
-    <div
-      className="relative mx-auto aspect-square w-full max-w-[520px] lg:mx-0"
-      aria-hidden
-    >
-      <div className="absolute inset-[8%] rounded-full border border-border" />
-      <div className="absolute inset-[18%] rounded-full border border-white/[0.06]" />
-      <div className="absolute inset-[28%] rounded-full bg-[radial-gradient(circle_at_center,rgba(201,169,110,0.16),transparent_65%)]" />
-
+    <div className="atmosphere" aria-hidden>
+      <div
+        className={`atmosphere-orb -left-[10%] top-[-20%] h-[55vw] w-[55vw] max-h-[720px] max-w-[720px] bg-[radial-gradient(circle,rgba(201,169,110,0.18),transparent_68%)] ${reduce ? "" : "animate-drift"}`}
+      />
+      <div
+        className={`atmosphere-orb right-[-15%] top-[10%] h-[48vw] w-[48vw] max-h-[640px] max-w-[640px] bg-[radial-gradient(circle,rgba(255,255,255,0.07),transparent_70%)] ${reduce ? "" : "animate-drift-alt"}`}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,#050505_100%)]" />
       <svg
-        viewBox="0 0 400 400"
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 h-full w-full opacity-[0.55]"
+        viewBox="0 0 1440 900"
         fill="none"
+        preserveAspectRatio="xMidYMid slice"
       >
         <motion.path
-          d="M40 280 C90 250, 120 180, 170 170 C230 155, 250 220, 300 200 C340 185, 360 140, 380 110"
-          stroke="rgba(245,245,245,0.35)"
-          strokeWidth="1.5"
-          initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-        />
-        <motion.path
-          d="M50 320 C110 300, 140 240, 190 230 C250 215, 270 270, 320 255 C350 245, 365 210, 385 190"
-          stroke="rgba(201,169,110,0.55)"
+          d="M-40 620 C180 540, 320 380, 520 360 C760 335, 860 500, 1080 455 C1220 425, 1320 300, 1500 240"
+          stroke="rgba(245,245,245,0.14)"
           strokeWidth="1.25"
           initial={reduce ? false : { pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+          transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
         />
-
+        <motion.path
+          d="M-20 700 C220 640, 380 470, 580 450 C820 425, 920 580, 1140 540 C1280 515, 1360 400, 1520 350"
+          stroke="rgba(201,169,110,0.35)"
+          strokeWidth="1.25"
+          initial={reduce ? false : { pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
+        />
         {[
-          [170, 170],
-          [300, 200],
-          [190, 230],
-          [320, 255],
-          [250, 140],
-          [120, 210],
+          [520, 360],
+          [860, 480],
+          [1080, 455],
+          [580, 450],
+          [1140, 540],
+          [320, 500],
+          [980, 320],
         ].map(([cx, cy], i) => (
           <motion.circle
             key={`${cx}-${cy}`}
             cx={cx}
             cy={cy}
-            r={i % 2 === 0 ? 4 : 3}
-            fill={i % 3 === 0 ? "#C9A96E" : "#F5F5F5"}
-            initial={reduce ? false : { opacity: 0, scale: 0.5 }}
+            r={i % 2 === 0 ? 3.5 : 2.5}
+            fill={i % 3 === 0 ? "#C9A96E" : "rgba(245,245,245,0.85)"}
+            initial={reduce ? false : { opacity: 0, scale: 0 }}
             animate={
               reduce
-                ? { opacity: 0.9, scale: 1 }
-                : {
-                    opacity: [0.45, 0.95, 0.45],
-                    scale: [1, 1.15, 1],
-                  }
+                ? { opacity: 0.85 }
+                : { opacity: [0.35, 0.95, 0.35], scale: [1, 1.2, 1] }
             }
             transition={
               reduce
-                ? { duration: 0 }
+                ? undefined
                 : {
-                    duration: 3.5 + i * 0.25,
+                    duration: 4 + i * 0.3,
                     repeat: Infinity,
-                    delay: 0.8 + i * 0.15,
+                    delay: 0.9 + i * 0.12,
                     ease: "easeInOut",
                   }
             }
           />
         ))}
-
-        <motion.g
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          <line
-            x1="80"
-            y1="90"
-            x2="140"
-            y2="90"
-            stroke="rgba(255,255,255,0.12)"
-          />
-          <line
-            x1="260"
-            y1="320"
-            x2="330"
-            y2="320"
-            stroke="rgba(255,255,255,0.12)"
-          />
-        </motion.g>
       </svg>
-
-      <motion.div
-        className="absolute left-[6%] top-[18%] rounded-lg border border-border bg-bg-card/80 px-3 py-2 backdrop-blur-sm"
-        animate={reduce ? undefined : { y: [0, -8, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <p className="text-[10px] uppercase tracking-[0.14em] text-text-muted">
-          Allocation
-        </p>
-        <p className="text-sm text-text-primary">Signal map</p>
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-[16%] right-[4%] rounded-lg border border-border bg-bg-card/80 px-3 py-2 backdrop-blur-sm"
-        animate={reduce ? undefined : { y: [0, 10, 0] }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.8,
-        }}
-      >
-        <p className="text-[10px] uppercase tracking-[0.14em] text-text-muted">
-          Network
-        </p>
-        <p className="text-sm text-text-primary">Opportunity graph</p>
-      </motion.div>
+      <div className="noise-overlay" />
     </div>
   );
 }
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const rise = useTransform(scrollYProgress, [0, 1], [0, 120]);
 
-  const fadeUp = (delay: number) =>
+  const line = (delay: number) =>
     reduce
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0 },
+          initial: { y: "110%" },
+          animate: { y: "0%" },
           transition: {
-            duration: 0.8,
+            duration: 1.05,
             delay,
             ease: [0.16, 1, 0.3, 1] as const,
           },
         };
 
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-[var(--header-h)]">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(201,169,110,0.08),transparent_45%),radial-gradient(ellipse_at_90%_20%,rgba(255,255,255,0.04),transparent_40%)]" />
-        <div className="grid-fade absolute inset-0 opacity-60" />
-        <div className="noise-overlay" />
-      </div>
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-[100svh] items-end overflow-hidden pb-16 pt-[calc(var(--header-h)+2.5rem)] md:items-center md:pb-24 md:pt-[var(--header-h)]"
+    >
+      <HeroAtmosphere />
 
-      <div className="container-page relative z-10 grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:py-20">
-        <div>
-          <motion.p className="eyebrow mb-6" {...fadeUp(0.05)}>
-            Investment intelligence platform
-          </motion.p>
+      <motion.div
+        style={reduce ? undefined : { opacity: fade, y: rise }}
+        className="container-page relative z-10 w-full"
+      >
+        <div className="max-w-5xl">
+          <div className="overflow-hidden">
+            <motion.p
+              className="heading-brand mb-8 text-text-primary/90"
+              {...line(0.05)}
+            >
+              Investors Circle
+            </motion.p>
+          </div>
 
-          <motion.h1
-            className="heading-display max-w-[11ch]"
-            {...fadeUp(0.15)}
-          >
-            Invest With Intelligence.
-            <span className="mt-1 block text-text-secondary">
-              Build With Conviction.
+          <h1 className="heading-display">
+            <span className="block overflow-hidden pb-1">
+              <motion.span className="block" {...line(0.18)}>
+                Invest With
+              </motion.span>
             </span>
-          </motion.h1>
+            <span className="block overflow-hidden pb-1">
+              <motion.span className="block" {...line(0.28)}>
+                Intelligence.
+              </motion.span>
+            </span>
+            <span className="mt-1 block overflow-hidden pb-1 text-text-secondary/80">
+              <motion.span className="block" {...line(0.38)}>
+                Build With Conviction.
+              </motion.span>
+            </span>
+          </h1>
 
-          <motion.p className="body-lg mt-6" {...fadeUp(0.28)}>
-            Investors Circle connects ambitious investors with carefully
-            evaluated opportunities across real estate, businesses and emerging
-            markets.
+          <motion.p
+            className="body-lg mt-8 max-w-xl"
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Carefully evaluated opportunities across real estate, businesses and
+            emerging markets — for investors who think in decades, not days.
           </motion.p>
 
           <motion.div
-            className="mt-8 flex flex-wrap gap-3"
-            {...fadeUp(0.4)}
+            className="mt-10 flex flex-wrap items-center gap-3"
+            initial={reduce ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <Button
               href="#contact"
@@ -199,17 +184,15 @@ export function Hero() {
           </motion.div>
 
           <motion.p
-            className="mt-6 text-sm text-text-muted"
-            {...fadeUp(0.5)}
+            className="mt-8 text-sm tracking-wide text-text-muted"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
           >
             Curated opportunities. Independent thinking. Long-term perspective.
           </motion.p>
         </div>
-
-        <motion.div {...fadeUp(0.35)}>
-          <HeroVisual />
-        </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
