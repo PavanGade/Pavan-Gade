@@ -4,20 +4,21 @@
 
 Modern Stripe-inspired redesign for [investorscircle.in](https://investorscircle.in/).
 
-### Static HTML (no build required)
+### Single-file HTML (recommended)
 
-Open `index.html` directly in a browser, or serve locally:
+Open `index.html` directly — all CSS and JavaScript are embedded in one file. No build step, no extra folders.
 
 ```bash
+# Optional: serve locally
 python3 -m http.server 8080
 ```
 
-Then visit [http://localhost:8080](http://localhost:8080).
+### Split files (optional)
 
-Files:
-- `index.html` — main landing page
-- `css/styles.css` — styles (glass morphism, responsive layout)
-- `js/app.js` — interactive charts, counters, and form
+- `css/styles.css`
+- `js/app.js`
+
+These are kept for reference but `index.html` is fully self-contained.
 
 ### React version (optional)
 
