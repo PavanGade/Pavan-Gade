@@ -1,0 +1,10 @@
+{
+  "project_id": "prspct",
+  "db": {
+    "major_version": 15
+  },
+  "api": {
+    "schemas": ["public"],
+    "extra_search_path": ["public", "extensions"]
+  }
+}
