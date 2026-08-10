@@ -38,10 +38,10 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-white text-[#050505] hover:bg-[#e8e8e8] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]",
+    "bg-white text-black hover:bg-zinc-100 shadow-[0_0_0_1px_rgba(255,255,255,0.08)]",
   secondary:
-    "bg-transparent text-text-primary border border-white/15 hover:border-white/30 hover:bg-white/[0.04]",
-  ghost: "bg-transparent text-text-secondary hover:text-text-primary",
+    "bg-transparent text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04]",
+  ghost: "bg-transparent text-zinc-400 hover:text-white",
 };
 
 const sizes: Record<Size, string> = {
