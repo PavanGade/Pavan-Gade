@@ -24,6 +24,14 @@ const serverEnvSchema = z.object({
   RESEND_API_KEY: optionalString,
   SENTRY_DSN: optionalUrl,
   DATA_PROVIDER_API_KEY: optionalString,
+  WHATSAPP_CLOUD_API_TOKEN: optionalString,
+  WHATSAPP_PHONE_NUMBER_ID: optionalString,
+  META_FACEBOOK_APP_ID: optionalString,
+  META_FACEBOOK_APP_SECRET: optionalString,
+  META_FACEBOOK_PAGE_ACCESS_TOKEN: optionalString,
+  TELEPHONY_PROVIDER_API_KEY: optionalString,
+  SMS_PROVIDER_API_KEY: optionalString,
+  VAPID_PUBLIC_KEY: optionalString,
 });
 
 export type ClientEnv = z.infer<typeof clientEnvSchema>;
@@ -45,6 +53,14 @@ const rawServerEnv =
         RESEND_API_KEY: process.env.RESEND_API_KEY,
         SENTRY_DSN: process.env.SENTRY_DSN,
         DATA_PROVIDER_API_KEY: process.env.DATA_PROVIDER_API_KEY,
+        WHATSAPP_CLOUD_API_TOKEN: process.env.WHATSAPP_CLOUD_API_TOKEN,
+        WHATSAPP_PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID,
+        META_FACEBOOK_APP_ID: process.env.META_FACEBOOK_APP_ID,
+        META_FACEBOOK_APP_SECRET: process.env.META_FACEBOOK_APP_SECRET,
+        META_FACEBOOK_PAGE_ACCESS_TOKEN: process.env.META_FACEBOOK_PAGE_ACCESS_TOKEN,
+        TELEPHONY_PROVIDER_API_KEY: process.env.TELEPHONY_PROVIDER_API_KEY,
+        SMS_PROVIDER_API_KEY: process.env.SMS_PROVIDER_API_KEY,
+        VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY,
       }
     : {};
 
@@ -64,6 +80,26 @@ export function isStripeConfigured(): boolean {
 
 export function isEmailConfigured(): boolean {
   return Boolean(serverEnv.RESEND_API_KEY);
+}
+
+export function isWhatsAppConfigured(): boolean {
+  return Boolean(serverEnv.WHATSAPP_CLOUD_API_TOKEN && serverEnv.WHATSAPP_PHONE_NUMBER_ID);
+}
+
+export function isFacebookLeadsConfigured(): boolean {
+  return Boolean(
+    serverEnv.META_FACEBOOK_APP_ID &&
+      serverEnv.META_FACEBOOK_APP_SECRET &&
+      serverEnv.META_FACEBOOK_PAGE_ACCESS_TOKEN,
+  );
+}
+
+export function isTelephonyConfigured(): boolean {
+  return Boolean(serverEnv.TELEPHONY_PROVIDER_API_KEY);
+}
+
+export function isSmsConfigured(): boolean {
+  return Boolean(serverEnv.SMS_PROVIDER_API_KEY);
 }
 
 export function getClientIntegrationStatuses() {
@@ -89,6 +125,33 @@ export function getClientIntegrationStatuses() {
       label: "Data",
       configured: Boolean(clientEnv.NEXT_PUBLIC_SUPABASE_URL && clientEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY),
       detail: clientEnv.NEXT_PUBLIC_SUPABASE_URL ? "Public Supabase configuration detected." : "Demo Zustand data is active.",
+    },
+    whatsapp: {
+      label: "WhatsApp",
+      configured: false,
+      detail:
+        "Demo WhatsApp mode is active. Server setup requires WHATSAPP_CLOUD_API_TOKEN and WHATSAPP_PHONE_NUMBER_ID for the official Meta Cloud API.",
+    },
+    facebook: {
+      label: "Facebook Leads",
+      configured: false,
+      detail:
+        "Demo Facebook leads are active. Server setup requires META_FACEBOOK_APP_ID, META_FACEBOOK_APP_SECRET, and META_FACEBOOK_PAGE_ACCESS_TOKEN.",
+    },
+    telephony: {
+      label: "Telephony",
+      configured: false,
+      detail: "Demo telephony mode is active. Server setup requires TELEPHONY_PROVIDER_API_KEY.",
+    },
+    sms: {
+      label: "SMS",
+      configured: false,
+      detail: "Demo SMS mode is active. Server setup requires SMS_PROVIDER_API_KEY.",
+    },
+    push: {
+      label: "Push",
+      configured: false,
+      detail: "Demo browser-notification mode is active. Server push setup requires VAPID_PUBLIC_KEY.",
     },
   };
 }

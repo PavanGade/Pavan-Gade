@@ -233,6 +233,40 @@ export function ProspectsPage() {
               <option value="" disabled>Update status</option>
               {prospectStatuses.map((item) => <option key={item} value={item}>{statusLabels[item]}</option>)}
             </Select>
+            <Select aria-label="Bulk assign owner" onChange={(event) => {
+              const ownerId = event.target.value;
+              if (!ownerId) return;
+              selected.forEach((id) => store.updateProspect(id, { ownerId }));
+              setSelected([]);
+            }} defaultValue="">
+              <option value="" disabled>Assign owner</option>
+              {store.users.map((user) => <option key={user.id} value={user.id}>{user.name}</option>)}
+            </Select>
+            <Select aria-label="Bulk add to list" onChange={(event) => {
+              const listId = event.target.value;
+              if (!listId) return;
+              const list = store.lists.find((item) => item.id === listId);
+              if (!list) return;
+              const prospectIds = Array.from(new Set([...list.prospectIds, ...selected]));
+              store.updateList(listId, { prospectIds });
+              setSelected([]);
+            }} defaultValue="">
+              <option value="" disabled>Add to list</option>
+              {store.lists.map((list) => <option key={list.id} value={list.id}>{list.name}</option>)}
+            </Select>
+            <Select aria-label="Bulk add tag" onChange={(event) => {
+              const tagId = event.target.value;
+              if (!tagId) return;
+              selected.forEach((id) => {
+                const prospect = store.prospects.find((item) => item.id === id);
+                if (!prospect) return;
+                store.updateProspect(id, { tagIds: Array.from(new Set([...prospect.tagIds, tagId])) });
+              });
+              setSelected([]);
+            }} defaultValue="">
+              <option value="" disabled>Add tag</option>
+              {store.tags.map((tag) => <option key={tag.id} value={tag.id}>{tag.name}</option>)}
+            </Select>
             <Button type="button" variant="danger" onClick={() => { selected.forEach(store.deleteProspect); setSelected([]); }}>Delete selected</Button>
           </div>
         ) : null}
@@ -312,8 +346,10 @@ export function ProspectDetailPage() {
         actions={
           <>
             <a className="inline-flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm" href={`tel:${prospect.phone}`}>Call</a>
-            <a className="inline-flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm" href={`mailto:${prospect.email}`}>Email</a>
-            <a className="inline-flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm" href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer">WhatsApp</a>
+            <a className="inline-flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm" href={`mailto:${prospect.email}?subject=${encodeURIComponent(`Following up, ${prospect.firstName}`)}&body=${encodeURIComponent(`Hi ${prospect.firstName},\n\nQuick follow-up from PRSPCT.\n`)}`}>Email</a>
+            <a className="inline-flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm" href={`sms:${prospect.phone}?body=${encodeURIComponent(`Hi ${prospect.firstName}, following up from our team.`)}`}>SMS</a>
+            <a className="inline-flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm" href={`https://wa.me/${phone}?text=${encodeURIComponent(`Hi ${prospect.firstName}, following up after our conversation.`)}`} target="_blank" rel="noreferrer">WhatsApp</a>
+            <ActionLink href="/app/dialer" variant="outline">Open dialer</ActionLink>
           </>
         }
       />
@@ -517,24 +553,54 @@ export function DiscoverPage() {
 export function ImportPage() {
   const store = useDemoStore();
   const [rows, setRows] = useState<CsvRow[]>([]);
+  const [fileLabel, setFileLabel] = useState<string | null>(null);
   const mapping = useMemo(() => suggestColumnMapping(Object.keys(rows[0] ?? {})), [rows]);
   const evaluation = useMemo(() => evaluateImportRows(rows, mapping, store.prospects.map((prospect) => ({ id: prospect.id, email: prospect.email, phone: prospect.phone, firstName: prospect.firstName, lastName: prospect.lastName }))), [mapping, rows, store.prospects]);
   const validRows = evaluation.rows.filter((row) => row.status === "valid");
+
+  async function loadSpreadsheet(file: File) {
+    setFileLabel(file.name);
+    const lower = file.name.toLowerCase();
+    if (lower.endsWith(".xlsx") || lower.endsWith(".xls")) {
+      const XLSX = await import("xlsx");
+      const buffer = await file.arrayBuffer();
+      const workbook = XLSX.read(buffer, { type: "array" });
+      const sheetName = workbook.SheetNames[0];
+      if (!sheetName) {
+        setRows([]);
+        return;
+      }
+      const sheet = workbook.Sheets[sheetName];
+      const json = XLSX.utils.sheet_to_json<CsvRow>(sheet, { defval: "" });
+      setRows(json);
+      return;
+    }
+
+    Papa.parse<CsvRow>(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (result) => setRows(result.data),
+    });
+  }
+
   return (
     <>
-      <PageHeader title="Import prospects" description="Upload CSV, validate rows, and import valid prospects." />
-      <Card className="mb-6">
-        <Input type="file" accept=".csv,text/csv" onChange={(event) => {
-          const file = event.target.files?.[0];
-          if (!file) return;
-          Papa.parse<CsvRow>(file, {
-            header: true,
-            skipEmptyLines: true,
-            complete: (result) => setRows(result.data),
-          });
-        }} />
+      <PageHeader title="Import prospects" description="Upload CSV or Excel (.xlsx), validate rows, and import valid prospects." />
+      <Card className="mb-6 space-y-3">
+        <Input
+          type="file"
+          accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            void loadSpreadsheet(file);
+          }}
+        />
+        <p className="text-sm text-zinc-500">
+          Excel upload supported. Map columns automatically, review duplicates, then import. {fileLabel ? `Loaded: ${fileLabel}` : null}
+        </p>
       </Card>
-      {rows.length === 0 ? <EmptyState title="No CSV loaded" description="Choose a CSV with name, email, title, company, industry, and location columns." /> : (
+      {rows.length === 0 ? <EmptyState title="No file loaded" description="Choose a CSV or Excel file with name, email, title, company, industry, and location columns." /> : (
         <div className="space-y-6">
           <div className="grid gap-4 md:grid-cols-4">
             <MetricCard label="Rows" value={evaluation.summary.totalRows} />
@@ -885,6 +951,10 @@ export function AutomationsPage() {
   const store = useDemoStore();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const automationDescription = (description: string, name: string) =>
+    name === "Route high intent leads"
+      ? `${description} Welcome messages for new leads use the WhatsApp provider welcome template and require a configured provider before sending.`
+      : description;
   return (
     <>
       <PageHeader title="Automations" description="Create and toggle CRM workflows." actions={<Button type="button" onClick={() => setOpen(true)}>Create automation</Button>} />
@@ -892,7 +962,7 @@ export function AutomationsPage() {
         {store.automations.map((automation) => (
           <Card key={automation.id}>
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div><h2 className="font-semibold">{automation.name}</h2><p className="text-sm text-zinc-500">{automation.description}</p><p className="mt-2 text-xs text-zinc-500">When {automation.trigger}: {automation.actions.join(", ")}</p></div>
+              <div><h2 className="font-semibold">{automation.name}</h2><p className="text-sm text-zinc-500">{automationDescription(automation.description, automation.name)}</p><p className="mt-2 text-xs text-zinc-500">When {automation.trigger}: {automation.actions.join(", ")}</p></div>
               <Button type="button" variant={automation.enabled ? "primary" : "outline"} onClick={() => store.updateAutomation(automation.id, { enabled: !automation.enabled })}>{automation.enabled ? "Enabled" : "Disabled"}</Button>
             </div>
           </Card>

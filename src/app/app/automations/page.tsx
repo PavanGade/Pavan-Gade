@@ -1,3 +1,3 @@
-import { AutomationsPage } from "@/features/crm/pages";
+import { AutomationsWorkspacePage } from "@/features/automation/automations-page";
 
-export default AutomationsPage;
+export default AutomationsWorkspacePage;
