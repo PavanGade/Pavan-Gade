@@ -199,3 +199,36 @@ npm run build    # production build (honors NEXT_OUTPUT)
 npm run start    # Node server (standalone/non-export builds)
 npm run lint     # ESLint
 ```
+
+
+---
+
+## Separate GitHub repository (Invetsors Circle LP)
+
+This agent cannot create new GitHub repositories (GitHub API permission limit).
+
+To publish this landing page as its **own** repo named **Invetsors Circle LP**:
+
+### Option A — one command (recommended)
+
+From a machine where you are logged into GitHub CLI (`gh auth login`):
+
+```bash
+./scripts/create-standalone-repo.sh PavanGade Invetsors-Circle-LP --private
+```
+
+Use `--public` instead of `--private` if you want a public repo.
+
+### Option B — manual
+
+1. Create an empty repo at https://github.com/new named `Invetsors-Circle-LP` (no README).
+2. Run:
+
+```bash
+TMP=$(mktemp -d)
+tar --exclude=node_modules --exclude=.next --exclude=out --exclude=.git --exclude=legacy -cf - . | tar -xf - -C "$TMP"
+cd "$TMP"
+git init -b main && git add -A && git commit -m "Initial commit: Invetsors Circle LP landing page"
+git remote add origin https://github.com/PavanGade/Invetsors-Circle-LP.git
+git push -u origin main
+```
