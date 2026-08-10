@@ -4,29 +4,54 @@
 
 Modern Stripe-inspired redesign for [investorscircle.in](https://investorscircle.in/).
 
-### Single-file HTML (recommended)
-
-Open `index.html` directly — a professional **Stripe.com/in-style** landing page with all CSS and JavaScript embedded. No build step required.
-
-Includes interactive ROI calculator, live deal ticker, **developer logo marquee** (`logos/`), comparison table, FAQ accordion, testimonial carousel, scroll progress, mobile menu, Chart.js dashboards, and WhatsApp FAB.
+### Quick start (with mobile OTP)
 
 ```bash
-python3 -m http.server 8080
+npm run dev
+# open http://localhost:8080
 ```
 
-Deploy `index.html` together with the `logos/` folder.
+The apply form **requires mobile OTP verification** before submit. In demo mode (`OTP_DEMO_MODE=true`), the OTP is returned in the API response and shown as a toast so you can test without SMS.
 
-### Split files (optional)
+### Production SMS (eliminate fake leads)
 
-- `css/styles.css`
-- `js/app.js`
+1. Copy `.env.example` → `.env`
+2. Create an [MSG91](https://msg91.com/) account and OTP template
+3. Set:
 
-These are kept for reference but `index.html` is fully self-contained.
+```bash
+OTP_DEMO_MODE=false
+OTP_SECRET=<long-random-secret>
+MSG91_AUTH_KEY=<your-auth-key>
+MSG91_TEMPLATE_ID=<your-template-id>
+```
+
+4. Restart:
+
+```bash
+npm start
+```
+
+Verified leads are appended to `data/leads.jsonl`. Optionally set `LEADS_WEBHOOK_URL` to forward them to Zapier / Make / your CRM.
+
+### API
+
+| Endpoint | Body | Purpose |
+|---|---|---|
+| `POST /api/otp/send` | `{ "phone": "9876543210" }` | Send OTP |
+| `POST /api/otp/verify` | `{ "phone": "...", "otp": "123456" }` | Verify OTP → token |
+| `POST /api/leads` | form fields + `phoneVerifiedToken` | Accept verified lead only |
+
+Vercel-compatible handlers also live under `api/` (`api/otp/send.js`, `api/otp/verify.js`, `api/leads.js`).
+
+### Static assets
+
+Deploy `index.html` together with the `logos/` folder. When using only static hosting (no Node), point the form at your OTP API:
+
+```html
+<script>window.IC_OTP_API = 'https://your-api.example.com/api/otp';</script>
+```
 
 ### React version (optional)
 
-See [`investors-circle/README.md`](investors-circle/README.md) for the Vite + React version.
-
-```bash
-cd investors-circle && npm install && npm run dev
-```
+See [`investors-circle/README.md`](investors-circle/README.md).
