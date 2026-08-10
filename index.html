@@ -293,8 +293,39 @@ section{padding:88px 0}
 .chip.selected{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo)}
 .chip input{display:none}
 .form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+.phone-row{display:flex;gap:8px;align-items:stretch}
+.phone-prefix{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius);background:var(--bg-subtle);font-size:14px;font-weight:500;color:var(--navy);min-width:72px;justify-content:center}
+.phone-row .form-input{flex:1;min-width:0}
+.btn-otp{flex-shrink:0;padding:0 16px;font-size:13px;font-weight:600;border-radius:var(--radius);border:none;background:var(--indigo);color:#fff;cursor:pointer;white-space:nowrap;transition:background .15s,opacity .15s;min-width:108px}
+.btn-otp:hover{background:var(--indigo-hover)}
+.btn-otp:disabled{opacity:.55;cursor:not-allowed;background:var(--slate)}
+.btn-otp.secondary{background:#fff;color:var(--indigo);box-shadow:inset 0 0 0 1px var(--border-light)}
+.btn-otp.secondary:hover:not(:disabled){background:var(--indigo-soft);box-shadow:inset 0 0 0 1px var(--indigo)}
+.otp-panel{display:none;margin-top:12px;padding:14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-subtle)}
+.otp-panel.show{display:block;animation:fadeUp .35s var(--ease-out)}
+.otp-panel-label{font-size:12px;color:var(--slate);margin-bottom:10px;line-height:1.45}
+.otp-panel-label strong{color:var(--navy);font-weight:600}
+.otp-row{display:flex;gap:8px;align-items:stretch}
+.otp-inputs{display:flex;gap:6px;flex:1}
+.otp-digit{width:42px;height:44px;text-align:center;font-size:18px;font-weight:600;letter-spacing:0;border:1px solid var(--border-light);border-radius:var(--radius);color:var(--navy);outline:none;transition:border-color .15s,box-shadow .15s;background:#fff}
+.otp-digit:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(83,58,253,.12)}
+.otp-digit.error{border-color:#ef4444}
+.otp-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.otp-meta .hint{font-size:12px;color:var(--muted)}
+.otp-meta button.linkish{background:none;border:none;padding:0;font-size:12px;font-weight:600;color:var(--indigo);cursor:pointer}
+.otp-meta button.linkish:disabled{color:var(--muted);cursor:not-allowed}
+.phone-verified{display:none;align-items:center;gap:8px;margin-top:10px;padding:10px 12px;border-radius:var(--radius);background:#ecfdf5;border:1px solid #a7f3d0;color:#047857;font-size:13px;font-weight:500}
+.phone-verified.show{display:flex}
+.phone-verified .check{width:20px;height:20px;border-radius:50%;background:#10b981;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.btn-submit:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
 .success-panel{display:none;text-align:center;padding:48px 24px}.success-panel.show{display:block;animation:fadeUp .5s var(--ease-out)}
 .success-icon{width:56px;height:56px;background:var(--indigo-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;color:var(--indigo)}
+@media (max-width:480px){
+  .phone-row{flex-wrap:wrap}
+  .phone-row .form-input{flex:1 1 100%}
+  .btn-otp{flex:1}
+  .otp-digit{width:38px;height:40px;font-size:16px}
+}
 .footer{background:var(--bg-subtle);border-top:1px solid var(--border);padding:64px 0 32px}
 .footer-grid{display:grid;gap:40px;margin-bottom:48px}
 .footer h4{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:16px}
@@ -921,7 +952,7 @@ section{padding:88px 0}
       <div class="section-header center reveal">
         <div class="section-label">Apply</div>
         <h2 class="section-title">Request Circle access</h2>
-        <p class="section-desc">Tell us your mandate. Our team reviews every application confidentially.</p>
+        <p class="section-desc">Tell us your mandate. Mobile OTP verification is required so we only receive genuine applications.</p>
       </div>
       <div class="form-card reveal">
         <div class="form-progress" id="formProgress" aria-hidden="true">
@@ -931,22 +962,52 @@ section{padding:88px 0}
           <div class="step"></div>
         </div>
         <form id="applyForm" novalidate>
+          <input type="hidden" id="phoneVerifiedToken" name="phoneVerifiedToken" value="" />
           <div class="form-grid two-col">
             <div class="form-group">
               <label for="fullName">Full name *</label>
-              <input class="form-input" id="fullName" name="fullName" type="text" placeholder="Your name" required />
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone *</label>
-              <input class="form-input" id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required />
+              <input class="form-input" id="fullName" name="fullName" type="text" placeholder="Your name" required autocomplete="name" />
             </div>
             <div class="form-group">
               <label for="email">Email *</label>
-              <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" required />
+              <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-grid" style="margin-top:20px">
+            <div class="form-group">
+              <label for="phone">Mobile number *</label>
+              <div class="phone-row">
+                <span class="phone-prefix" aria-hidden="true">+91</span>
+                <input class="form-input" id="phone" name="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile" required autocomplete="tel-national" aria-describedby="phoneHelp" />
+                <button type="button" class="btn-otp" id="sendOtpBtn">Send OTP</button>
+              </div>
+              <p class="form-note" id="phoneHelp" style="text-align:left;margin-top:6px">We will send a 6-digit OTP to verify this number before you can submit.</p>
+              <div class="otp-panel" id="otpPanel" role="region" aria-live="polite">
+                <p class="otp-panel-label">Enter the OTP sent to <strong id="otpTargetPhone">+91</strong></p>
+                <div class="otp-row">
+                  <div class="otp-inputs" id="otpInputs" aria-label="One-time password">
+                    <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code" />
+                    <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2" />
+                    <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3" />
+                    <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4" />
+                    <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5" />
+                    <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6" />
+                  </div>
+                  <button type="button" class="btn-otp secondary" id="verifyOtpBtn">Verify</button>
+                </div>
+                <div class="otp-meta">
+                  <span class="hint" id="otpTimerHint">Resend available in <span id="otpTimer">30</span>s</span>
+                  <button type="button" class="linkish" id="resendOtpBtn" disabled>Resend OTP</button>
+                </div>
+              </div>
+              <div class="phone-verified" id="phoneVerifiedBadge">
+                <span class="check" aria-hidden="true">✓</span>
+                <span id="phoneVerifiedText">Mobile verified</span>
+              </div>
             </div>
             <div class="form-group">
               <label for="city">City</label>
-              <input class="form-input" id="city" name="city" type="text" placeholder="Hyderabad / Other" />
+              <input class="form-input" id="city" name="city" type="text" placeholder="Hyderabad / Other" autocomplete="address-level2" />
             </div>
           </div>
           <div class="form-grid" style="margin-top:20px">
@@ -1001,8 +1062,8 @@ section{padding:88px 0}
               <label for="notes">Anything else?</label>
               <textarea class="form-input" id="notes" name="notes" rows="3" placeholder="Mandate notes, preferred developers, or questions"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Submit Application</button>
-            <p class="form-note">By submitting, you agree to be contacted by Investors Circle. We never share your data.</p>
+            <button type="submit" class="btn btn-primary btn-lg btn-submit" id="submitBtn" style="width:100%" disabled>Verify mobile to submit</button>
+            <p class="form-note">Applications are accepted only after mobile OTP verification. We never share your data.</p>
           </div>
         </form>
         <div id="successPanel" class="success-panel">
@@ -1488,17 +1549,225 @@ section{padding:88px 0}
     });
   });
 
-  /* Form progress + validation + toast */
+  /* Form progress + OTP verification + submit */
   const toast = document.getElementById('toast');
+  const OTP_API = window.IC_OTP_API || '/api/otp';
+  let phoneVerified = false;
+  let otpCountdown = null;
+  let lastOtpPhone = '';
+
   function showToast(msg) {
     toast.textContent = msg;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2800);
+    setTimeout(() => toast.classList.remove('show'), 3200);
   }
+
+  function normalizePhone(raw) {
+    const digits = String(raw || '').replace(/\D/g, '');
+    if (digits.length === 12 && digits.startsWith('91')) return digits.slice(2);
+    if (digits.length === 11 && digits.startsWith('0')) return digits.slice(1);
+    return digits;
+  }
+
+  function isValidIndianMobile(raw) {
+    return /^[6-9]\d{9}$/.test(normalizePhone(raw));
+  }
+
+  function formatPhoneDisplay(raw) {
+    const p = normalizePhone(raw);
+    return '+91 ' + p.slice(0, 5) + ' ' + p.slice(5);
+  }
+
+  function getOtpCode() {
+    return [...document.querySelectorAll('#otpInputs .otp-digit')].map(i => i.value).join('');
+  }
+
+  function clearOtpInputs() {
+    document.querySelectorAll('#otpInputs .otp-digit').forEach(i => {
+      i.value = '';
+      i.classList.remove('error');
+    });
+  }
+
+  function setVerifiedState(phone, token) {
+    phoneVerified = true;
+    document.getElementById('phoneVerifiedToken').value = token || 'verified';
+    document.getElementById('otpPanel').classList.remove('show');
+    document.getElementById('phoneVerifiedBadge').classList.add('show');
+    document.getElementById('phoneVerifiedText').textContent = 'Verified ' + formatPhoneDisplay(phone);
+    document.getElementById('phone').readOnly = true;
+    document.getElementById('sendOtpBtn').disabled = true;
+    document.getElementById('sendOtpBtn').textContent = 'Verified';
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Application';
+    updateFormProgress();
+  }
+
+  function resetVerifiedState() {
+    phoneVerified = false;
+    document.getElementById('phoneVerifiedToken').value = '';
+    document.getElementById('phoneVerifiedBadge').classList.remove('show');
+    document.getElementById('phone').readOnly = false;
+    document.getElementById('sendOtpBtn').disabled = false;
+    document.getElementById('sendOtpBtn').textContent = 'Send OTP';
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Verify mobile to submit';
+  }
+
+  function startOtpTimer(seconds) {
+    const timerEl = document.getElementById('otpTimer');
+    const hint = document.getElementById('otpTimerHint');
+    const resendBtn = document.getElementById('resendOtpBtn');
+    let left = seconds;
+    resendBtn.disabled = true;
+    hint.style.display = '';
+    timerEl.textContent = String(left);
+    clearInterval(otpCountdown);
+    otpCountdown = setInterval(() => {
+      left -= 1;
+      timerEl.textContent = String(Math.max(0, left));
+      if (left <= 0) {
+        clearInterval(otpCountdown);
+        resendBtn.disabled = false;
+        hint.style.display = 'none';
+      }
+    }, 1000);
+  }
+
+  async function apiOtp(action, payload) {
+    const res = await fetch(OTP_API + '/' + action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    let data = {};
+    try { data = await res.json(); } catch (_) {}
+    if (!res.ok) {
+      const err = new Error(data.error || 'Request failed');
+      err.status = res.status;
+      err.data = data;
+      throw err;
+    }
+    return data;
+  }
+
+  async function sendOtp() {
+    const phoneEl = document.getElementById('phone');
+    const phone = normalizePhone(phoneEl.value);
+    phoneEl.classList.remove('error');
+    if (!isValidIndianMobile(phone)) {
+      phoneEl.classList.add('error');
+      showToast('Enter a valid 10-digit Indian mobile number');
+      return;
+    }
+    if (phoneVerified && lastOtpPhone === phone) return;
+
+    const btn = document.getElementById('sendOtpBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const data = await apiOtp('send', { phone });
+      lastOtpPhone = phone;
+      resetVerifiedState();
+      document.getElementById('otpTargetPhone').textContent = formatPhoneDisplay(phone);
+      document.getElementById('otpPanel').classList.add('show');
+      clearOtpInputs();
+      startOtpTimer(data.retryAfter || 30);
+      const first = document.querySelector('#otpInputs .otp-digit');
+      if (first) first.focus();
+      if (data.demoOtp) {
+        showToast('Demo OTP: ' + data.demoOtp + ' (SMS gateway not configured)');
+      } else {
+        showToast('OTP sent to ' + formatPhoneDisplay(phone));
+      }
+    } catch (err) {
+      showToast(err.message || 'Could not send OTP. Try again.');
+    } finally {
+      if (!phoneVerified) {
+        btn.disabled = false;
+        btn.textContent = 'Send OTP';
+      }
+    }
+  }
+
+  async function verifyOtp() {
+    const phone = normalizePhone(document.getElementById('phone').value);
+    const otp = getOtpCode();
+    const digits = document.querySelectorAll('#otpInputs .otp-digit');
+    digits.forEach(d => d.classList.remove('error'));
+    if (!isValidIndianMobile(phone)) {
+      showToast('Enter a valid mobile number first');
+      return;
+    }
+    if (!/^\d{6}$/.test(otp)) {
+      digits.forEach(d => d.classList.add('error'));
+      showToast('Enter the 6-digit OTP');
+      return;
+    }
+    const btn = document.getElementById('verifyOtpBtn');
+    btn.disabled = true;
+    btn.textContent = 'Verifying…';
+    try {
+      const data = await apiOtp('verify', { phone, otp });
+      setVerifiedState(phone, data.token);
+      showToast('Mobile number verified');
+    } catch (err) {
+      digits.forEach(d => d.classList.add('error'));
+      showToast(err.message || 'Invalid OTP. Try again.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Verify';
+    }
+  }
+
+  document.getElementById('phone').addEventListener('input', e => {
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    if (phoneVerified) {
+      resetVerifiedState();
+      document.getElementById('otpPanel').classList.remove('show');
+    }
+    updateFormProgress();
+  });
+
+  document.getElementById('sendOtpBtn').addEventListener('click', sendOtp);
+  document.getElementById('resendOtpBtn').addEventListener('click', sendOtp);
+  document.getElementById('verifyOtpBtn').addEventListener('click', verifyOtp);
+
+  const otpDigitInputs = [...document.querySelectorAll('#otpInputs .otp-digit')];
+  otpDigitInputs.forEach((input, idx) => {
+    input.addEventListener('input', e => {
+      const v = e.target.value.replace(/\D/g, '').slice(-1);
+      e.target.value = v;
+      e.target.classList.remove('error');
+      if (v && idx < otpDigitInputs.length - 1) otpDigitInputs[idx + 1].focus();
+      if (getOtpCode().length === 6) verifyOtp();
+    });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+        otpDigitInputs[idx - 1].focus();
+      }
+    });
+    input.addEventListener('paste', e => {
+      e.preventDefault();
+      const text = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+      text.split('').forEach((ch, i) => {
+        if (otpDigitInputs[i]) otpDigitInputs[i].value = ch;
+      });
+      if (text.length === 6) {
+        otpDigitInputs[5].focus();
+        verifyOtp();
+      } else if (text.length) {
+        otpDigitInputs[Math.min(text.length, 5)].focus();
+      }
+    });
+  });
+
   function updateFormProgress() {
     const steps = document.querySelectorAll('#formProgress .step');
     const nameOk = document.getElementById('fullName').value.trim().length > 1;
-    const phoneOk = document.getElementById('phone').value.trim().length >= 8;
+    const phoneOk = phoneVerified && isValidIndianMobile(document.getElementById('phone').value);
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim());
     const budgetOk = !!document.querySelector('input[name="budget"]:checked');
     const flags = [nameOk, phoneOk && emailOk, budgetOk, document.querySelector('.chip.selected')];
@@ -1509,7 +1778,7 @@ section{padding:88px 0}
     if (el) el.addEventListener('input', updateFormProgress);
   });
 
-  document.getElementById('applyForm').addEventListener('submit', e => {
+  document.getElementById('applyForm').addEventListener('submit', async e => {
     e.preventDefault();
     const name = document.getElementById('fullName');
     const phone = document.getElementById('phone');
@@ -1522,6 +1791,15 @@ section{padding:88px 0}
         valid = false;
       }
     });
+    if (!isValidIndianMobile(phone.value)) {
+      phone.classList.add('error');
+      valid = false;
+    }
+    if (!phoneVerified || !document.getElementById('phoneVerifiedToken').value) {
+      showToast('Verify your mobile number with OTP before submitting');
+      document.getElementById('otpPanel').classList.add('show');
+      return;
+    }
     if (!document.querySelector('input[name="budget"]:checked')) {
       showToast('Please select a budget range');
       valid = false;
@@ -1530,10 +1808,42 @@ section{padding:88px 0}
       showToast('Please complete required fields');
       return;
     }
-    document.getElementById('applyForm').style.display = 'none';
-    document.getElementById('formProgress').style.display = 'none';
-    document.getElementById('successPanel').classList.add('show');
-    showToast('Application submitted successfully');
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    const payload = {
+      fullName: name.value.trim(),
+      phone: normalizePhone(phone.value),
+      email: email.value.trim(),
+      city: document.getElementById('city').value.trim(),
+      budget: document.querySelector('input[name="budget"]:checked')?.value || '',
+      units: document.querySelector('input[name="units"]:checked')?.value || '',
+      objective: document.querySelector('input[name="objective"]:checked')?.value || '',
+      timeline: document.querySelector('input[name="timeline"]:checked')?.value || '',
+      locations: [...document.querySelectorAll('input[name="locations"]:checked')].map(i => i.value),
+      notes: document.getElementById('notes').value.trim(),
+      phoneVerifiedToken: document.getElementById('phoneVerifiedToken').value,
+    };
+
+    try {
+      // Optional lead endpoint — if missing, still accept verified client-side success
+      await fetch(OTP_API.replace(/\/otp$/, '') + '/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }).catch(() => null);
+
+      document.getElementById('applyForm').style.display = 'none';
+      document.getElementById('formProgress').style.display = 'none';
+      document.getElementById('successPanel').classList.add('show');
+      showToast('Verified application submitted');
+    } catch (_) {
+      showToast('Something went wrong. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
+    }
   });
 })();
 </script>

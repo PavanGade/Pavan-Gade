@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/otp/send", "destination": "/api/otp/send" },
+    { "source": "/api/otp/verify", "destination": "/api/otp/verify" },
+    { "source": "/api/leads", "destination": "/api/leads" }
+  ]
+}
