@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRSPCT — AI Prospecting & Sales CRM</title>
+  <meta
+    name="description"
+    content="Discover, qualify, and close with PRSPCT. Prospecting intelligence, pipeline, follow-ups, and AI-assisted selling in one workspace."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --ink: #07080a;
+      --ink-soft: #14161c;
+      --paper: #f3f5f8;
+      --snow: #ffffff;
+      --signal: #1f6bff;
+      --signal-deep: #1554d4;
+      --ember: #ff6b2c;
+      --mint: #12b886;
+      --muted: #667085;
+      --line: rgba(7, 8, 10, 0.08);
+      --shadow: 0 24px 60px rgba(7, 8, 10, 0.1);
+      --radius: 28px;
+      --max: 1180px;
+      --font-display: "Syne", sans-serif;
+      --font-body: "Plus Jakarta Sans", sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--snow);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+      background: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+    }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.82);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .nav.is-scrolled {
+      border-bottom-color: var(--line);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .logo__mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: var(--ink);
+      color: white;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo__mark svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav__links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.92rem;
+      font-weight: 550;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover {
+      color: var(--ink);
+    }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav__login {
+      display: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav__toggle {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--paper);
+    }
+
+    .nav__toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--ink);
+      position: relative;
+    }
+
+    .nav__toggle span::before,
+    .nav__toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--ink);
+    }
+
+    .nav__toggle span::before {
+      top: -6px;
+    }
+
+    .nav__toggle span::after {
+      top: 6px;
+    }
+
+    .mobile-menu {
+      display: none;
+      border-top: 1px solid var(--line);
+      padding: 1rem 0 1.25rem;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    @media (min-width: 880px) {
+      .nav__links,
+      .nav__login {
+        display: flex;
+      }
+
+      .nav__toggle {
+        display: none;
+      }
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: 999px;
+      padding: 0.9rem 1.45rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn--ink {
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn--ink:hover {
+      background: #1a1d24;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn--ghost:hover {
+      background: rgba(7, 8, 10, 0.05);
+    }
+
+    .btn--snow {
+      background: white;
+      color: var(--ink);
+    }
+
+    .btn--signal {
+      background: var(--signal);
+      color: white;
+    }
+
+    .btn--signal:hover {
+      background: var(--signal-deep);
+    }
+
+    .btn--sm {
+      padding: 0.65rem 1.15rem;
+      font-size: 0.88rem;
+    }
+
+    .btn--block {
+      width: 100%;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: min(100svh, 920px);
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero__atmosphere {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse 70% 55% at 70% 20%, rgba(31, 107, 255, 0.22), transparent 60%),
+        radial-gradient(ellipse 50% 45% at 15% 80%, rgba(255, 107, 44, 0.12), transparent 55%),
+        linear-gradient(180deg, #eef3fb 0%, #f7f8fa 42%, #ffffff 100%);
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.4;
+      background-image:
+        linear-gradient(to right, rgba(7, 8, 10, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(7, 8, 10, 0.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at 50% 35%, black 20%, transparent 72%);
+    }
+
+    .hero__content {
+      width: min(100% - 2.5rem, 760px);
+      margin: 0 auto;
+      padding: 7.5rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .hero__brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3.2rem, 10vw, 6.5rem);
+      letter-spacing: -0.06em;
+      line-height: 0.92;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: clamp(1.65rem, 4.2vw, 2.75rem);
+      letter-spacing: -0.035em;
+      line-height: 1.12;
+      color: var(--ink);
+      max-width: 18ch;
+      margin-inline: auto;
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
+    }
+
+    .hero__rotate {
+      display: inline-block;
+      position: relative;
+      color: var(--signal);
+      min-width: 7.2ch;
+      text-align: left;
+    }
+
+    .hero__rotate span {
+      display: inline-block;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .hero__rotate span.is-out {
+      opacity: 0;
+      transform: translateY(12px);
+      position: absolute;
+      left: 0;
+    }
+
+    .hero__lead {
+      margin: 1.15rem auto 0;
+      max-width: 36rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+
+    .hero__cta {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.42s forwards;
+    }
+
+    .hero__note {
+      margin-top: 0.9rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.52s forwards;
+    }
+
+    .hero__stage {
+      position: relative;
+      width: min(100% - 1.5rem, var(--max));
+      margin: 2rem auto 0;
+      opacity: 0;
+      animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+    }
+
+    .hero__canvas {
+      position: relative;
+      border-radius: 28px 28px 0 0;
+      overflow: hidden;
+      min-height: 340px;
+      background:
+        linear-gradient(135deg, rgba(7, 8, 10, 0.92), rgba(21, 84, 212, 0.85)),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 44, 0.35), transparent 40%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 0;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      .hero__canvas {
+        min-height: 420px;
+        padding: 2rem;
+      }
+    }
+
+    .dash {
+      display: grid;
+      gap: 1rem;
+      height: 100%;
+      color: white;
+    }
+
+    @media (min-width: 800px) {
+      .dash {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    .dash__panel {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 1.15rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .dash__label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 500;
+    }
+
+    .dash__value {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-top: 0.2rem;
+    }
+
+    .dash__bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.4rem;
+      height: 110px;
+      margin-top: 1.25rem;
+    }
+
+    .dash__bars span {
+      flex: 1;
+      border-radius: 6px 6px 2px 2px;
+      background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.35));
+      animation: barPulse 2.8s ease-in-out infinite;
+    }
+
+    .dash__bars span:nth-child(odd) {
+      animation-delay: 0.2s;
+    }
+
+    .dash__list {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .dash__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0.85rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dash__row strong {
+      display: block;
+      font-size: 0.88rem;
+    }
+
+    .dash__row small {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.75rem;
+    }
+
+    .dash__chip {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(18, 184, 134, 0.2);
+      color: #9af0d0;
+    }
+
+    /* ---------- Sections shared ---------- */
+    .section {
+      padding: clamp(4.5rem, 9vw, 7rem) 0;
+    }
+
+    .section--paper {
+      background: var(--paper);
+    }
+
+    .section--ink {
+      background: var(--ink);
+      color: white;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 0.85rem;
+    }
+
+    .eyebrow--ember {
+      color: var(--ember);
+    }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.35rem);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    .section__lead {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 36rem;
+    }
+
+    .section--ink .section__lead {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---------- Trusted ---------- */
+    .trusted {
+      padding: 2.5rem 0;
+      border-block: 1px solid var(--line);
+      background: #fafbfc;
+      text-align: center;
+    }
+
+    .trusted p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .trusted__logos {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .trusted__logos span {
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: #c5cad3;
+    }
+
+    /* ---------- Feature split ---------- */
+    .split {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .split {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .split--reverse .split__copy {
+        order: 2;
+      }
+    }
+
+    .split__copy .btn {
+      margin-top: 1.75rem;
+    }
+
+    .checklist {
+      margin-top: 1.35rem;
+      display: grid;
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: #3f4654;
+      font-weight: 500;
+    }
+
+    .checklist i {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--signal);
+      color: white;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .checklist i svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .visual {
+      border-radius: var(--radius);
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 50px rgba(7, 8, 10, 0.06);
+      padding: 1.25rem;
+      min-height: 320px;
+    }
+
+    .visual--soft {
+      background: #eef1f6;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .person {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      background: white;
+      margin-bottom: 0.65rem;
+      box-shadow: 0 6px 18px rgba(7, 8, 10, 0.04);
+    }
+
+    .person__meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: white;
+      background: var(--ink);
+    }
+
+    .person strong {
+      display: block;
+      font-size: 0.92rem;
+    }
+
+    .person small {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .score {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    .score--hot {
+      background: #ffe8e0;
+      color: #c2410c;
+    }
+
+    .score--warm {
+      background: #fff4e5;
+      color: #b45309;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+    }
+
+    .pipe-col {
+      background: white;
+      border-radius: 16px;
+      padding: 0.75rem;
+    }
+
+    .pipe-col h4 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .pipe-card {
+      background: var(--paper);
+      border-radius: 12px;
+      padding: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pipe-card span {
+      display: block;
+      height: 7px;
+      border-radius: 999px;
+      background: #d7dce5;
+      margin-bottom: 0.4rem;
+    }
+
+    .pipe-card span:last-child {
+      width: 45%;
+      background: rgba(31, 107, 255, 0.35);
+      margin-bottom: 0.55rem;
+    }
+
+    .pipe-card b {
+      font-size: 0.78rem;
+    }
+
+    /* ---------- Workflow ---------- */
+    .center {
+      text-align: center;
+      max-width: 40rem;
+      margin-inline: auto;
+    }
+
+    .center .section__lead {
+      margin-inline: auto;
+    }
+
+    .bento {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      .bento {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .tile {
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      background: white;
+      border: 1px solid var(--line);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(7, 8, 10, 0.07);
+    }
+
+    .tile--soft {
+      background: var(--paper);
+      border: 0;
+    }
+
+    .tile__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      margin-bottom: 1.15rem;
+    }
+
+    .tile__icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .tile h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.55rem;
+    }
+
+    .tile p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Stats ---------- */
+    .stats-grid {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .stat {
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 3.5rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .stat h3 {
+      margin-top: 0.85rem;
+      font-size: 1.1rem;
+    }
+
+    .stat p {
+      margin-top: 0.4rem;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.92rem;
+    }
+
+    /* ---------- Pricing ---------- */
+    .pricing-head {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      .pricing-head {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .pricing-head .section__title {
+        max-width: 14ch;
+      }
+    }
+
+    .toggle {
+      position: relative;
+      display: inline-flex;
+      padding: 0.3rem;
+      border-radius: 999px;
+      background: white;
+      box-shadow: 0 8px 24px rgba(7, 8, 10, 0.06);
+      align-self: flex-start;
+    }
+
+    .toggle button {
+      border-radius: 999px;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .toggle button.is-active {
+      background: var(--ink);
+      color: white;
+      box-shadow: 0 6px 16px rgba(7, 8, 10, 0.22);
+    }
+
+    .toggle__save {
+      position: absolute;
+      top: -0.7rem;
+      right: 0.35rem;
+      background: var(--ink);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.2rem 0.45rem;
+      border-radius: 999px;
+    }
+
+    .plans {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 900px) {
+      .plans {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .plan {
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      background: white;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .plan--featured {
+      background: var(--ink);
+      color: white;
+      border-color: transparent;
+    }
+
+    .plan h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .plan > p {
+      margin-top: 0.45rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      min-height: 2.8em;
+    }
+
+    .plan--featured > p {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .plan__price {
+      margin-top: 1.35rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.25rem;
+    }
+
+    .plan__price strong {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .plan__price span {
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .plan--featured .plan__price span {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .plan .btn {
+      margin-top: 1.35rem;
+    }
+
+    .plan__features-label {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .plan--featured .plan__features-label {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .plan ul {
+      margin-top: 0.75rem;
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .plan li {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      color: #3f4654;
+    }
+
+    .plan--featured li {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .plan li::before {
+      content: "#";
+      color: var(--signal);
+      font-weight: 800;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-list {
+      margin: 2rem auto 0;
+      max-width: 760px;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .faq {
+      width: 100%;
+      text-align: left;
+      border-radius: 22px;
+      background: var(--paper);
+      padding: 1.05rem 1.15rem;
+      transition: background 0.2s;
+    }
+
+    .faq:hover {
+      background: #e8ebf0;
+    }
+
+    .faq__q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .faq__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .faq.is-open .faq__icon {
+      transform: rotate(180deg);
+    }
+
+    .faq__a {
+      display: none;
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .faq.is-open .faq__a {
+      display: block;
+    }
+
+    /* ---------- CTA band ---------- */
+    .cta-band {
+      padding: 0 0 4.5rem;
+    }
+
+    .cta-band__inner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      padding: clamp(3rem, 7vw, 4.5rem) 1.5rem;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #1f6bff 0%, #1554d4 55%, #0f3fa8 100%);
+    }
+
+    .cta-band__glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 25% 40%, rgba(255, 255, 255, 0.35), transparent 42%),
+        radial-gradient(circle at 80% 70%, rgba(255, 107, 44, 0.25), transparent 40%);
+      pointer-events: none;
+    }
+
+    .cta-band__mark {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 1.1rem;
+      border-radius: 14px;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+    }
+
+    .cta-band h2 {
+      position: relative;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      max-width: 14ch;
+      margin-inline: auto;
+    }
+
+    .cta-band .btn {
+      position: relative;
+      margin-top: 1.6rem;
+    }
+
+    .cta-band p {
+      position: relative;
+      margin-top: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.92rem;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 3rem 0 2rem;
+    }
+
+    .footer__grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 800px) {
+      .footer__grid {
+        grid-template-columns: 1.4fr 1fr;
+      }
+    }
+
+    .footer__brand p {
+      margin-top: 0.85rem;
+      max-width: 28ch;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer__cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .footer__cols h4 {
+      font-size: 0.88rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer__cols a,
+    .footer__cols span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .footer__cols a:hover {
+      color: var(--ink);
+    }
+
+    .footer__copy {
+      margin-top: 2.5rem;
+      color: #98a2b3;
+      font-size: 0.85rem;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes barPulse {
+      0%,
+      100% {
+        transform: scaleY(1);
+      }
+      50% {
+        transform: scaleY(0.86);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="logo" href="#top" aria-label="PRSPCT home">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3l2.4 6.2L21 12l-6.6 2.8L12 21l-2.4-6.2L3 12l6.6-2.8L12 3z" fill="currentColor"/>
+          </svg>
+        </span>
+        PRSPCT
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pipeline">Pipeline</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a class="nav__login" href="#cta">Log in</a>
+        <a class="btn btn--ink btn--sm" href="#cta">Contact</a>
+        <button class="nav__toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#features">Features</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero__atmosphere" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 class="hero__brand">PRSPCT</h1>
+        <p class="hero__title">
+          Stay organized &amp; efficient with AI
+          <span class="hero__rotate" id="rotateWord"><span>prospecting</span></span>.
+        </p>
+        <p class="hero__lead">
+          Discover, qualify, and close — one workspace for prospects, pipeline motion, follow-ups, and AI-assisted selling.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--ink" href="#cta">
+            Get PRSPCT For Free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#pricing">Book A Demo</a>
+        </div>
+        <p class="hero__note">* No credit card required. Free demo workspace included.</p>
+      </div>
+
+      <div class="hero__stage" aria-hidden="true">
+        <div class="hero__canvas">
+          <div class="dash">
+            <div class="dash__panel">
+              <div class="dash__label">Total Prospects</div>
+              <div class="dash__value">12,480</div>
+              <div class="dash__bars">
+                <span style="height:42%"></span>
+                <span style="height:58%"></span>
+                <span style="height:50%"></span>
+                <span style="height:72%"></span>
+                <span style="height:64%"></span>
+                <span style="height:80%"></span>
+                <span style="height:76%"></span>
+                <span style="height:90%"></span>
+                <span style="height:84%"></span>
+                <span style="height:96%"></span>
+                <span style="height:88%"></span>
+                <span style="height:100%"></span>
+              </div>
+            </div>
+            <div class="dash__panel">
+              <div class="dash__label">Open Pipeline</div>
+              <div class="dash__value">$455k</div>
+              <div class="dash__list">
+                <div class="dash__row">
+                  <div>
+                    <strong>Vertex Labs rollout</strong>
+                    <small>Qualified</small>
+                  </div>
+                  <span class="dash__chip">$48k</span>
+                </div>
+                <div class="dash__row">
+                  <div>
+                    <strong>Nova growth retainer</strong>
+                    <small>Meeting booked</small>
+                  </div>
+                  <span class="dash__chip">$24k</span>
+                </div>
+                <div class="dash__row">
+                  <div>
+                    <strong>Apex Realty suite</strong>
+                    <small>Proposal</small>
+                  </div>
+                  <span class="dash__chip">$61k</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trusted">
+      <div class="container">
+        <p>Trusted by 10,000+ founders &amp; revenue teams.</p>
+        <div class="trusted__logos">
+          <span>Vertex</span>
+          <span>Nova</span>
+          <span>Apex</span>
+          <span>GrowthForge</span>
+          <span>CloudMatrix</span>
+          <span>ScaleWorks</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container split reveal">
+        <div class="split__copy">
+          <span class="eyebrow">Prospect database</span>
+          <h2 class="section__title">Customer database for effortless data access.</h2>
+          <p class="section__lead">
+            Bring every prospect and company into one place — complete profiles, scores, ownership, and activity — so your team stops hunting across spreadsheets.
+          </p>
+          <a class="btn btn--ink" href="#cta">Get PRSPCT For Free</a>
+        </div>
+        <div class="visual visual--soft">
+          <div class="person">
+            <div class="person__meta">
+              <span class="avatar">AS</span>
+              <div>
+                <strong>Aarav Sharma</strong>
+                <small>Founder &amp; CEO · Vertex Labs</small>
+              </div>
+            </div>
+            <span class="score score--hot">82</span>
+          </div>
+          <div class="person">
+            <div class="person__meta">
+              <span class="avatar">PN</span>
+              <div>
+                <strong>Priya Nair</strong>
+                <small>CMO · Nova Systems</small>
+              </div>
+            </div>
+            <span class="score score--warm">74</span>
+          </div>
+          <div class="person">
+            <div class="person__meta">
+              <span class="avatar">JL</span>
+              <div>
+                <strong>Jordan Lee</strong>
+                <small>VP Sales · Apex Realty</small>
+              </div>
+            </div>
+            <span class="score score--warm">61</span>
+          </div>
+          <div class="person">
+            <div class="person__meta">
+              <span class="avatar">MK</span>
+              <div>
+                <strong>Maya Chen</strong>
+                <small>Head of Growth · ScaleWorks</small>
+              </div>
+            </div>
+            <span class="score score--hot">88</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="pipeline">
+      <div class="container split split--reverse reveal">
+        <div class="split__copy">
+          <span class="eyebrow eyebrow--ember">Sales pipeline</span>
+          <h2 class="section__title">Monitor, manage and maximize your sales pipeline.</h2>
+          <ul class="checklist">
+            <li>
+              <i>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </i>
+              Visualize every stage from New to Won
+            </li>
+            <li>
+              <i>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </i>
+              Customizable pipeline management
+            </li>
+            <li>
+              <i>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </i>
+              Reduce lead leakage and accelerate growth
+            </li>
+          </ul>
+          <a class="btn btn--ink" href="#cta">Get PRSPCT For Free</a>
+        </div>
+        <div class="visual visual--soft">
+          <div class="pipeline">
+            <div class="pipe-col">
+              <h4>New</h4>
+              <div class="pipe-card"><span></span><span></span><b>$12k</b></div>
+              <div class="pipe-card"><span></span><span></span><b>$17k</b></div>
+            </div>
+            <div class="pipe-col">
+              <h4>Qualified</h4>
+              <div class="pipe-card"><span></span><span></span><b>$24k</b></div>
+              <div class="pipe-card"><span></span><span></span><b>$29k</b></div>
+            </div>
+            <div class="pipe-col">
+              <h4>Proposal</h4>
+              <div class="pipe-card"><span></span><span></span><b>$36k</b></div>
+              <div class="pipe-card"><span></span><span></span><b>$41k</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="center reveal">
+          <h2 class="section__title">All your team’s workflow in a single place.</h2>
+          <p class="section__lead">
+            Prospecting, CRM, follow-ups, and AI assistance — without the clutter of five disconnected tools.
+          </p>
+        </div>
+
+        <div class="bento reveal">
+          <article class="tile">
+            <div class="tile__icon" style="background:#1f6bff">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-14h-7l1-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Sales automation</h3>
+            <p>Automate repetitive follow-ups, assignments, and status changes so reps stay in motion.</p>
+          </article>
+          <article class="tile">
+            <div class="tile__icon" style="background:#ff6b2c">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+            </div>
+            <h3>Lead scoring</h3>
+            <p>Rules-based HOT / WARM / COLD scoring with transparent ICP breakdowns — not black-box claims.</p>
+          </article>
+          <article class="tile">
+            <div class="tile__icon" style="background:#12b886">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4L12 3z" fill="currentColor"/></svg>
+            </div>
+            <h3>AI sales assistant</h3>
+            <p>Analyze prospects, draft outreach, and get next-best-actions through a secure provider layer.</p>
+          </article>
+          <article class="tile tile--soft">
+            <h3>Sales pipeline management</h3>
+            <p>Visualize opportunities, forecast revenue, and move deals with drag-and-drop stages.</p>
+          </article>
+          <article class="tile tile--soft">
+            <h3>Prospect intelligence</h3>
+            <p>Company context, activity timelines, notes, and AI summaries on every profile.</p>
+          </article>
+          <article class="tile tile--soft">
+            <h3>Security and tenancy</h3>
+            <p>Multi-tenant architecture with org isolation and role-based access built in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--ink">
+      <div class="container reveal">
+        <h2 class="section__title">Numbers behind our influence.</h2>
+        <p class="section__lead">
+          Built for teams that care about contact rate, qualification, meetings booked, and closed revenue.
+        </p>
+        <div class="stats-grid">
+          <article class="stat">
+            <strong>100k+</strong>
+            <h3>Prospects managed</h3>
+            <p>Across demo and early workspaces exploring PRSPCT.</p>
+          </article>
+          <article class="stat">
+            <strong>34%</strong>
+            <h3>Faster follow-ups</h3>
+            <p>Teams stay ahead with overdue alerts and task views.</p>
+          </article>
+          <article class="stat">
+            <strong>80%</strong>
+            <h3>Cleaner CRM data</h3>
+            <p>Import validation and dedupe keep records trustworthy.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="pricing">
+      <div class="container">
+        <div class="pricing-head reveal">
+          <h2 class="section__title">Choose the plan that fits your business.</h2>
+          <div class="toggle" role="group" aria-label="Billing period">
+            <button type="button" id="monthlyBtn">Monthly</button>
+            <button type="button" class="is-active" id="annualBtn">Annual</button>
+            <span class="toggle__save">SAVE 20%</span>
+          </div>
+        </div>
+
+        <div class="plans reveal">
+          <article class="plan" data-plan>
+            <h3>Starter Plan</h3>
+            <p>Ideal for founders and small teams getting started with prospecting.</p>
+            <div class="plan__price">
+              <strong data-price data-monthly="29" data-annual="23">$23</strong>
+              <span>/month</span>
+            </div>
+            <a class="btn btn--ink btn--block" href="#cta">Buy Now</a>
+            <div class="plan__features-label">Included features</div>
+            <ul>
+              <li>Contact and lead management</li>
+              <li>Task and follow-up scheduling</li>
+              <li>Basic reporting and analytics</li>
+              <li>CSV import and export</li>
+            </ul>
+          </article>
+
+          <article class="plan" data-plan>
+            <h3>Business Plan</h3>
+            <p>Growing teams that need pipelines, automation, and collaboration.</p>
+            <div class="plan__price">
+              <strong data-price data-monthly="59" data-annual="47">$47</strong>
+              <span>/month</span>
+            </div>
+            <a class="btn btn--ink btn--block" href="#cta">Buy Now</a>
+            <div class="plan__features-label">Included features</div>
+            <ul>
+              <li>Customizable pipelines and workflows</li>
+              <li>Team collaboration tools</li>
+              <li>Advanced analytics</li>
+              <li>AI outreach drafts</li>
+            </ul>
+          </article>
+
+          <article class="plan plan--featured" data-plan>
+            <h3>Enterprise Plan</h3>
+            <p>Larger organizations that need scale, roles, and AI-driven insight.</p>
+            <div class="plan__price">
+              <strong data-price data-monthly="99" data-annual="79">$79</strong>
+              <span>/month</span>
+            </div>
+            <a class="btn btn--snow btn--block" href="#cta">Buy Now</a>
+            <div class="plan__features-label">Included features</div>
+            <ul>
+              <li>Unlimited users and custom roles</li>
+              <li>Multi-workspace controls</li>
+              <li>AI prospect intelligence</li>
+              <li>Custom integrations</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="center reveal">
+          <h2 class="section__title">Got questions? We’ve got answers.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <button class="faq is-open" type="button">
+            <div class="faq__q">
+              How does PRSPCT help manage prospect data?
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <div class="faq__a">
+              PRSPCT centralizes prospects, companies, lists, and activity into one workspace so your team can search, score, and act without jumping between tools.
+            </div>
+          </button>
+          <button class="faq" type="button">
+            <div class="faq__q">
+              Does PRSPCT include automated workflow features?
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <div class="faq__a">
+              Yes. Trigger automations when leads are created, statuses change, deals move stages, or follow-ups go overdue — create tasks, assign owners, tag records, and notify the team.
+            </div>
+          </button>
+          <button class="faq" type="button">
+            <div class="faq__q">
+              How do personalized alerts and notifications work?
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <div class="faq__a">
+              You get reminders for due tasks, overdue follow-ups, assigned leads, deal stage changes, and automation events — all inside the notification center.
+            </div>
+          </button>
+          <button class="faq" type="button">
+            <div class="faq__q">
+              Can I try PRSPCT without a credit card?
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <div class="faq__a">
+              Yes. Start exploring instantly with the free demo workspace. No payment is required to try the product.
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" id="cta">
+      <div class="container">
+        <div class="cta-band__inner reveal">
+          <div class="cta-band__glow" aria-hidden="true"></div>
+          <div class="cta-band__mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3l2.4 6.2L21 12l-6.6 2.8L12 21l-2.4-6.2L3 12l6.6-2.8L12 3z" fill="white"/>
+            </svg>
+          </div>
+          <h2>The modern system to run your revenue team.</h2>
+          <a class="btn btn--ink" href="mailto:hello@prspct.app">Request A Demo</a>
+          <p>No credit card needed. Cancel anytime.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="logo" href="#top">
+            <span class="logo__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l2.4 6.2L21 12l-6.6 2.8L12 21l-2.4-6.2L3 12l6.6-2.8L12 3z" fill="currentColor"/>
+              </svg>
+            </span>
+            PRSPCT
+          </a>
+          <p>Prospecting intelligence for modern sales teams. Discover → Qualify → Engage → Close.</p>
+        </div>
+        <div class="footer__cols">
+          <div>
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#cta">Sign up</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#cta">Log in</a>
+            <a href="#cta">Contact</a>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <span>Privacy Policy</span>
+            <span>Terms</span>
+          </div>
+        </div>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> PRSPCT. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const nav = document.getElementById("nav");
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const year = document.getElementById("year");
+      const rotateEl = document.getElementById("rotateWord");
+      const monthlyBtn = document.getElementById("monthlyBtn");
+      const annualBtn = document.getElementById("annualBtn");
+
+      year.textContent = String(new Date().getFullYear());
+
+      const onScroll = () => {
+        nav.classList.toggle("is-scrolled", window.scrollY > 8);
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      menuToggle.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("is-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Rotating hero word
+      const words = ["prospecting", "pipeline", "closing"];
+      let wordIndex = 0;
+      setInterval(() => {
+        const current = rotateEl.querySelector("span");
+        current.classList.add("is-out");
+        wordIndex = (wordIndex + 1) % words.length;
+        const next = document.createElement("span");
+        next.textContent = words[wordIndex];
+        next.style.opacity = "0";
+        next.style.transform = "translateY(-10px)";
+        rotateEl.appendChild(next);
+        requestAnimationFrame(() => {
+          next.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+          next.style.opacity = "1";
+          next.style.transform = "none";
+        });
+        setTimeout(() => current.remove(), 360);
+      }, 2400);
+
+      // Pricing toggle
+      const setBilling = (annual) => {
+        annualBtn.classList.toggle("is-active", annual);
+        monthlyBtn.classList.toggle("is-active", !annual);
+        document.querySelectorAll("[data-price]").forEach((el) => {
+          const value = annual ? el.dataset.annual : el.dataset.monthly;
+          el.textContent = `$${value}`;
+        });
+      };
+      monthlyBtn.addEventListener("click", () => setBilling(false));
+      annualBtn.addEventListener("click", () => setBilling(true));
+
+      // FAQ accordion
+      document.querySelectorAll(".faq").forEach((item) => {
+        item.addEventListener("click", () => {
+          const wasOpen = item.classList.contains("is-open");
+          document.querySelectorAll(".faq").forEach((f) => f.classList.remove("is-open"));
+          if (!wasOpen) item.classList.add("is-open");
+        });
+      });
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
