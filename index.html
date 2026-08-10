@@ -151,10 +151,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  min-width:160px;
-  height:72px;
-  padding:0 28px;
+  min-width:168px;
+  height:80px;
+  padding:16px 28px;
   background:var(--bg-subtle);
   border:1px solid var(--border);
   border-radius:12px;
@@ -168,18 +167,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   box-shadow:var(--shadow-sm);
   transform:translateY(-2px);
 }
-.dev-logo .mark{
-  width:32px;height:32px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;color:#fff;letter-spacing:-.02em;
-  flex-shrink:0;
+.dev-logo img{
+  max-height:40px;
+  max-width:140px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:grayscale(100%) opacity(0.75);
+  transition:filter .25s ease;
 }
-.dev-logo .name{
-  font-size:14px;font-weight:600;color:var(--slate-light);
-  letter-spacing:-.01em;white-space:nowrap;
-  transition:color .2s;
+.dev-logo:hover img{
+  filter:grayscale(0%) opacity(1);
 }
-.dev-logo:hover .name{color:var(--navy)}
 
 section{padding:88px 0}
 .section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);margin-bottom:12px}
@@ -1072,32 +1071,28 @@ section{padding:88px 0}
   const indigoSoft = 'rgba(83,58,253,0.15)';
   const slate = '#8898aa';
 
-  /* Developer logos — horizontal marquee */
+  /* Developer logos — horizontal marquee with actual brand marks */
   const developers = [
-    { name: 'My Home', initials: 'MH', color: '#1a5f4a' },
-    { name: 'Aparna', initials: 'AP', color: '#c45c26' },
-    { name: 'Prestige', initials: 'PG', color: '#1e3a5f' },
-    { name: 'Ramky', initials: 'RK', color: '#2d6a4f' },
-    { name: 'Rajapushpa', initials: 'RP', color: '#7b2d8e' },
-    { name: 'ASBL', initials: 'AS', color: '#0d6e6e' },
-    { name: 'Sumadhura', initials: 'SM', color: '#b45309' },
-    { name: 'Hallmark', initials: 'HM', color: '#1d4ed8' },
-    { name: 'Cybercity', initials: 'CC', color: '#4338ca' },
-    { name: 'Praneeth', initials: 'PR', color: '#be123c' },
-    { name: 'SMR Holdings', initials: 'SMR', color: '#0f766e' },
-    { name: 'Brigade', initials: 'BG', color: '#9a3412' },
-    { name: 'Sobha', initials: 'SB', color: '#166534' },
-    { name: 'Lodha', initials: 'LD', color: '#7c2d12' },
-    { name: 'Aliens Group', initials: 'AG', color: '#1e40af' },
-    { name: 'Vasavi', initials: 'VS', color: '#86198f' },
+    { name: 'My Home', file: 'logos/myhome.png' },
+    { name: 'Aparna', file: 'logos/aparna.svg' },
+    { name: 'Prestige', file: 'logos/prestige.svg' },
+    { name: 'Ramky', file: 'logos/ramky.svg' },
+    { name: 'Rajapushpa', file: 'logos/rajapushpa.svg' },
+    { name: 'ASBL', file: 'logos/asbl.webp' },
+    { name: 'Sumadhura', file: 'logos/sumadhura.svg' },
+    { name: 'Hallmark', file: 'logos/hallmark.png' },
+    { name: 'SMR Holdings', file: 'logos/smr.png' },
+    { name: 'Brigade', file: 'logos/brigade.png' },
+    { name: 'Sobha', file: 'logos/sobha.png' },
+    { name: 'Lodha', file: 'logos/lodha.svg' },
+    { name: 'Aliens Group', file: 'logos/aliens.png' },
   ];
 
   const logoTrack = document.getElementById('devLogoTrack');
   if (logoTrack) {
     const logoHTML = developers.map(d => `
       <div class="dev-logo" title="${d.name}">
-        <span class="mark" style="background:${d.color}">${d.initials}</span>
-        <span class="name">${d.name}</span>
+        <img src="${d.file}" alt="${d.name} logo" loading="lazy" width="140" height="40" />
       </div>`).join('');
     // Duplicate for seamless infinite scroll
     logoTrack.innerHTML = logoHTML + logoHTML;
