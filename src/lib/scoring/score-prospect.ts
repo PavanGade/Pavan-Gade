@@ -9,6 +9,7 @@ export type ScoreCategory =
   | "engagement";
 
 export type ScoreWeights = Record<ScoreCategory, number>;
+export type ScoreBand = "hot" | "warm" | "cold";
 
 export interface ScoreBreakdownItem {
   category: ScoreCategory;
@@ -22,6 +23,8 @@ export interface ScoreBreakdownItem {
 export interface ScoreResult {
   score: number;
   band: LeadTemperature;
+  leadScore: number;
+  leadTemperature: ScoreBand;
   breakdown: ScoreBreakdownItem[];
 }
 
@@ -29,6 +32,7 @@ export interface ScoreCompanyInput {
   name?: string;
   industry?: string;
   employeeCount?: number;
+  revenue?: number;
   location?: string;
   city?: string;
   region?: string;
@@ -46,9 +50,14 @@ export interface ScoreEngagementInput {
 
 export interface ScoreProspectInput {
   title?: string;
+  jobTitle?: string;
   department?: string;
   seniority?: string;
   location?: string;
+  country?: string;
+  source?: string;
+  status?: string;
+  tagIds?: string[];
   company?: ScoreCompanyInput;
   engagement?: ScoreEngagementInput;
   icpFit?: number;
@@ -114,7 +123,7 @@ export function scoreProspect(prospect: ScoreProspectInput, options: ScoreOption
     buildBreakdown("industry", weights.industry, scoreIndustry(prospect, icp)),
     buildBreakdown("companySize", weights.companySize, scoreCompanySize(prospect, icp)),
     buildBreakdown("location", weights.location, scoreLocation(prospect, icp)),
-    buildBreakdown("engagement", weights.engagement, scoreEngagement(prospect.engagement)),
+    buildBreakdown("engagement", weights.engagement, scoreEngagement(prospect)),
   ];
 
   const score = clamp(
@@ -126,6 +135,8 @@ export function scoreProspect(prospect: ScoreProspectInput, options: ScoreOption
   return {
     score,
     band: bandForScore(score),
+    leadScore: score,
+    leadTemperature: legacyBandForScore(score),
     breakdown,
   };
 }
@@ -190,7 +201,7 @@ function scoreIcpMatch(prospect: ScoreProspectInput, icp: NormalizedIcp): Factor
 }
 
 function scoreJobTitle(prospect: ScoreProspectInput, icp: NormalizedIcp): FactorScore {
-  const title = normalizeText(prospect.title);
+  const title = normalizeText(prospect.title ?? prospect.jobTitle);
 
   if (!title) {
     return { ratio: 0, reason: "No job title available." };
@@ -268,7 +279,14 @@ function scoreCompanySize(prospect: ScoreProspectInput, icp: NormalizedIcp): Fac
 
 function scoreLocation(prospect: ScoreProspectInput, icp: NormalizedIcp): FactorScore {
   const location = normalizeText(
-    [prospect.location, prospect.company?.location, prospect.company?.city, prospect.company?.region, prospect.company?.country]
+    [
+      prospect.location,
+      prospect.country,
+      prospect.company?.location,
+      prospect.company?.city,
+      prospect.company?.region,
+      prospect.company?.country,
+    ]
       .filter(Boolean)
       .join(" "),
   );
@@ -294,6 +312,7 @@ function scoreKeywordFit(prospect: ScoreProspectInput, icp: NormalizedIcp): Fact
   const searchableText = normalizeText(
     [
       prospect.title,
+      prospect.jobTitle,
       prospect.department,
       prospect.seniority,
       prospect.company?.name,
@@ -319,17 +338,25 @@ function scoreKeywordFit(prospect: ScoreProspectInput, icp: NormalizedIcp): Fact
   };
 }
 
-function scoreEngagement(engagement?: ScoreEngagementInput): FactorScore {
-  if (!engagement) {
+function scoreEngagement(prospect: ScoreProspectInput): FactorScore {
+  const engagement = prospect.engagement;
+  const source = normalizeText(prospect.source);
+  const status = normalizeText(prospect.status);
+  const tagIds = prospect.tagIds ?? [];
+
+  if (!engagement && !source && !status && tagIds.length === 0) {
     return { ratio: 0, reason: "No engagement activity available." };
   }
 
   const points =
-    Math.min(engagement.emailOpens ?? 0, 5) * 0.06 +
-    Math.min(engagement.emailClicks ?? 0, 3) * 0.1 +
-    Math.min(engagement.websiteVisits ?? 0, 5) * 0.06 +
-    Math.min(engagement.replies ?? 0, 2) * 0.25 +
-    Math.min(engagement.meetingsBooked ?? 0, 1) * 0.4;
+    Math.min(engagement?.emailOpens ?? 0, 5) * 0.06 +
+    Math.min(engagement?.emailClicks ?? 0, 3) * 0.1 +
+    Math.min(engagement?.websiteVisits ?? 0, 5) * 0.06 +
+    Math.min(engagement?.replies ?? 0, 2) * 0.25 +
+    Math.min(engagement?.meetingsBooked ?? 0, 1) * 0.4 +
+    (["website", "referral", "webinar", "inbound"].includes(source) ? 0.2 : 0) +
+    (["engaged", "qualified", "meeting", "proposal", "negotiation"].includes(status) ? 0.2 : 0) +
+    (tagIds.includes("tag-high-intent") ? 0.2 : 0);
 
   return {
     ratio: clamp(points, 0, 1),
@@ -375,76 +402,15 @@ function percentageToRatio(value: number): number {
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
-import type { DemoCompany, DemoLeadTemperature, DemoProspect } from "@/lib/demo/types";
 
-export interface ScoreProspectInput
-  extends Pick<
-    DemoProspect,
-    "jobTitle" | "seniority" | "department" | "source" | "status" | "country" | "tagIds"
-  > {
-  company?: DemoCompany;
-}
-
-export interface ScoreProspectResult {
-  leadScore: number;
-  leadTemperature: DemoLeadTemperature;
-}
-
-const highIntentSources = new Set(["Website", "Referral", "Webinar", "Inbound"]);
-const decisionMakerTerms = ["founder", "chief", "ceo", "cmo", "cto", "vp", "head", "director"];
-const growthDepartments = new Set(["Executive", "Marketing", "Sales", "Revenue"]);
-const advancedStatuses = new Set(["engaged", "qualified", "meeting", "proposal", "negotiation"]);
-
-export function scoreProspect(input: ScoreProspectInput): ScoreProspectResult {
-  const title = input.jobTitle.toLowerCase();
-  const seniority = input.seniority.toLowerCase();
-  let score = 35;
-
-  if (decisionMakerTerms.some((term) => title.includes(term) || seniority.includes(term))) {
-    score += 18;
+function legacyBandForScore(score: number): ScoreBand {
+  if (score >= 80) {
+    return "hot";
   }
 
-  if (growthDepartments.has(input.department)) {
-    score += 10;
+  if (score >= 50) {
+    return "warm";
   }
 
-  if (highIntentSources.has(input.source)) {
-    score += 12;
-  }
-
-  if (advancedStatuses.has(input.status)) {
-    score += 14;
-  }
-
-  if (input.country === "India" || input.country === "United States") {
-    score += 4;
-  }
-
-  if (input.tagIds.includes("tag-high-intent")) {
-    score += 12;
-  }
-
-  if (input.tagIds.includes("tag-enterprise")) {
-    score += 8;
-  }
-
-  if (input.company) {
-    if (input.company.employeeCount >= 500) {
-      score += 10;
-    } else if (input.company.employeeCount >= 100) {
-      score += 6;
-    }
-
-    if (input.company.revenue >= 50_000_000) {
-      score += 10;
-    } else if (input.company.revenue >= 10_000_000) {
-      score += 6;
-    }
-  }
-
-  const leadScore = Math.max(1, Math.min(100, score));
-  const leadTemperature: DemoLeadTemperature =
-    leadScore >= 75 ? "hot" : leadScore >= 50 ? "warm" : "cold";
-
-  return { leadScore, leadTemperature };
+  return "cold";
 }
