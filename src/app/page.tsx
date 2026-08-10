@@ -12,7 +12,6 @@ export default function Home() {
 
   React.useEffect(() => {
     const unsubscribe = useDemoStore.persist.onFinishHydration(() => setHydrated(true));
-    setHydrated(useDemoStore.persist.hasHydrated());
     return unsubscribe;
   }, []);
 

@@ -21,7 +21,7 @@ import {
   YAxis,
 } from "recharts";
 import { Badge, Button, Card, Dialog, EmptyState, Input, PageHeader, Select, Tabs } from "@/components/ui/primitives";
-import type { DemoDateRangePreset, DemoDeal, DemoProspect, DemoProspectStatus, DemoTask } from "@/lib/demo/types";
+import type { DemoDateRangePreset, DemoDeal, DemoProspect, DemoProspectStatus } from "@/lib/demo/types";
 import { getClientIntegrationStatuses } from "@/lib/env";
 import { formatCurrency, initials } from "@/lib/format";
 import { evaluateImportRows, suggestColumnMapping, type CsvRow, type ImportProspectData } from "@/lib/import/csv";
@@ -42,7 +42,6 @@ import {
   ProspectTable,
   ScoreBadge,
   Section,
-  StatusBadge,
   TaskRows,
   TemperatureBadge,
 } from "./components";

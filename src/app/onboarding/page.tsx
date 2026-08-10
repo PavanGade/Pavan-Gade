@@ -21,7 +21,7 @@ export default function OnboardingPage() {
   const router = useRouter();
   const session = useDemoStore((state) => state.session);
   const completeOnboarding = useDemoStore((state) => state.completeOnboarding);
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted] = React.useState(true);
   const [step, setStep] = React.useState(0);
   const [form, setForm] = React.useState({
     name: session?.name ?? "",
@@ -42,10 +42,6 @@ export default function OnboardingPage() {
     revenueMin: "1000000",
     revenueMax: "100000000",
   });
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   React.useEffect(() => {
     if (!mounted || !session?.onboardingComplete) return;
